@@ -2,10 +2,7 @@ package com.monkey.ele.administrator.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,11 +12,9 @@ public class Identity {
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
     private String id;
-    private String userId;
     private String name;
     private String idCardNumber;
     private String idCardPic;
     private Date createTime;
     private Date lastModifiedTime;
-
 }

@@ -39,7 +39,7 @@ public class Store {
     private Date lastModifiedTime;
 
     @OneToOne
-    @JoinColumn(name = "storeId")
+    @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
     @OneToMany
     @JoinColumn(name = "storeId")

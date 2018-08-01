@@ -38,7 +38,7 @@ public class User {
     private Date lastModifiedTime;
 
     @OneToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "identityId")
     private Identity identity;
     @OneToMany
     @JoinColumn(name = "userId")

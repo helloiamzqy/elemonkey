@@ -1,8 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
 
-
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -20,12 +18,10 @@ public class StoreInformation implements Serializable {
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
     private String id;
-    private String storeId;
     private String open;
     private String close;
     private Double deliveryArea;
     private String description;
     private Double deliveryCost;
     private String logoImage;
-
 }
