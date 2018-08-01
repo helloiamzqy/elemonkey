@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/elemonkey-administrator/elemonkey-administrator.iml" filepath="$PROJECT_DIR$/elemonkey-administrator/elemonkey-administrator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elemonkey-common/elemonkey-common.iml" filepath="$PROJECT_DIR$/elemonkey-common/elemonkey-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elemonkey-customer/elemonkey-customer.iml" filepath="$PROJECT_DIR$/elemonkey-customer/elemonkey-customer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/elemonkey-merchant/elemonkey-merchant.iml" filepath="$PROJECT_DIR$/elemonkey-merchant/elemonkey-merchant.iml" />
+    </modules>
+  </component>
+</project>

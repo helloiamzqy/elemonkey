@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="elemonkey-merchant:war">
+    <output-path>$PROJECT_DIR$/elemonkey-merchant/target</output-path>
+    <root id="archive" name="elemonkey-merchant-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="elemonkey-merchant:war exploded" />
+    </root>
+  </artifact>
+</component>

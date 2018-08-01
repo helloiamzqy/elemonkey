@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="elemonkey-administrator" />
+        <module name="elemonkey-common" />
+        <module name="elemonkey-customer" />
+        <module name="elemonkey-merchant" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="1.5" />
+      <module name="elemonkey-administrator" target="1.7" />
+      <module name="elemonkey-common" target="1.7" />
+      <module name="elemonkey-customer" target="1.7" />
+      <module name="elemonkey-merchant" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
