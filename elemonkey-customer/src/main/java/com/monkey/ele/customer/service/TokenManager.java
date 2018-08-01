@@ -8,5 +8,4 @@ public interface TokenManager {
 
     public boolean checkToken(TokenModel tokenModel);
 
-
 }
