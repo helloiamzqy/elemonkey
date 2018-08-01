@@ -14,5 +14,5 @@
 
     <import resource="applicationContext-jms.xml"/>
     <import resource="applicationContext-database.xml"/>
-
+    <import resource="applicationContext-redis.xml"/>
 </beans>
