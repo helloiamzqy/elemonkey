@@ -1,7 +1,8 @@
 package com.monkey.ele.customer.pojo;
 
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -10,6 +11,8 @@ import java.util.Set;
  * @version 1.0
  * @date 8/1/2018 2:44 PM
  **/
+@Entity
+@Table(name = "A_USER")
 public class User {
 
     public static final class UserType {
@@ -23,6 +26,9 @@ public class User {
         public static final Integer FORBIDDEN = 0x01;
     }
 
+    @Id
+    @GenericGenerator(strategy = "uuid", name = "uuid")
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String username;
     private String password;
@@ -32,12 +38,16 @@ public class User {
     private Date lastModifiedTime;
 
     @OneToOne
+    @JoinColumn(name = "userId")
     private Identity identity;
     @OneToMany
+    @JoinColumn(name = "userId")
     private Set<Contact> contacts;
     @OneToMany
+    @JoinColumn(name = "userId")
     private Set<Order> orders;
     @OneToMany
+    @JoinColumn(name = "userId")
     private Set<Complain> complains;
 
 }

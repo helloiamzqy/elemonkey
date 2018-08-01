@@ -1,7 +1,8 @@
 package com.monkey.ele.customer.pojo;
 
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -10,6 +11,8 @@ import java.util.Set;
  * @version 1.0
  * @date 8/1/2018 3:03 PM
  **/
+@Entity
+@Table(name = "A_STORE")
 public class Store {
 
     public static final class StoreStatus {
@@ -23,7 +26,9 @@ public class Store {
         public final static Integer DECLINE = 0x02;
         public final static Integer REJECT = 0x03;
     }
-
+    @Id
+    @GenericGenerator(strategy = "uuid", name = "uuid")
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String name;
     private String address;
@@ -34,10 +39,13 @@ public class Store {
     private Date lastModifiedTime;
 
     @OneToOne
+    @JoinColumn(name = "storeId")
     private StoreInformation storeInformation;
     @OneToMany
+    @JoinColumn(name = "storeId")
     private Set<Product> products;
     @OneToMany
+    @JoinColumn(name = "storeId")
     private Set<Order> orders;
 
 }

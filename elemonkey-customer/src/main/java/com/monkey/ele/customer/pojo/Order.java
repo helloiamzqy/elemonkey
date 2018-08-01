@@ -1,6 +1,8 @@
 package com.monkey.ele.customer.pojo;
 
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
@@ -9,6 +11,8 @@ import java.util.Set;
  * @version 1.0
  * @date 8/1/2018 3:44 PM
  **/
+@Entity
+@Table(name = "A_ORDER")
 public class Order {
 
     public static final class OrderStatus {
@@ -38,17 +42,24 @@ public class Order {
         public static final Integer CANCEL = 0x05;
     }
 
+    @Id
+    @GenericGenerator(strategy = "uuid", name = "uuid")
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String userId;
     private String storeId;
+    private String address;
+    private String phone;
     private Double deliveryCost;
-    private Contact contact;
     private String remarks;
     private Integer status;
-    private Comment comment;
     private Date createTime;
 
     @OneToMany
+    @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems;
+    @OneToOne
+    @JoinColumn(name = "orderId")
+    private Comment comment;
 
 }
