@@ -1,6 +1,7 @@
 package com.monkey.ele.customer.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -53,6 +54,8 @@ public class Order {
     private Double deliveryCost;
     private String remarks;
     private Integer status;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
 
     @OneToMany
@@ -61,7 +64,6 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "orderId")
     private Comment comment;
-
 
     public String getId() {
         return id;

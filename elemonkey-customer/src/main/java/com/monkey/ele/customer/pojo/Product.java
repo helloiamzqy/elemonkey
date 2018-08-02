@@ -2,11 +2,9 @@ package com.monkey.ele.customer.pojo;
 
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +23,8 @@ public class Product implements Serializable {
     private String images;
     private Double price;
     private Integer quantity;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
 
 

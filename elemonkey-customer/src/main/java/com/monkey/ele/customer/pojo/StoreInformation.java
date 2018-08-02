@@ -25,7 +25,6 @@ public class StoreInformation implements Serializable {
     private Double deliveryCost;
     private String logoImage;
 
-
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

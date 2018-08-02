@@ -1,11 +1,10 @@
 package com.monkey.ele.customer.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,9 +17,12 @@ public class Identity {
     private String name;
     private String idCardNumber;
     private String idCardPic;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @LastModifiedDate
+    @Temporal(TemporalType.DATE)
     private Date lastModifiedTime;
-
 
     public String getId() {
         return id;

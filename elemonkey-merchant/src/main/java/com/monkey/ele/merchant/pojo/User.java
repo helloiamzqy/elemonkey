@@ -1,6 +1,8 @@
 package com.monkey.ele.merchant.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,7 +36,11 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @LastModifiedDate
+    @Temporal(TemporalType.DATE)
     private Date lastModifiedTime;
 
     @OneToOne(cascade = CascadeType.ALL)

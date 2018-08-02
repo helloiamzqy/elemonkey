@@ -26,7 +26,6 @@ public class OrderItem {
     private String productCount;
     private String productImage;
 
-
     public String getId() {
         return id;
     }

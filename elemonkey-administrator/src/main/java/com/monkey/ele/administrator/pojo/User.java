@@ -1,6 +1,8 @@
 package com.monkey.ele.administrator.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,10 +36,14 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @LastModifiedDate
+    @Temporal(TemporalType.DATE)
     private Date lastModifiedTime;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "identityId")
     private Identity identity;
     @OneToMany
@@ -50,4 +56,92 @@ public class User {
     @JoinColumn(name = "userId")
     private Set<Complain> complains;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public Identity getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(Identity identity) {
+        this.identity = identity;
+    }
+
+    public Set<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Set<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<Complain> getComplains() {
+        return complains;
+    }
+
+    public void setComplains(Set<Complain> complains) {
+        this.complains = complains;
+    }
 }

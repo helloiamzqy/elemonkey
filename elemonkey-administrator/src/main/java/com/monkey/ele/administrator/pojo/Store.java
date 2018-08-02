@@ -1,6 +1,8 @@
 package com.monkey.ele.administrator.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,10 +37,14 @@ public class Store {
     private String license;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @LastModifiedDate
+    @Temporal(TemporalType.DATE)
     private Date lastModifiedTime;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
     @OneToMany
@@ -48,4 +54,92 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getCurrentAuditStatus() {
+        return currentAuditStatus;
+    }
+
+    public void setCurrentAuditStatus(Integer currentAuditStatus) {
+        this.currentAuditStatus = currentAuditStatus;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    public void setLastModifiedTime(Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public StoreInformation getStoreInformation() {
+        return storeInformation;
+    }
+
+    public void setStoreInformation(StoreInformation storeInformation) {
+        this.storeInformation = storeInformation;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 }

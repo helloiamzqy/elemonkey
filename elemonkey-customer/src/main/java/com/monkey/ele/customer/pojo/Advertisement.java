@@ -1,11 +1,9 @@
 package com.monkey.ele.customer.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -23,7 +21,6 @@ public class Advertisement {
         public final static Integer DECLINE = 0x02;
     }
 
-
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
@@ -32,10 +29,13 @@ public class Advertisement {
     private Double price;
     private String image;
     private Integer status = AdvertisementStatus.PENDING;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @Temporal(TemporalType.DATE)
     private Date confirmTime;
+    @Temporal(TemporalType.DATE)
     private String confirmUserId;
-
 
     public String getId() {
         return id;

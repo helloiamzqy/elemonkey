@@ -1,11 +1,9 @@
 package com.monkey.ele.merchant.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -23,6 +21,8 @@ public class Contact {
     private String userId;
     private String address;
     private String phone;
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
 
     public String getId() {

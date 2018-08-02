@@ -1,6 +1,8 @@
 package com.monkey.ele.customer.pojo;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,10 +37,14 @@ public class Store {
     private String license;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
+    @CreatedDate
+    @Temporal(TemporalType.DATE)
     private Date createTime;
+    @LastModifiedDate
+    @Temporal(TemporalType.DATE)
     private Date lastModifiedTime;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
     @OneToMany
