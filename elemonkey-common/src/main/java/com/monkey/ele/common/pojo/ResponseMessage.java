@@ -38,4 +38,13 @@ public class ResponseMessage {
         this.message = message;
     }
 
+
+    @Override
+    public String toString() {
+        return "ResponseMessage{" +
+                "content=" + content +
+                ", resultCode=" + resultCode +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
