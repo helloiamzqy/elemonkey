@@ -34,41 +34,29 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
-    public T merge(T t) {
+    public T update(T t) {
         return em.merge(t);
     }
-
-    /**
-     * license>>>>>>>44sdss11
-     * address>>>>>>>china3
-     * lastModifiedTime>>>>>>>Thu Aug 02 12:30:43 CST 2018
-     * currentAuditStatus>>>>>>>0
-     * createTime>>>>>>>Thu Aug 02 12:30:43 CST 2018
-     * storeInformation>>>>>>>null
-     * name>>>>>>>justin
-     * orders>>>>>>>[]
-     * id>>>>>>>8a5e9d2164f8e6f10164f8e6f6520000
-     * status>>>>>>>0
-     * products>>>>>>>[]
-     * @param t
-     * @return
-     */
-    @Override
-    public T update(T t) {
-        Map<String,Object> map = this.getFieldValueMap(t);
-        T tt = em.getReference(clazz,map.get("id"));
-        //遍历这个map对象
-        Set<Map.Entry<String, Object>> entrySet = map.entrySet();
-        for (Map.Entry<String, Object> entry : entrySet){
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            if(value!=null ){
-                //Method m = clazz.getClass().getMethod();
-            }
-            System.out.println(key + ">>>>>>>" + value);
-        }
-        return t;
-    }
+//    public T update(T t) {
+//        Map<String,Object> map = this.getFieldValueMap(t);
+//        T tt = em.getReference(clazz,map.get("id"));
+//        //遍历这个map对象
+//        Set<Map.Entry<String, Object>> entrySet = map.entrySet();
+//        for (Map.Entry<String, Object> entry : entrySet){
+//            String key = entry.getKey();
+//            Object value = entry.getValue();
+//            if(value!=null ){
+//                try {
+//                    Method m = clazz.getClass().getMethod(getSetterMethodName(key));
+//                    System.out.println("mmmmmmmm:"+m);
+//                } catch (NoSuchMethodException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            System.out.println(key + ">>>>>>>" + value);
+//        }
+//        return t;
+//    }
 
     @Override
     public void delete(Serializable id) {
@@ -154,34 +142,51 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
 
-    /**
-     * 获取指定实例的所有属性名及对应值的Map实例
-     * @param entity   实例
-     * @return 字段名及对应值的Map实例
-     */
-    protected Map<String, Object> getFieldValueMap(T entity) {
-        // key是属性名，value是对应值
-        Map<String, Object> fieldValueMap = new HashMap<String, Object>();
-
-        // 获取当前加载的实体类中所有属性（字段）
-        Field[] fields = this.clazz.getDeclaredFields();
-
-        for (int i = 0; i < fields.length; i++) {
-            Field f = fields[i];
-            String key = f.getName();// 属性名
-            Object value = null;//属性值
-            if (! "serialVersionUID".equals(key)) {// 忽略序列化版本ID号
-                f.setAccessible(true);// 取消Java语言访问检查
-                try {
-                    value =f.get(entity);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                fieldValueMap.put(key, value);
-            }
-        }
-        return fieldValueMap;
-    }
+//    /**
+//     * 获取指定实例的所有属性名及对应值的Map实例
+//     * @param entity   实例
+//     * @return 字段名及对应值的Map实例
+//     */
+//    protected Map<String, Object> getFieldValueMap(T entity) {
+//        // key是属性名，value是对应值
+//        Map<String, Object> fieldValueMap = new HashMap<String, Object>();
+//
+//        // 获取当前加载的实体类中所有属性（字段）
+//        Field[] fields = this.clazz.getDeclaredFields();
+//
+//        for (int i = 0; i < fields.length; i++) {
+//            Field f = fields[i];
+//            String key = f.getName();// 属性名
+//            Object value = null;//属性值
+//            if (! "serialVersionUID".equals(key)) {// 忽略序列化版本ID号
+//                f.setAccessible(true);// 取消Java语言访问检查
+//                try {
+//                    value =f.get(entity);
+//                } catch (IllegalArgumentException e) {
+//                    e.printStackTrace();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//                fieldValueMap.put(key, value);
+//            }
+//        }
+//        return fieldValueMap;
+//    }
+//
+//    /**
+//     * 根据属性名称获取对应的setter方法名称
+//     * @param property
+//     * @return
+//     */
+//    public String getSetterMethodName(String property) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(property);
+//        if (Character.isLowerCase(sb.charAt(0))) {
+//            if (sb.length() == 1 || !Character.isUpperCase(sb.charAt(1))) {
+//                sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+//            }
+//        }
+//        sb.insert(0, "set");
+//        return sb.toString();
+//    }
 }

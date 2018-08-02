@@ -16,14 +16,10 @@ public interface BaseDao<T> {
      * @param t
      * @return
      */
-    public T merge(T t);
-
-    /**
-     * 更新实体类
-     * @param t
-     * @return
-     */
     public T update(T t);
+
+
+   // public T update(T t);
 
     /**
      * 根据主键ID删除实体类
