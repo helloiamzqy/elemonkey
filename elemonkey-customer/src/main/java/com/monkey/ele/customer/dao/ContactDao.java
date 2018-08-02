@@ -9,7 +9,6 @@ public interface ContactDao extends BaseDao<Contact> {
 
     public List<Contact> findContactByUserId(String userId);
 
-    public Contact updateContact(Contact contact);
 
 
 }

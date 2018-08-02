@@ -37,9 +37,9 @@ public class ContectServiceImplTest {
     public void addContact() {
         ContectService contectService = context.getBean(ContectService.class);
         Contact contact = new Contact();
-        contact.setAddress("testContact");
+        contact.setAddress("testContact3");
         contact.setPhone("13701761289");
-        contact.setUserId("8a5e9d4464f8bad20164f8bad9810000");
+        contact.setUserId("8a5e9d4464f9820e0164f9823cc20000");
         Contact newContact = contectService.addContact(contact);
         Assert.assertTrue(newContact.getId()!=null);
     }
@@ -48,7 +48,7 @@ public class ContectServiceImplTest {
     @Test
     public void delContact() {
         ContectService contectService = context.getBean(ContectService.class);
-        Assert.assertTrue(contectService.delContact("23qwdd89yrsaqw123"));
+        Assert.assertTrue(contectService.delContact("8a5e9d4464f9820e0164f9823c880000","23qwdd89yrnuf"));
     }
 
     @Test
