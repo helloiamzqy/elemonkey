@@ -3,10 +3,29 @@ POST http://localhost:8999/store/add
 Content-Type: application/json
 
 {
-  "address": "testJms"
-}
-
+  "address": "china",
+  "license":"xw4856136874plx",
+  "name":"store1",
+  "user":{
+       "id": "8a5e9d4464fab3820164fab3af420000"
+    }
+ }
 ###
+
+### Send POST request with json body
+POST http://localhost:8999/store/add
+Content-Type: application/json
+
+{
+  "address": "arm",
+  "license":"xw48d56136874plx",
+  "name":"store2",
+  "user":{
+       "id": "8a5e9d4464fab3820164fab7188e0002"
+    }
+ }
+
+
 
 ### Send POST request with json body
 POST http://localhost:8999/store/update

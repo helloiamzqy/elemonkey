@@ -7,6 +7,7 @@ import com.monkey.ele.merchant.dao.StoreDao;
 import com.monkey.ele.merchant.dao.StoreInformationDao;
 import com.monkey.ele.merchant.pojo.*;
 import com.monkey.ele.merchant.service.StoreService;
+import com.monkey.ele.merchant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,12 +27,23 @@ public class StoreServiceImpl implements StoreService {
     StoreInformationDao storeInfoDao;
     @Autowired
     JmsSender jmsSender;
+    @Autowired
+    UserService userService;
 
     @Override
     @Transactional
-    public Store applyStore(Store store) throws Exception {
+    public Store addStore(Store store) {
+        storeDao.add(store);
+        return store;
+    }
+
+    @Override
+    public void applyStore(Store store) throws Exception {
+        User user = userService.loadUser(store.getUser().getId());
+        store.setProducts(null);
+        store.setOrders(null);
+        store.setUser(user);
         sendStoreRequest(store);
-        return storeDao.add(store);
     }
 
     @Override
@@ -69,7 +81,7 @@ public class StoreServiceImpl implements StoreService {
         JMail jMail = new JMail();
         jMail.setMessageType(JMail.JMailType.STORE_REQUEST);
         jMail.setMessage(store);
-        jmsSender.sendTextMessage(JsonUtil.obj2json(store));
+        jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
     }
 
 }

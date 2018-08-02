@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.Date;
-
 /**
  * @ Author     ：LILA3
  * @ Date       ：Created in 10:08 AM 8/2/2018
@@ -32,6 +30,6 @@ public class StoreServiceTest {
     public void addStore() throws Exception {
         Store store = new Store();
         store.setAddress("adsadaasas");
-        storeService.applyStore(store);
+        storeService.addStore(store);
     }
 }

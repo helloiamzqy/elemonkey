@@ -1,0 +1,24 @@
+### Send POST request with json body
+GET http://localhost:8999/comment/store/4028b88164fab2b60164fab446160000
+Accept: application/json
+
+###
+
+### Send POST request with json body
+GET http://localhost:8999/comment/order/111
+Accept: application/json
+
+###
+
+
+### Send POST request with json body
+POST http://localhost:8999/comment/add
+Content-Type: application/json
+
+{
+     "userId":"8a5e9d4464fab3820164fab3af420000",
+     "orderId":"111",
+     "rank":5,
+     "message":"comment"
+ }
+###
