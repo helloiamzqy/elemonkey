@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public interface StoreService {
 
-    public Store applyStore(Store store);
+    public Store applyStore(Store store) throws Exception;
 
     public Store watchStore(String StoreId);
 

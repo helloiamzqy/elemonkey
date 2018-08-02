@@ -1,5 +1,8 @@
 package com.monkey.ele.merchant.service.impl;
 
+import com.monkey.ele.common.jms.JmsSender;
+import com.monkey.ele.common.pojo.JMail;
+import com.monkey.ele.common.util.JsonUtil;
 import com.monkey.ele.merchant.dao.StoreDao;
 import com.monkey.ele.merchant.dao.StoreInformationDao;
 import com.monkey.ele.merchant.pojo.*;
@@ -21,10 +24,13 @@ public class StoreServiceImpl implements StoreService {
     StoreDao storeDao;
     @Autowired
     StoreInformationDao storeInfoDao;
+    @Autowired
+    JmsSender jmsSender;
 
     @Override
     @Transactional
-    public Store applyStore(Store store) {
+    public Store applyStore(Store store) throws Exception {
+        sendStoreRequest(store);
         return storeDao.add(store);
     }
 
@@ -57,6 +63,13 @@ public class StoreServiceImpl implements StoreService {
         store.setStoreInformation(storeInfo);
         storeDao.update(store);
         return store.getStoreInformation();
+    }
+
+    private void sendStoreRequest(Store store) throws Exception {
+        JMail jMail = new JMail();
+        jMail.setMessageType(JMail.JMailType.STORE_REQUEST);
+        jMail.setMessage(store);
+        jmsSender.sendTextMessage(JsonUtil.obj2json(store));
     }
 
 }

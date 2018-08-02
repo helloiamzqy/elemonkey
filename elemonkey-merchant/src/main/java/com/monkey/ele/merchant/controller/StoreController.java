@@ -3,6 +3,7 @@ package com.monkey.ele.merchant.controller;
 import com.monkey.ele.common.jms.JmsSender;
 import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
+import com.monkey.ele.common.util.JsonUtil;
 import com.monkey.ele.merchant.pojo.Message;
 import com.monkey.ele.merchant.pojo.Store;
 import com.monkey.ele.merchant.pojo.StoreInformation;
@@ -30,7 +31,7 @@ public class StoreController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseMessage addStore(@RequestBody Store store) {
+    public ResponseMessage addStore(@RequestBody Store store) throws Exception {
         ResponseMessage respMsg = null;
         Store applyStore = storeService.applyStore(store);
         if (applyStore == null) {
@@ -38,7 +39,6 @@ public class StoreController {
         } else {
             respMsg = new ResponseMessage(store, MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
         }
-
         return respMsg;
     }
 

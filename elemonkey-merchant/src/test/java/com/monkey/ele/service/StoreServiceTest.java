@@ -29,7 +29,7 @@ public class StoreServiceTest {
     }
 
     @Test
-    public void addStore() {
+    public void addStore() throws Exception {
         Store store = new Store();
         store.setAddress("adsadaasas");
         storeService.applyStore(store);
