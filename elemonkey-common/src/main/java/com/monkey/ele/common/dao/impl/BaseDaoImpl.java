@@ -4,6 +4,7 @@ import com.monkey.ele.common.dao.BaseDao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -20,27 +21,81 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
     }
 
+
+    @Override
     public T add(T t) {
         em.persist(t);
         return t;
     }
 
+    @Override
     public T update(T t) {
         return em.merge(t);
     }
 
+    @Override
     public void delete(Serializable id) {
         T t = em.getReference(clazz, id);
         em.remove(t);
     }
 
+    @Override
     public T load(Serializable id) {
         return em.find(clazz, id);
     }
 
-
+    @Override
     public List<T> findAll() {
         return em.createQuery("from "+clazz.getSimpleName()).getResultList();
     }
 
+    @Override
+    public Long count() {
+        return (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
+    }
+
+    @Override
+    public Long count(String jpql,Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter(i+1,obj[i]);
+            }
+        }
+        return (Long) query.getSingleResult();
+    }
+
+    @Override
+    public T load(String jpql, Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter(i+1,obj[i]);
+            }
+        }
+        return (T) query.getSingleResult();
+    }
+
+    @Override
+    public List<T> find(String jpql, Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter(i+1,obj[i]);
+            }
+        }
+        return query.getResultList();
+    }
+
+    @Override
+    public List<T> findPage(String jpql,Integer firstIndex, Integer pageSize,Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter(i+1,obj[i]);
+            }
+        }
+        query.setFirstResult(firstIndex).setMaxResults(pageSize);
+        return query.getResultList();
+    }
 }
