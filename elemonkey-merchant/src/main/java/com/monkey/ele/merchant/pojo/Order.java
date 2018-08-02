@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -61,7 +62,7 @@ public class Order {
 
     @OneToMany
     @JoinColumn(name = "orderId")
-    private Set<OrderItem> orderItems;
+    private Set<OrderItem> orderItems = new HashSet<OrderItem>();
     @OneToOne
     @JoinColumn(name = "orderId")
     private Comment comment;
