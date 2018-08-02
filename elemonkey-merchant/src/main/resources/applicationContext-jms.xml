@@ -29,7 +29,7 @@
     <!--这个是队列目的地，点对点的 -->
     <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg>
-            <value>customer.queue</value>
+            <value>monkey.queue</value>
         </constructor-arg>
     </bean>
 </beans>
