@@ -18,20 +18,21 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User saveUser(User user) {
-        List<User> users = userDao.find("SELECT u FROM User u WHERE u.username = :username", user.getUsername());
-        if(users.size() > 0){
-            return null;
+        if(userDao.findByUserName(user) == null){
+            User addUser = userDao.add(user);
+            return addUser;
         }
-        User addUser = userDao.add(user);
-        return addUser;
+        return null;
     }
 
     @Override
+    @Transactional
     public User updateUser(User user) {
         return userDao.update(user);
     }
 
     @Override
+    @Transactional
     public void deleteUser(String id) {
         userDao.delete(id);
     }
