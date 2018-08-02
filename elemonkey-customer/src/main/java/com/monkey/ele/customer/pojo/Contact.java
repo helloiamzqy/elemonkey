@@ -21,8 +21,10 @@ public class Contact {
     private String userId;
     private String address;
     private String phone;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
     private Date createTime;
 
     public String getId() {

@@ -17,6 +17,10 @@ public class ContactDaoImpl extends AbstractBaseDao<Contact> implements ContactD
          return this.find(findByUserId,userId);
     }
 
+    @Override
+    public Contact updateContact(Contact contact) {
+        return null;
+    }
 
 
 }
