@@ -47,7 +47,7 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "identityId")
     private Identity identity;
     @OneToMany
