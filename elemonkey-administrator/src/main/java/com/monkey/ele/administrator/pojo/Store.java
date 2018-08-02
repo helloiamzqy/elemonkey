@@ -68,6 +68,14 @@ public class Store {
         this.lastModifiedTime = lastModifiedTime;
     }
 
+    public Store(String id,String name, String address, String license, Date createTime) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.license = license;
+        this.createTime = createTime;
+    }
+
     public String getId() {
         return id;
     }

@@ -51,7 +51,7 @@ public interface BaseDao<T> {
      * 查找总记录数
      * @return
      */
-    public Long count();
+    public Integer count();
 
     /**
      * 根据JPQL语句查询记录数
@@ -59,7 +59,7 @@ public interface BaseDao<T> {
      * @param obj
      * @return
      */
-    public Long count(String jpql,Object... obj);
+    public Integer count(String jpql,Object... obj);
 
     /**
      * 根据JPQL语句查询单个实体类

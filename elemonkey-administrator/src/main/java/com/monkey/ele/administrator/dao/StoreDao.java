@@ -2,15 +2,27 @@ package com.monkey.ele.administrator.dao;
 
 import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.common.dao.BaseDao;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import java.util.List;
 
 public interface StoreDao extends BaseDao<Store>{
 
+    /**
+     * 更新商家审核状态
+     * @param id
+     * @param status
+     * @return
+     */
     public int updateCurrentAuditStatus(String id, Integer status);
 
-    public List<Store> findAvailableStores();
-
+    /**
+     * 分页
+     * @param firstIndex
+     * @param maxResults
+     * @return
+     */
+    public List<Store> findStoresByPage(Integer firstIndex, Integer maxResults);
 
 
 }

@@ -10,16 +10,22 @@ import java.util.List;
 @Repository
 public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
-
+    /**
+     * 更新商家审核状态
+     * @param id
+     * @param status
+     * @return
+     */
     @Override
     public int updateCurrentAuditStatus(String id, Integer status) {
-        String jpql = "update Store set currentAuditStatus = ? where id = ?";
+        String jpql = "update Store set currentAuditStatus =? where id =?";
         return this.executeUpdate(jpql,status,id);
     }
 
     @Override
-    public List<Store> findAvailableStores() {
-        String jpql = "from Store where currentAuditStatus = 0";
-        return this.find(jpql);
+    public List<Store> findStoresByPage(Integer firstIndex, Integer maxResults) {
+        String jpql = "select new Store(s.id, s.name, s.address, s.license, s.createTime) from Store s";
+        return this.findPage(firstIndex,maxResults,jpql);
     }
+
 }

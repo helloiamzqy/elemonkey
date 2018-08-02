@@ -68,19 +68,21 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
 
     @Override
-    public Long count() {
-        return (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
+    public Integer count() {
+        Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
+        return num.intValue();
     }
 
     @Override
-    public Long count(String jpql,Object... obj) {
+    public Integer count(String jpql,Object... obj) {
         Query query = em.createQuery(jpql);
         if(obj.length > 0){
             for (int i = 0; i < obj.length; i++) {
                 query.setParameter((i+1),obj[i]);
             }
         }
-        return (Long) query.getSingleResult();
+        Long num = (Long)query.getSingleResult();
+        return num.intValue();
     }
 
     @Override

@@ -9,6 +9,10 @@ public class Page<T> {
     private List<T> items;
     private Integer pageTotal;
     private Integer itemTotal;
+    private Integer firstIndex;//查询的起始记录
+
+    public Page() {
+    }
 
     public Page(Integer pageIndex, Integer pageCount, List<T> items, Integer itemTotal) {
         this.pageIndex = pageIndex;
@@ -52,6 +56,10 @@ public class Page<T> {
 
     public void setItemTotal(Integer itemTotal) {
         this.itemTotal = itemTotal;
+    }
+
+    public Integer getFirstIndex(){
+        return pageIndex * pageCount + 1;
     }
 
 }

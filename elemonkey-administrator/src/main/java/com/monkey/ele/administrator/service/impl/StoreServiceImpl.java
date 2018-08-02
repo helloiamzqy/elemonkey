@@ -3,6 +3,7 @@ package com.monkey.ele.administrator.service.impl;
 import com.monkey.ele.administrator.dao.StoreDao;
 import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.administrator.service.StoreService;
+import com.monkey.ele.common.pojo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,11 @@ public class StoreServiceImpl implements StoreService {
     @Autowired
     private StoreDao storeDao;
 
+    /**
+     * 添加商店
+     * @param store
+     * @return
+     */
     @Transactional
     @Override
     public Store addStore(Store store) {
@@ -22,6 +28,12 @@ public class StoreServiceImpl implements StoreService {
     }
 
 
+    /**
+     * 更新审核状态
+     * @param id
+     * @param status
+     * @return
+     */
     @Transactional
     @Override
     public int updateCurrentAuditStatus(String id, Integer status) {
@@ -29,13 +41,23 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> findAvailableStores() {
-        List<Store> stores = storeDao.findAvailableStores();
-        for (Store store: stores) {
-            store.setOrders(null);
-            store.setProducts(null);
-        }
-        return stores;
+    public Page<Store> findStoresPage(Page page) {
+        List<Store> stores = storeDao.findStoresByPage(page.getFirstIndex(),page.getPageCount());
+        page.setItems(stores);
+        page.setItemTotal(storeDao.count());
+        return page;
+    }
+
+
+    @Transactional
+    @Override
+    public void delete(String id) {
+        storeDao.delete(id);
+    }
+
+    @Override
+    public Integer count() {
+        return storeDao.count();
     }
 
 }
