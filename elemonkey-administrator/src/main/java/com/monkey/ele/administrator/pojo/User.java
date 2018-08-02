@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -50,13 +51,13 @@ public class User {
     private Identity identity;
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Contact> contacts;
+    private Set<Contact> contacts = new HashSet<>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Complain> complains;
+    private Set<Complain> complains = new HashSet<>();
 
 
     public String getId() {
