@@ -10,7 +10,7 @@ public interface ContectService {
 
     public Contact addContact(Contact contact);
 
-    public boolean delContact(String contactId);
+    public boolean delContact(String userId,String contactId);
 
     public Contact updateContact(Contact contact);
 

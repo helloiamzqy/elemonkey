@@ -31,9 +31,15 @@ public class ContectServiceImpl implements ContectService {
 
     @Transactional
     @Override
-    public boolean delContact(String contactId) {
-         contactDao.delete(contactId);
-         return true;
+    public boolean delContact(String userId,String contactId) {
+        List<Contact> contactList = contactDao.findContactByUserId(userId);
+        for(Contact contact:contactList) {
+            if (contact.getId().equals(contactId)) {
+                contactDao.delete(contactId);
+                return true;
+            }
+        }
+        return false;
     }
 
 

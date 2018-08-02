@@ -3,8 +3,6 @@ package com.monkey.ele.administrator.pojo;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,7 +15,7 @@ import java.util.Set;
  * @date 8/1/2018 3:03 PM
  **/
 @Entity
-@Table(name = "A_STORE")
+@Table(name = "MC_STORE")
 public class Store {
 
     public static final class StoreStatus {
@@ -31,6 +29,7 @@ public class Store {
         public final static Integer DECLINE = 0x02;
         public final static Integer REJECT = 0x03;
     }
+
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
@@ -40,6 +39,7 @@ public class Store {
     private String license;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -50,31 +50,16 @@ public class Store {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<Product>();
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Order> orders = new HashSet<>();
+    private Set<Order> orders = new HashSet<Order>();
 
-    public Store() {
-    }
-
-    public Store(String name, String address, String license, Date createTime, Date lastModifiedTime) {
-        this.name = name;
-        this.address = address;
-        this.license = license;
-        this.createTime = createTime;
-        this.lastModifiedTime = lastModifiedTime;
-    }
-
-    public Store(String id,String name, String address, String license, Date createTime) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.license = license;
-        this.createTime = createTime;
-    }
 
     public String getId() {
         return id;
@@ -162,5 +147,13 @@ public class Store {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -43,4 +43,9 @@ public class ProductServiceImpl implements ProductService {
     public Product updateProduct(Product product) {
         return productDao.update(product);
     }
+
+    @Override
+    public List<Product> findByStoreId(String storeId) {
+        return productDao.findByStoreId(storeId);
+    }
 }

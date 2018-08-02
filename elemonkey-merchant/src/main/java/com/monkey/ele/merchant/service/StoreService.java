@@ -11,13 +11,15 @@ import java.util.Map;
  */
 public interface StoreService {
 
-    public Store applyStore(Store store);
+    public Store addStore(Store store);
 
     public Store watchStore(String StoreId);
 
     public StoreInformation watchStoreInfo(String storeId);
 
     public Store modifyStore(Store store);
+
+    public void applyStore(Store store) throws Exception;
 
     public StoreInformation modifyStoreInfo(String storeId, StoreInformation storeInformation);
 

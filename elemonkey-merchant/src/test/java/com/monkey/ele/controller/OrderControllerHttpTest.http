@@ -1,0 +1,22 @@
+### Send POST request with json body
+PUT http://localhost:9090/order
+Content-Type: application/json
+
+{
+      "id": "111",
+      "userId": "8a5e9d4464fab3820164fab3af420000",
+      "storeId": "4028b88164fab2b60164fab446160000",
+      "address": "珠海市南方软件园",
+      "phone": "1388888888",
+      "deliveryCost": 8.0,
+      "remarks": "不然咧",
+      "status": 2,
+      "createTime": 1533139200000
+}
+
+###
+### Send POST request with json body
+GET http://localhost:9090/order/store/4028b88164fab2b60164fab446160000
+Accept: application/json
+
+###

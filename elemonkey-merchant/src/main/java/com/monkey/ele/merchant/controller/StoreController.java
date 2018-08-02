@@ -10,8 +10,6 @@ import com.monkey.ele.merchant.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 /**
  * @ Author     ：LILA3
  * @ Date       ：Created in 9:04 AM 8/2/2018
@@ -30,15 +28,15 @@ public class StoreController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseMessage addStore(@RequestBody Store store) {
+    public ResponseMessage addStore(@RequestBody Store store) throws Exception {
         ResponseMessage respMsg = null;
-        Store applyStore = storeService.applyStore(store);
-        if (applyStore == null) {
+        Store addStore = storeService.addStore(store);
+        storeService.applyStore(store);
+        if (addStore == null) {
             respMsg = new ResponseMessage(null, MessageResultCode.FAILED, Message.MSG_ADD_ERROR);
         } else {
             respMsg = new ResponseMessage(store, MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
         }
-
         return respMsg;
     }
 

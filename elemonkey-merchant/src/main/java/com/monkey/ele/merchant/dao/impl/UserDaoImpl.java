@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends AbstractBaseDao<User> implements UserDao {
 
+   @Override
    public User findByUserName(User user){
        List<User> users = this.find("SELECT u FROM User u WHERE u.username = ?", user.getUsername());
        if(users.size() > 0){

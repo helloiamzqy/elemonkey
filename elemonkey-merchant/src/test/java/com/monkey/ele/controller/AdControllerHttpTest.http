@@ -1,0 +1,13 @@
+### Send POST request with json body
+POST http://localhost:9090/ad
+Content-Type: application/json
+
+{
+    "storeId" : "4028b88164f931c70164f931ce490000",
+    "price" : "100",
+    "image" : "/xxxxx.png"
+
+}
+
+###
+
