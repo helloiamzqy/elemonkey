@@ -34,7 +34,6 @@ public class Advertisement {
     private Date createTime;
     @Temporal(TemporalType.DATE)
     private Date confirmTime;
-    @Temporal(TemporalType.DATE)
     private String confirmUserId;
 
     public String getId() {
