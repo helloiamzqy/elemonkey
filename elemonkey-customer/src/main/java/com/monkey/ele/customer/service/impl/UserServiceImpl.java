@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
         return user.getPassword().equals(password);
     }
 
+    @Override
+    public User findUserByUsername(String username) {
+        return userDao.findUserByUsername(username);
+    }
+    
 }
