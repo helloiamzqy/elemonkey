@@ -47,19 +47,6 @@ public interface BaseDao<T> {
     public int executeUpdate(String jpql,Object... obj);
 
 
-    /**
-     * 查找总记录数
-     * @return
-     */
-    public Integer count();
-
-    /**
-     * 根据JPQL语句查询记录数
-     * @param jpql
-     * @param obj
-     * @return
-     */
-    public Integer count(String jpql,Object... obj);
 
     /**
      * 根据JPQL语句查询单个实体类
@@ -76,6 +63,22 @@ public interface BaseDao<T> {
      * @return
      */
     public List<T> find(String jpql,Object... obj);
+
+
+
+    /**
+     * 查找总记录数
+     * @return
+     */
+    public Integer count();
+
+    /**
+     * 根据JPQL语句查询记录数
+     * @param jpql
+     * @param obj
+     * @return
+     */
+    public Integer count(String jpql,Object... obj);
 
 
     /**

@@ -67,23 +67,6 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
 
-    @Override
-    public Integer count() {
-        Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
-        return num.intValue();
-    }
-
-    @Override
-    public Integer count(String jpql,Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
-            }
-        }
-        Long num = (Long)query.getSingleResult();
-        return num.intValue();
-    }
 
     @Override
     public T load(String jpql, Object... obj) {
@@ -105,6 +88,26 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
             }
         }
         return query.getResultList();
+    }
+
+
+
+    @Override
+    public Integer count() {
+        Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
+        return num.intValue();
+    }
+
+    @Override
+    public Integer count(String jpql,Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter((i+1),obj[i]);
+            }
+        }
+        Long num = (Long)query.getSingleResult();
+        return num.intValue();
     }
 
     @Override

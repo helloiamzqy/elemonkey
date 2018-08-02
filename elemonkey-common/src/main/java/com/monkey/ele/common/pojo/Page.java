@@ -1,5 +1,6 @@
 package com.monkey.ele.common.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page<T> {
@@ -58,8 +59,8 @@ public class Page<T> {
         this.itemTotal = itemTotal;
     }
 
-    public Integer getFirstIndex(){
-        return pageIndex * pageCount + 1;
+    public int getFirstIndex(){
+        return (this.pageIndex-1) * this.pageCount;
     }
 
 }
