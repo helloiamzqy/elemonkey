@@ -56,6 +56,16 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders;
 
+    public Store() {
+    }
+
+    public Store(String name, String address, String license, Date createTime, Date lastModifiedTime) {
+        this.name = name;
+        this.address = address;
+        this.license = license;
+        this.createTime = createTime;
+        this.lastModifiedTime = lastModifiedTime;
+    }
 
     public String getId() {
         return id;
