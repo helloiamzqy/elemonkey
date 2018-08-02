@@ -10,9 +10,11 @@
     
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+    <context:component-scan base-package="com.monkey.ele.common"/>
     <context:component-scan base-package="com.monkey.ele.customer"></context:component-scan>
 
     <import resource="applicationContext-jms.xml"/>
     <import resource="applicationContext-database.xml"/>
     <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-shiro.xml"/>
 </beans>
