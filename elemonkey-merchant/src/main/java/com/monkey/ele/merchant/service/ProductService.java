@@ -15,4 +15,6 @@ public interface ProductService {
     Product saveProduct(Product product);
 
     Product updateProduct(Product product);
+
+    List<Product> findByStoreId(String storeId);
 }
