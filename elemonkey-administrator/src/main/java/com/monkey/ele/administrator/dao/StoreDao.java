@@ -24,5 +24,11 @@ public interface StoreDao extends BaseDao<Store>{
      */
     public List<Store> findStoresByPage(Integer firstIndex, Integer maxResults);
 
+    /**
+     * 审核通过的商家记录数
+     * @return
+     */
+    public Integer countStoresPage();
+
 
 }

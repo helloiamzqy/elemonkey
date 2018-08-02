@@ -34,7 +34,8 @@ public interface StoreService {
     public void delete(String id);
 
 
-    public Integer count();
+
+    public List<Store> fingStoreList(Integer firstIndex, Integer maxResults);
 
 
 

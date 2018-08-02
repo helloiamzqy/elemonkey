@@ -42,9 +42,11 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Page<Store> findStoresPage(Page page) {
+        page.setItemTotal(storeDao.countStoresPage());
+        System.out.println(page.getFirstIndex());
+        System.out.println(page.getPageCount());
         List<Store> stores = storeDao.findStoresByPage(page.getFirstIndex(),page.getPageCount());
         page.setItems(stores);
-        page.setItemTotal(storeDao.count());
         return page;
     }
 
@@ -56,8 +58,8 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Integer count() {
-        return storeDao.count();
+    public List<Store> fingStoreList(Integer firstIndex, Integer maxResults) {
+        return storeDao.findPage(firstIndex,maxResults);
     }
 
 }

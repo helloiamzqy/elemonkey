@@ -24,8 +24,14 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
     @Override
     public List<Store> findStoresByPage(Integer firstIndex, Integer maxResults) {
-        String jpql = "select new Store(s.id, s.name, s.address, s.license, s.createTime) from Store s";
-        return this.findPage(firstIndex,maxResults,jpql);
+        String jpql = "from Store where currentAuditStatus = ? order by createTime desc";
+        return this.findPage(firstIndex,maxResults,jpql,1);
+    }
+
+    @Override
+    public Integer countStoresPage() {
+        String jpql = "select count(*) from Store where currentAuditStatus = ?";
+        return this.count(jpql,1);
     }
 
 }
