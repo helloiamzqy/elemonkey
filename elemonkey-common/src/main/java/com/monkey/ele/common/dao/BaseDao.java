@@ -19,8 +19,6 @@ public interface BaseDao<T> {
     public T update(T t);
 
 
-   // public T update(T t);
-
     /**
      * 根据主键ID删除实体类
      * @param id
