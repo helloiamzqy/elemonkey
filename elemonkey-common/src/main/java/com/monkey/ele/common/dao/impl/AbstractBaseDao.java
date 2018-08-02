@@ -106,19 +106,19 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
-    public List<T> findPage(Integer firstIndex, Integer pageSize) {
-        return em.createQuery("from "+clazz.getSimpleName()).setFirstResult(firstIndex).setMaxResults(pageSize).getResultList();
+    public List<T> findPage(Integer firstIndex, Integer maxResults) {
+        return em.createQuery("from "+clazz.getSimpleName()).setFirstResult(firstIndex).setMaxResults(maxResults).getResultList();
     }
 
     @Override
-    public List<T> findPage(String jpql,Integer firstIndex, Integer pageSize,Object... obj) {
+    public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj) {
         Query query = em.createQuery(jpql);
         if(obj.length > 0){
             for (int i = 0; i < obj.length; i++) {
                 query.setParameter((i+1),obj[i]);
             }
         }
-        query.setFirstResult(firstIndex).setMaxResults(pageSize);
+        query.setFirstResult(firstIndex).setMaxResults(maxResults);
         return query.getResultList();
     }
 

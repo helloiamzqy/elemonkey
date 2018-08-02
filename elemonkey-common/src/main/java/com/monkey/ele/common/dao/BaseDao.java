@@ -81,20 +81,20 @@ public interface BaseDao<T> {
     /**
      * 分页
      * @param firstIndex
-     * @param pageSize
+     * @param maxResults
      * @return
      */
-    public List<T> findPage(Integer firstIndex, Integer pageSize);
+    public List<T> findPage(Integer firstIndex, Integer maxResults);
 
     /**
      * 根据JPQL语句分页
-     * @param jpql
      * @param firstIndex
-     * @param pageSize
+     * @param maxResults
+     * @param jpql
      * @param obj
      * @return
      */
-    public List<T> findPage(String jpql,Integer firstIndex, Integer pageSize,Object... obj);
+    public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj);
 
 
 }
