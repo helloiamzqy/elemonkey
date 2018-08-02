@@ -1,0 +1,36 @@
+### Send POST request with json body
+POST http://localhost:9090/user
+Content-Type: application/json
+
+{
+  "username": "user124",
+  "password": "123456",
+   "identity" :{
+        "name" :"identityName1",
+        "idCardNumber" : "441302888646546",
+        "idCardPic" : "/img/xxxxx.png"
+
+   }
+}
+
+###
+
+
+DELETE http://localhost:9090/user/8a5e9d4464f9820e0164f9823cc20000
+Accept: application/json
+
+###
+GET http://localhost:9090/user/8a5e9d4464fa17f70164fa1868a20000
+Accept: application/json
+
+###
+PUT http://localhost:9090/user
+Content-Type: application/json
+
+{
+  "id" : "8a5e9d4464f8bad20164f8bad9810000",
+  "username": "aaaaaa",
+  "password": "123121"
+}
+
+###
