@@ -1,0 +1,31 @@
+### Get request with a header
+GET http://httpbin.org/ip
+Accept: application/json
+
+
+### Delete request with a header
+DELETE http://localhost:8080/contact/4028b88164f9fc990164f9fca01a0000
+Accept: application/json
+
+
+
+### Send POST request with json body
+POST http://localhost:8080/contact/
+Content-Type: application/json
+
+{
+    "address":"httpAddress",
+    "phone":"15019936488"
+}
+
+### Send POST request with json body
+PUT http://localhost:8080/contact/
+Content-Type: application/json
+
+{
+    "id":"4028b88164fa0c3b0164fa0c6ca50000",
+    "address":"httpAddressUpdateNowNow",
+    "phone":"15019936488"
+}
+
+###

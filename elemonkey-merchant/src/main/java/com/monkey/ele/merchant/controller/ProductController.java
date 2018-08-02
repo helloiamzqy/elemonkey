@@ -62,4 +62,11 @@ public class ProductController {
     }
 
 
+    @GetMapping(value = "/store/{id}")
+    public ResponseMessage findProductByStore(@PathVariable String id){
+        return new ResponseMessage(productService.findByStoreId(id),MessageResultCode.SUCCESS,null);
+    }
+
+
+
 }
