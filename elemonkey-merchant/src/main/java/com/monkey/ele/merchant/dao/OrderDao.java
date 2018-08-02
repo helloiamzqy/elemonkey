@@ -1,4 +1,11 @@
 package com.monkey.ele.merchant.dao;
 
-public interface OrderDao {
+import com.monkey.ele.common.dao.BaseDao;
+import com.monkey.ele.merchant.pojo.Order;
+
+import java.util.List;
+
+public interface OrderDao extends BaseDao<Order> {
+
+    List<Order> findOrderByStoreId(String storeId);
 }

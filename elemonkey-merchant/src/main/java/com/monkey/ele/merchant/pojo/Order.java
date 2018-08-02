@@ -61,7 +61,7 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems = new HashSet<OrderItem>();
     @OneToOne
