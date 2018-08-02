@@ -12,4 +12,6 @@ public interface ContectService {
 
     public boolean delContact(String contactId);
 
+    public Contact updateContact(Contact contact);
+
 }

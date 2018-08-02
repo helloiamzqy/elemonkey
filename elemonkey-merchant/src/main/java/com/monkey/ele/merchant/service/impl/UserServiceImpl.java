@@ -20,6 +20,9 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         if(userDao.findByUserName(user) == null){
             User addUser = userDao.add(user);
+            addUser.setContacts(null);
+            addUser.setOrders(null);
+            addUser.setComplains(null);
             return addUser;
         }
         return null;
@@ -28,7 +31,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User updateUser(User user) {
-        return userDao.update(user);
+        User updateUser = userDao.update(user);
+        updateUser.setContacts(null);
+        updateUser.setOrders(null);
+        updateUser.setComplains(null);
+        return updateUser;
     }
 
     @Override
@@ -39,7 +46,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loadUser(String id) {
-        return userDao.load(id);
+        User user = userDao.load(id);
+        user.setContacts(null);
+        user.setOrders(null);
+        user.setComplains(null);
+        return user;
     }
 
 

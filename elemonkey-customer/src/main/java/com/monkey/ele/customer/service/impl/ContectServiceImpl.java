@@ -37,4 +37,11 @@ public class ContectServiceImpl implements ContectService {
     }
 
 
+    @Transactional
+    @Override
+    public Contact updateContact(Contact contact) {
+        return contactDao.update(contact);
+    }
+
+
 }

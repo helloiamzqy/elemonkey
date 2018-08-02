@@ -50,4 +50,18 @@ public class ContectServiceImplTest {
         ContectService contectService = context.getBean(ContectService.class);
         Assert.assertTrue(contectService.delContact("23qwdd89yrsaqw123"));
     }
+
+    @Test
+    public void updateContact() {
+        ContectService contectService = context.getBean(ContectService.class);
+        Contact contact = new Contact();
+        contact.setId("23qwdd89yrnuf");
+        contact.setAddress("testContact");
+        contact.setPhone("88888888");
+        contact.setUserId("8a5e9d4464f8bad20164f8bad9810000");
+        Contact newContact = contectService.updateContact(contact);
+        Assert.assertTrue(newContact.getPhone().equals(contact.getPhone()));
+    }
+
+
 }
