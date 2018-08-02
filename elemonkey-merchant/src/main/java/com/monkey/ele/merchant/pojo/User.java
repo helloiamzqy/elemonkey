@@ -40,6 +40,7 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

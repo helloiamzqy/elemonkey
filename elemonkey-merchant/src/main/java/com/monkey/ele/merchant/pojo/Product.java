@@ -24,6 +24,7 @@ public class Product implements Serializable {
     private String images;
     private Double price;
     private Integer quantity;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -95,5 +96,20 @@ public class Product implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", images='" + images + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", createTime=" + createTime +
+                '}';
     }
 }

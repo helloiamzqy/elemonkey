@@ -19,6 +19,7 @@ public class Identity {
     private String name;
     private String idCardNumber;
     private String idCardPic;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

@@ -30,6 +30,7 @@ public class Advertisement {
     private Double price;
     private String image;
     private Integer status = AdvertisementStatus.PENDING;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

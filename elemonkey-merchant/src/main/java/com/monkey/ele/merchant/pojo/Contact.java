@@ -22,6 +22,7 @@ public class Contact {
     private String userId;
     private String address;
     private String phone;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

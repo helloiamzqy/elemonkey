@@ -56,6 +56,7 @@ public class Order {
     private Double deliveryCost;
     private String remarks;
     private Integer status;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

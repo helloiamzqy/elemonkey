@@ -22,6 +22,7 @@ public class Complain {
     private String storeId;
     private String userId;
     private String message;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
