@@ -52,7 +52,7 @@ public class UserRealm extends AuthorizingRealm {
             return null;
         }
 
-        if (!this.userService.validate(token.getUsername(), token.getPassword().toString())) {
+        if (!this.userService.validate(token.getUsername(), new String(token.getPassword()))) {
             LOGGER.info("wrong user password, username: " + token.getUsername());
             return null;
         }

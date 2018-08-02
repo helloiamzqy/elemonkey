@@ -6,8 +6,6 @@ import com.monkey.ele.customer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author Burgess Li
  * @version 1.0
