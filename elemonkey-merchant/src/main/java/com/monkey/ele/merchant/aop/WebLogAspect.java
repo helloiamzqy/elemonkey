@@ -27,15 +27,12 @@ public class WebLogAspect {
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        LOGGER.info("URL : " + request.getRequestURL().toString());
-        LOGGER.info("HTTP_METHOD : " + request.getMethod());
-        LOGGER.info("IP : " + request.getRemoteAddr());
-        Enumeration<String> enu = request.getParameterNames();
-        while (enu.hasMoreElements()) {
-            String name = (String) enu.nextElement();
-            LOGGER.info("name:{" + name + "},value:{" + request.getParameter(name) + "}");
+
+        LOGGER.info("Request_Controller : " + joinPoint.getSignature().getDeclaringTypeName());
+        LOGGER.info("Request_Method : " + joinPoint.getSignature().getName());
+        Object[] args = joinPoint.getArgs();
+        for(Object obj : args){
+            LOGGER.info("Request_Param : " + obj);
         }
     }
 
