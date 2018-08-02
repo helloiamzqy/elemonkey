@@ -35,4 +35,67 @@ public class Advertisement {
     private Date confirmTime;
     private String confirmUserId;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(String storeId) {
+        this.storeId = storeId;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getConfirmTime() {
+        return confirmTime;
+    }
+
+    public void setConfirmTime(Date confirmTime) {
+        this.confirmTime = confirmTime;
+    }
+
+    public String getConfirmUserId() {
+        return confirmUserId;
+    }
+
+    public void setConfirmUserId(String confirmUserId) {
+        this.confirmUserId = confirmUserId;
+    }
 }
