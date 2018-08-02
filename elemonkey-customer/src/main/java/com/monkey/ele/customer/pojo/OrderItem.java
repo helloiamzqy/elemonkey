@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @date 8/1/2018 4:07 PM
  **/
 @Entity
-@Table(name = "=MC_ORDERITEM")
+@Table(name = "MC_ORDERITEM")
 public class OrderItem {
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")

@@ -25,6 +25,7 @@ hs_err_pid*
 # IntelliJ IDEA Project files
 .idea
 *.iml
+*/*.iml
 *.ipr
 *.iws
 out
