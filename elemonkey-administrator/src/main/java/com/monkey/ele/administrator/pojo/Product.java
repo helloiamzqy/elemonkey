@@ -1,6 +1,7 @@
 package com.monkey.ele.administrator.pojo;
 
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -23,8 +24,8 @@ public class Product implements Serializable {
     private String images;
     private Double price;
     private Integer quantity;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
 
