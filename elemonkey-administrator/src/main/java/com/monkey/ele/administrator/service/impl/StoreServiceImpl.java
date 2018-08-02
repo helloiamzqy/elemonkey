@@ -21,14 +21,21 @@ public class StoreServiceImpl implements StoreService {
         return storeDao.add(store);
     }
 
-    @Override
-    public List<Store> findAllStore() {
-        return storeDao.findAll();
-    }
 
     @Transactional
     @Override
     public int updateCurrentAuditStatus(String id, Integer status) {
         return storeDao.updateCurrentAuditStatus(id,status);
     }
+
+    @Override
+    public List<Store> findAvailableStores() {
+        List<Store> stores = storeDao.findAvailableStores();
+        for (Store store: stores) {
+            store.setOrders(null);
+            store.setProducts(null);
+        }
+        return stores;
+    }
+
 }

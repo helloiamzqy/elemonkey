@@ -8,9 +8,10 @@ public interface StoreService {
 
     public Store addStore(Store store);
 
-    public List<Store> findAllStore();
-
     public int updateCurrentAuditStatus(String id, Integer status);
+
+    public List<Store> findAvailableStores();
+
 
 
 }
