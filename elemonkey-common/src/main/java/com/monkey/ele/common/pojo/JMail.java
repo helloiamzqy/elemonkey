@@ -18,4 +18,28 @@ public class JMail {
     private Object message;
     private String messageType;
 
+
+    public JMail() {
+    }
+
+    public JMail(Object message, String messageType) {
+        this.message = message;
+        this.messageType = messageType;
+    }
+
+    public Object getMessage() {
+        return message;
+    }
+
+    public void setMessage(Object message) {
+        this.message = message;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
 }
