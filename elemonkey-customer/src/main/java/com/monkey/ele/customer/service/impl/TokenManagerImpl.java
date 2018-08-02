@@ -1,11 +1,13 @@
 package com.monkey.ele.customer.service.impl;
 
 import com.monkey.ele.common.pojo.TokenModel;
+import com.monkey.ele.common.util.JWTUtils;
 import com.monkey.ele.common.util.UUIDUtils;
 import com.monkey.ele.customer.service.TokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,16 +27,26 @@ public class TokenManagerImpl implements TokenManager {
 
     @Override
     public boolean checkToken(TokenModel tokenModel) {
+        String redis_userId  = (String) redisTemplate.boundValueOps(tokenModel.getToken()).get();
+        if(redis_userId!=null&&redis_userId.equals(tokenModel.getUserId())){
+            redisTemplate.boundValueOps(tokenModel.getToken()).set(redis_userId,TokenModel.TokenModelSetting.TOKEN_EXPIRES_TIME,TimeUnit.HOURS);
+            return true;
+        }
         return false;
     }
 
     @Override
-    public TokenModel parseToken(String encryptStr) {
-        return null;
+    public TokenModel parseToken(String JWTString) {
+        if (StringUtils.isEmpty(JWTString)){
+            return null;
+        }
+        TokenModel tml = JWTUtils.unsign(JWTString);
+        return tml;
     }
 
     @Override
     public boolean deleteToken(TokenModel tokenModel) {
-        return false;
+        redisTemplate.delete(tokenModel.getToken());
+        return true;
     }
 }

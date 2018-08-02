@@ -23,7 +23,7 @@ public class JWTUtils {
                 final Map<String, Object> claims = new HashMap<String, Object>();
                 String jsonTokenModel = JsonUtil.obj2json(tokenModel);
                 claims.put(PAYLOAD, jsonTokenModel);
-                claims.put(EXP, System.currentTimeMillis() + maxAge);
+//                claims.put(EXP, System.currentTimeMillis() + maxAge);
                 return signer.sign(claims);
             } catch(Exception e) {
                 return null;
@@ -35,14 +35,18 @@ public class JWTUtils {
             final JWTVerifier verifier = new JWTVerifier(SECRET);
             try {
                 final Map<String,Object> claims= verifier.verify(jwt);
-                if (claims.containsKey(EXP) && claims.containsKey(PAYLOAD)) {
-                    long exp = (Long)claims.get(EXP);
-                    long currentTimeMillis = System.currentTimeMillis();
-                    if (exp > currentTimeMillis) {
-                        String json = (String)claims.get(PAYLOAD);
-                        return JsonUtil.json2pojo(json,TokenModel.class);
-                    }
+                if(claims.containsKey(PAYLOAD)){
+                    String json = (String)claims.get(PAYLOAD);
+                    return JsonUtil.json2pojo(json,TokenModel.class);
                 }
+//                if (claims.containsKey(EXP) && claims.containsKey(PAYLOAD)) {
+//                    long exp = (Long)claims.get(EXP);
+//                    long currentTimeMillis = System.currentTimeMillis();
+//                    if (exp > currentTimeMillis) {
+//                        String json = (String)claims.get(PAYLOAD);
+//                        return JsonUtil.json2pojo(json,TokenModel.class);
+//                    }
+//                }
                 return null;
             } catch (Exception e) {
                 return null;

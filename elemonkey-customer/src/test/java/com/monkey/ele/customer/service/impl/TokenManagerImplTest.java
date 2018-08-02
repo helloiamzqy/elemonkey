@@ -28,29 +28,34 @@ public class TokenManagerImplTest {
     public void createToken() {
         TokenManager tm = context.getBean(TokenManager.class);
         TokenModel tml= tm.createToken("userTomy");
-        System.out.println(JWTUtils.sign(tml,TokenModel.TokenModelSetting.JWT_MAX_AGE));
+        System.out.println(JWTUtils.sign(tml,1));
     }
 
-    @org.junit.Test
-    public void parseJWT() {
-        String jwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiO" +
-                "jE1MzMxNzUzMDQwNTEsInBheWxvYWQiOiJ7XCJ1c2VySWRcIjpcInVzZX" +
-                "JUb215XCIsXCJ0b2tlblwiOlwiMDA5YjgwMmI5YTBkNDBiNWJkYmZjOTk3ZjAwZDA" +
-                "1MGNcIn0ifQ.XecMY6_UccQiECDtSFPWA3YBt6PN3YQEY3kYe2__8_U";
-        TokenModel tml = JWTUtils.unsign(jwtToken);
-        System.out.println(tml.getUserId());
-        System.out.println(tml.getToken());
-    }
 
     @org.junit.Test
     public void checkToken() {
+        TokenManager tm = context.getBean(TokenManager.class);
+        TokenModel tml = new TokenModel();
+        tml.setToken("12323weewqe");
+        tml.setUserId("12348919564");
+        tm.checkToken(tml);
+
     }
+
 
     @org.junit.Test
     public void parseToken() {
+        String jwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwY" +
+                "Xlsb2FkIjoie1widXNlcklkXCI6XCJ1c2VyVG9teVwiLFw" +
+                "idG9rZW5cIjpcIjgzNmU0ODg1YTM5MzRlZmQ5YTUyY2ZhYmJi" +
+                "ZDA1NmQ5XCJ9In0.TZ4X7K2G0ZyJU7Uoly8TABg89PeXBqoAWI" +
+                "HVpP4iUPQ";
+        TokenModel tml = JWTUtils.unsign(jwtToken);
+        Assert.assertTrue(tml!=null);
     }
 
     @org.junit.Test
     public void deleteToken() {
+
     }
 }
