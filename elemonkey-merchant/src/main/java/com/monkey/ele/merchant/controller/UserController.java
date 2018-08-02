@@ -19,7 +19,7 @@ public class UserController {
         User saveUser = userService.saveUser(user);
         ResponseMessage message = null;
         if(saveUser == null){
-            message = new ResponseMessage(saveUser,MessageResultCode.FAILED,Message.MSG_USER_REGIST_ERROR);
+            message = new ResponseMessage(null,MessageResultCode.FAILED,Message.MSG_USER_REGIST_ERROR);
         }else{
             message = new ResponseMessage(saveUser,MessageResultCode.SUCCESS,Message.MSG_USER_REGIST_SUCCESS);
         }
@@ -36,8 +36,7 @@ public class UserController {
 
     @GetMapping(value = "{id}")
     public ResponseMessage findUser(@PathVariable String id){
-        User user = userService.loadUser(id);
-        return new ResponseMessage(user, MessageResultCode.SUCCESS, null);
+        return new ResponseMessage(userService.loadUser(id), MessageResultCode.SUCCESS, null);
     }
 
     @PutMapping
@@ -45,7 +44,7 @@ public class UserController {
         ResponseMessage message = null;
         User updateUser = userService.updateUser(user);
         if(updateUser == null){
-            message = new ResponseMessage(updateUser, MessageResultCode.ERROR, Message.MSG_DELETE_ERROR);
+            message = new ResponseMessage(null, MessageResultCode.ERROR, Message.MSG_DELETE_ERROR);
         }else{
             message = new ResponseMessage(updateUser, MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
         }
