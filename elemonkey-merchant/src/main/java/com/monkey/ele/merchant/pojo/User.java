@@ -37,7 +37,7 @@ public class User {
     private Date createTime;
     private Date lastModifiedTime;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "identityId")
     private Identity identity;
     @OneToMany
