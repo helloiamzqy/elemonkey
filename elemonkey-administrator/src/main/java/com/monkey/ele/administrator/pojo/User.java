@@ -32,8 +32,6 @@ public class User {
     }
 
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String username;
     private String password;

@@ -16,12 +16,10 @@ public interface StoreService {
 
     /**
      * 更新审核状态
-     * @param id
-     * @param status
+     * @param store
      * @return
      */
-    public int updateCurrentAuditStatus(String id, Integer status);
-
+    public Store updateStatus(Store store);
 
     /**
      * 分页
@@ -30,12 +28,6 @@ public interface StoreService {
      */
     public Page<Store> findStoresPage(Page page);
 
-
-    public void delete(String id);
-
-
-
-    public List<Store> fingStoreList(Integer firstIndex, Integer maxResults);
 
 
 
