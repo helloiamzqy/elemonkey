@@ -5,4 +5,5 @@ import com.monkey.ele.merchant.pojo.User;
 
 public interface UserDao extends BaseDao<User> {
 
+    User findByUserName(User user);
 }

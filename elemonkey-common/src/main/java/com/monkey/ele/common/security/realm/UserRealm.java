@@ -6,16 +6,20 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Burgess Li
  * @version 1.0
  * @date 8/2/2018 10:28 AM
  **/
+@Component
 public class UserRealm extends AuthorizingRealm {
 
     private static final Logger LOGGER = Logger.getLogger(UserRealm.class);
 
+    @Autowired
     private AuthorizeUserService userService;
 
     @Override

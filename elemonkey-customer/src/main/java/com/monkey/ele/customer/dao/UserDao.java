@@ -9,4 +9,6 @@ import com.monkey.ele.customer.pojo.User;
  **/
 public interface UserDao extends BaseDao<User> {
 
+    User findUserByUsername(String username);
+
 }

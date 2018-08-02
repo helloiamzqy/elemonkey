@@ -13,4 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDaoImpl extends AbstractBaseDao<User> implements UserDao {
 
+    @Override
+    public User findUserByUsername(String username) {
+        return load("from User u where u.username = ?", username);
+    }
+
 }
