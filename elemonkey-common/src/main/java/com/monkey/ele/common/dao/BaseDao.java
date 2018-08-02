@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface BaseDao<T> {
-
-
     /**
      * 添加实体类
      * @param t
@@ -33,13 +31,19 @@ public interface BaseDao<T> {
      */
     public T load(Serializable id);
 
-
-
     /**
      * 查找所有的实体类
      * @return
      */
     public List<T> findAll();
+
+
+    /**
+     * 根据JPQL语句更新
+     * @param jpql
+     * @param obj
+     */
+    public int executeUpdate(String jpql,Object... obj);
 
 
     /**
@@ -75,6 +79,14 @@ public interface BaseDao<T> {
 
     /**
      * 分页
+     * @param firstIndex
+     * @param pageSize
+     * @return
+     */
+    public List<T> findPage(Integer firstIndex, Integer pageSize);
+
+    /**
+     * 根据JPQL语句分页
      * @param jpql
      * @param firstIndex
      * @param pageSize

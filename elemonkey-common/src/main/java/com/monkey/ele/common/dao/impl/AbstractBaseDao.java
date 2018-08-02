@@ -9,18 +9,17 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class BaseDaoImpl<T> implements BaseDao<T> {
+public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     @PersistenceContext
     private EntityManager em;
 
     private Class<T> clazz = null;
 
-    public BaseDaoImpl(){
+    public AbstractBaseDao(){
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
     }
-
 
     @Override
     public T add(T t) {
@@ -48,6 +47,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public List<T> findAll() {
         return em.createQuery("from "+clazz.getSimpleName()).getResultList();
     }
+
+    @Override
+    public int executeUpdate(String jpql, Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter(i+1,obj[i]);
+            }
+        }
+        return query.executeUpdate();
+    }
+
 
     @Override
     public Long count() {
@@ -85,6 +96,11 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             }
         }
         return query.getResultList();
+    }
+
+    @Override
+    public List<T> findPage(Integer firstIndex, Integer pageSize) {
+        return em.createQuery("from "+clazz.getSimpleName()).setFirstResult(firstIndex).setMaxResults(pageSize).getResultList();
     }
 
     @Override
