@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -51,10 +52,10 @@ public class Store {
     private StoreInformation storeInformation;
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<>();
 
     public Store() {
     }
