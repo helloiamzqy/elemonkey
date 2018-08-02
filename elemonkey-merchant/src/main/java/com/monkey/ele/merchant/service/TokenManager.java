@@ -8,5 +8,9 @@ public interface TokenManager {
 
     public boolean checkToken(TokenModel tokenModel);
 
+    public TokenModel parseToken(String encryptStr);
+
+    public boolean deleteToken(TokenModel tokenModel);
+
 
 }
