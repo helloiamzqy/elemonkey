@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -29,10 +30,10 @@ public class Advertisement {
     private Double price;
     private String image;
     private Integer status = AdvertisementStatus.PENDING;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date confirmTime;
     private String confirmUserId;
 

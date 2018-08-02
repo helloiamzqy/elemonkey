@@ -1,7 +1,7 @@
 package com.monkey.ele.customer.pojo;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +21,8 @@ public class Complain {
     private String storeId;
     private String userId;
     private String message;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     public String getId() {

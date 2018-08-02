@@ -1,8 +1,8 @@
 package com.monkey.ele.customer.pojo;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,11 +17,11 @@ public class Identity {
     private String name;
     private String idCardNumber;
     private String idCardPic;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @LastModifiedDate
-    @Temporal(TemporalType.DATE)
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;
 
     public String getId() {

@@ -1,7 +1,7 @@
 package com.monkey.ele.customer.pojo;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +21,8 @@ public class Contact {
     private String userId;
     private String address;
     private String phone;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     public String getId() {

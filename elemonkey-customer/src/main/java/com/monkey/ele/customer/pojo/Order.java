@@ -1,7 +1,7 @@
 package com.monkey.ele.customer.pojo;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -54,8 +54,8 @@ public class Order {
     private Double deliveryCost;
     private String remarks;
     private Integer status;
-    @CreatedDate
-    @Temporal(TemporalType.DATE)
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
     @OneToMany
