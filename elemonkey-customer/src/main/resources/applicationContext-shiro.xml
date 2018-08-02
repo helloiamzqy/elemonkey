@@ -8,11 +8,7 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="authorizeUserService" class="com.monkey.ele.customer.service.UserService"/>
-
-    <bean id="userRealm" class="com.monkey.ele.common.security.realm.UserRealm">
-        <property name="userService" ref="authorizeUserService"/>
-    </bean>
+    <bean id="userRealm" class="com.monkey.ele.common.security.realm.UserRealm"/>
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"/>
