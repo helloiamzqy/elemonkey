@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -30,6 +31,7 @@ public class Store {
         public final static Integer DECLINE = 0x02;
         public final static Integer REJECT = 0x03;
     }
+
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
@@ -49,12 +51,15 @@ public class Store {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<Product>();
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<Order>();
 
 
     public String getId() {

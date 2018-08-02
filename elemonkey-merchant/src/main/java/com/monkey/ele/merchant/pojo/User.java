@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
+import org.aspectj.weaver.ast.Or;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -50,13 +52,13 @@ public class User {
     private Identity identity;
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Contact> contacts;
+    private Set<Contact> contacts = new HashSet<Contact>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<Order>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Complain> complains;
+    private Set<Complain> complains = new HashSet<Complain>();
 
 
     public String getId() {
