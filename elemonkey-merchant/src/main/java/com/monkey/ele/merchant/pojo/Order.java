@@ -65,7 +65,7 @@ public class Order {
     @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems = new HashSet<OrderItem>();
     @OneToOne
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "commentId")
     private Comment comment;
 
     public String getId() {
