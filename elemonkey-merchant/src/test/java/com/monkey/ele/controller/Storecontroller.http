@@ -1,0 +1,43 @@
+### Send POST request with json body
+POST http://localhost:8999/store/add
+Content-Type: application/json
+
+{
+  "address": "testLance"
+}
+
+###
+
+### Send POST request with json body
+POST http://localhost:8999/store/update
+Content-Type: application/json
+
+{
+  "id":"4028b88164f94e690164f96c5ada0001",
+  "address": "testLanceTest"
+}
+
+###
+
+### Send POST request with json body
+POST http://localhost:8999/store/4028b88164f94e690164f96c5ada0001/info/update
+Content-Type: application/json
+
+{
+    "logoImage":"test.jpg"
+}
+
+###
+
+
+### Send POST request with json body
+GET http://localhost:8999/store/4028b88164f94e690164f96c5ada0001
+Accept: application/json
+
+###
+
+### Send POST request with json body
+GET http://localhost:8999/store/4028b88164f94e690164f96c5ada0001/info
+Accept: application/json
+
+###

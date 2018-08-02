@@ -1,9 +1,0 @@
-### Send POST request with json body
-POST http://localhost:8999/store/add
-Content-Type: application/json
-
-{
-  "address": "content"
-}
-
-###
