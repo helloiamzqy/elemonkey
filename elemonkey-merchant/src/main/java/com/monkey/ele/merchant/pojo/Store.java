@@ -150,4 +150,12 @@ public class Store {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
