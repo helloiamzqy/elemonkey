@@ -1,6 +1,7 @@
 package com.monkey.ele.common.dao.impl;
 
 import com.monkey.ele.common.dao.BaseDao;
+import com.monkey.ele.common.util.BaseDaoUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +27,6 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
         this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
     }
 
-
     @Override
     public T add(T t) {
         em.persist(t);
@@ -46,16 +46,6 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
-    public T load(Serializable id) {
-        return em.find(clazz, id);
-    }
-
-    @Override
-    public List<T> findAll() {
-        return em.createQuery("from "+clazz.getSimpleName()).getResultList();
-    }
-
-    @Override
     public int executeUpdate(String jpql, Object... obj) {
         Query query = em.createQuery(jpql);
         if(obj.length > 0){
@@ -66,7 +56,10 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
         return query.executeUpdate();
     }
 
-
+    @Override
+    public T load(Serializable id) {
+        return em.find(clazz, id);
+    }
 
     @Override
     public T load(String jpql, Object... obj) {
@@ -80,6 +73,11 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
+    public List<T> findAll() {
+        return em.createQuery("from "+clazz.getSimpleName()).getResultList();
+    }
+
+    @Override
     public List<T> find(String jpql, Object... obj) {
         Query query = em.createQuery(jpql);
         if(obj.length > 0){
@@ -89,8 +87,6 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
         }
         return query.getResultList();
     }
-
-
 
     @Override
     public Integer count() {
