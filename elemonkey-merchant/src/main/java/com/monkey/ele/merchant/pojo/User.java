@@ -148,4 +148,22 @@ public class User {
     public void setComplains(Set<Complain> complains) {
         this.complains = complains;
     }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                ", identity=" + identity +
+                ", contacts=" + contacts +
+                ", orders=" + orders +
+                ", complains=" + complains +
+                '}';
+    }
 }
