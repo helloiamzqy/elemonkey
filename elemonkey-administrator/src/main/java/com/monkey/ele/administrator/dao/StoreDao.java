@@ -9,5 +9,8 @@ public interface StoreDao extends BaseDao<Store>{
 
     public int updateCurrentAuditStatus(String id, Integer status);
 
+    public List<Store> findAvailableStores();
+
+
 
 }

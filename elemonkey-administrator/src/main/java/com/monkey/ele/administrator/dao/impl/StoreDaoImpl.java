@@ -13,7 +13,13 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
     @Override
     public int updateCurrentAuditStatus(String id, Integer status) {
-        String jpql = "update Store set currentAuditStatus = ?1 where id = ?2";
+        String jpql = "update Store set currentAuditStatus = ? where id = ?";
         return this.executeUpdate(jpql,status,id);
+    }
+
+    @Override
+    public List<Store> findAvailableStores() {
+        String jpql = "from Store where currentAuditStatus = 0";
+        return this.find(jpql);
     }
 }
