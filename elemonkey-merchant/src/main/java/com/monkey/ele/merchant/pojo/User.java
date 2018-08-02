@@ -14,7 +14,7 @@ import java.util.Set;
  * @date 8/1/2018 2:44 PM
  **/
 @Entity
-@Table(name = "A_USER")
+@Table(name = "MC_USER")
 public class User {
 
     public static final class UserType {

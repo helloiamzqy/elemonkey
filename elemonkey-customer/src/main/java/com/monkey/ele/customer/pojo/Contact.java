@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 8/1/2018 3:53 PM
  **/
 @Entity
-@Table(name = "A_CONTACT")
+@Table(name = "MC_CONTACT")
 public class Contact {
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")

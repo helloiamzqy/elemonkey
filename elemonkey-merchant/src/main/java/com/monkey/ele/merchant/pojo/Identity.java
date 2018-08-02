@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "A_IDENTITY")
+@Table(name = "MC_IDENTITY")
 public class Identity {
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")

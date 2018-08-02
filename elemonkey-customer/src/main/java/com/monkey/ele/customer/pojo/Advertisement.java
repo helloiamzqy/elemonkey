@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 8/1/2018 3:25 PM
  **/
 @Entity
-@Table(name = "A_ADVERTISEMENT")
+@Table(name = "MC_ADVERTISEMENT")
 public class Advertisement {
 
     public static final class AdvertisementStatus {

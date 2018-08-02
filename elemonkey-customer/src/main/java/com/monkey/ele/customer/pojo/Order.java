@@ -13,7 +13,7 @@ import java.util.Set;
  * @date 8/1/2018 3:44 PM
  **/
 @Entity
-@Table(name = "A_ORDER")
+@Table(name = "MC_ORDER")
 public class Order {
 
     public static final class OrderStatus {

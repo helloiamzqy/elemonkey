@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Table(name = "A_PRODUCT")
+@Table(name = "MC_PRODUCT")
 @Entity
 public class Product implements Serializable {
 

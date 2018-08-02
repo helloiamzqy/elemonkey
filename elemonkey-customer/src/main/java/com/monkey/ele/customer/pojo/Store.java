@@ -14,7 +14,7 @@ import java.util.Set;
  * @date 8/1/2018 3:03 PM
  **/
 @Entity
-@Table(name = "A_STORE")
+@Table(name = "MC_STORE")
 public class Store {
 
     public static final class StoreStatus {

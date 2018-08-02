@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @date 8/1/2018 4:25 PM
  **/
 @Entity
-@Table(name = "A_COMMENT")
+@Table(name = "MC_COMMENT")
 public class Comment {
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
