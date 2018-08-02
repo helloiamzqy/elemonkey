@@ -8,9 +8,10 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-    <context:component-scan base-package="com.monkey.ele.merchant"></context:component-scan>
+    <context:component-scan base-package="com.monkey.ele.merchant.aop"></context:component-scan>
+    <context:component-scan base-package="com.monkey.ele.merchant.service"></context:component-scan>
+    <context:component-scan base-package="com.monkey.ele.merchant.dao"></context:component-scan>
 
     <import resource="applicationContext-jms.xml"/>
     <import resource="applicationContext-database.xml"/>
