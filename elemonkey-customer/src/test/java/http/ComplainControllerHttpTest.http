@@ -1,0 +1,10 @@
+POST http://localhost:9091/c/complain
+Content-Type: application/json
+
+{
+    "storeId":"4028b88164fab2b60164fab446160000",
+    "userId":"8a5e9d4464fab3820164fab3af420000",
+    "message" : "投诉"
+}
+
+###
