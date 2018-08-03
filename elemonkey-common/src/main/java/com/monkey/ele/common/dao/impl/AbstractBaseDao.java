@@ -108,7 +108,7 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
-    public Integer count() {
+    public int count() {
         Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
         return num.intValue();
     }
