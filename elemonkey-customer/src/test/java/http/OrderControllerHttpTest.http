@@ -1,0 +1,25 @@
+### Send POST request with json body
+POST http://localhost:9091/c/order
+Content-Type: application/json
+
+   {
+      "userId": "8a5e9d4464fab3820164fab3af420000",
+      "storeId": "4028b88164fab2b60164fab446160000",
+      "address": "珠海市南方软件园111123",
+      "phone": "1388884564588",
+      "deliveryCost": 8.0,
+      "remarks": "AAAAAAA",
+      "status": 3,
+      "orderItems": [
+        {
+            "productId" : "kfjgjpfhn112",
+            "productName" : "超级老的鸡儿",
+            "productPrice" : "17.9",
+            "productImage" : "/old.jpg"
+        }
+      ]
+    }
+
+
+
+###
