@@ -58,6 +58,8 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders = new HashSet<Order>();
 
+    public Store() {
+    }
 
     public String getId() {
         return id;
