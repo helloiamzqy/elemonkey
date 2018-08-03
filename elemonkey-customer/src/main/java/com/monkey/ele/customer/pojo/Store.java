@@ -38,7 +38,7 @@ public class Store {
     private String address;
     private String license;
     @Transient
-    private Double rank;
+    private double rank;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
     @Column(updatable = false)
@@ -159,11 +159,11 @@ public class Store {
         this.user = user;
     }
 
-    public Double getRank() {
+    public double getRank() {
         return rank;
     }
 
-    public void setRank(Double rank) {
+    public void setRank(double rank) {
         this.rank = rank;
     }
 
