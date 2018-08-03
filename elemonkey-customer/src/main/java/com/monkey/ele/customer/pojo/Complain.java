@@ -21,6 +21,7 @@ public class Complain {
     private String storeId;
     private String userId;
     private String message;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -63,5 +64,16 @@ public class Complain {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Complain{" +
+                "id='" + id + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", message='" + message + '\'' +
+                ", createTime=" + createTime +
+                '}';
     }
 }

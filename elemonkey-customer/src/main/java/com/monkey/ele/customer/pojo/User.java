@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -36,7 +37,9 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+
     private String image;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -44,18 +47,18 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "identityId")
     private Identity identity;
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Contact> contacts;
+    private Set<Contact> contacts = new HashSet<Contact>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<Order>();
     @OneToMany
     @JoinColumn(name = "userId")
-    private Set<Complain> complains;
+    private Set<Complain> complains = new HashSet<Complain>();
 
 
     public String getId() {
@@ -146,16 +149,6 @@ public class User {
         this.complains = complains;
     }
 
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -172,5 +165,13 @@ public class User {
                 ", orders=" + orders +
                 ", complains=" + complains +
                 '}';
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

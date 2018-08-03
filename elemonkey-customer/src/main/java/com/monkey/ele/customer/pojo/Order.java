@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -54,15 +55,16 @@ public class Order {
     private Double deliveryCost;
     private String remarks;
     private Integer status;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
-    private Set<OrderItem> orderItems;
+    private Set<OrderItem> orderItems = new HashSet<OrderItem>();
     @OneToOne
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "commentId")
     private Comment comment;
 
     public String getId() {
@@ -151,5 +153,22 @@ public class Order {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", deliveryCost=" + deliveryCost +
+                ", remarks='" + remarks + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", orderItems=" + orderItems +
+                ", comment=" + comment +
+                '}';
     }
 }
