@@ -1,4 +1,10 @@
 package com.monkey.ele.customer.service;
 
-public class OrderService {
+import com.monkey.ele.customer.pojo.Order;
+
+public interface OrderService {
+
+    Order createOrder(Order order);
+
+
 }

@@ -58,7 +58,7 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems;
     @OneToOne

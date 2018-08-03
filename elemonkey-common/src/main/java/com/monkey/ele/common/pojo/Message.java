@@ -1,4 +1,4 @@
-package com.monkey.ele.merchant.pojo;
+package com.monkey.ele.common.pojo;
 
 public interface Message {
     public static final String MSG_USER_LOGIN_ERROR = "用户名或密码错误";
