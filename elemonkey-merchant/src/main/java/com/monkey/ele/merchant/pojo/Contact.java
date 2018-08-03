@@ -66,4 +66,16 @@ public class Contact {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }
