@@ -1,6 +1,9 @@
 package com.monkey.ele.merchant.pojo;
 
 public interface Message {
+    /*
+    httpMsg
+     */
     public static final String MSG_USER_LOGIN_ERROR = "用户名或密码错误";
     public static final String MSG_USER_LOGIN_SUCCESS = "登陆成功";
     public static final String MSG_USER_REGIST_SUCCESS = "注册成功";
@@ -11,5 +14,13 @@ public interface Message {
     public static final String MSG_UPDATE_SUCCESS = "修改成功";
     public static final String MSG_DELETE_SUCCESS = "删除成功";
     public static final String MSG_DELETE_ERROR = "删除失败";
+
+
+     /*
+    webSocketMsg
+     */
+
+    public static final String WEBSOKCET_CONNECT_SUCCESS = "连接成功";
+
 
 }

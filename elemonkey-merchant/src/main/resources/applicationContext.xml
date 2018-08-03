@@ -13,6 +13,7 @@
     <context:component-scan base-package="com.monkey.ele.merchant.service"></context:component-scan>
     <context:component-scan base-package="com.monkey.ele.merchant.dao"></context:component-scan>
     <context:component-scan base-package="com.monkey.ele.common.jms"></context:component-scan>
+    <context:component-scan base-package="com.monkey.ele.merchant.websocket"></context:component-scan>
 
     <import resource="applicationContext-jms.xml"/>
     <import resource="applicationContext-database.xml"/>
