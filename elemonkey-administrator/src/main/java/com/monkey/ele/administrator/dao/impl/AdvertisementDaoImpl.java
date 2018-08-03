@@ -12,8 +12,8 @@ import java.util.List;
 public class AdvertisementDaoImpl extends AbstractBaseDao<Advertisement> implements AdvertisementDao {
 
     @Override
-    public List<Advertisement> findAdvertisements() {
-        String jpql = "from Advertisement order by createTime desc,price desc";
-        return this.findPage(1,5,jpql);
+    public List<Advertisement> findAdvertisements(Integer status) {
+        String jpql ="from Advertisement where status = ?";
+        return this.find(jpql,status);
     }
 }

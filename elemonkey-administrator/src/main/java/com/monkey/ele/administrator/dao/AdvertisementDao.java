@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface AdvertisementDao extends BaseDao<Advertisement> {
 
-    public List<Advertisement> findAdvertisements();
+    public List<Advertisement> findAdvertisements(Integer status);
 }

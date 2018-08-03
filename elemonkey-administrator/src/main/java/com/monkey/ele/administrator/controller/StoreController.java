@@ -17,19 +17,22 @@ public class StoreController {
     @Autowired
     private StoreService storeService;
 
-    @PutMapping("{id}")
-    public Store updateStoreStatus(@PathVariable("id") String id,@RequestBody Store store){
-        return storeService.updateStatus(store);
+    @PostMapping("{id}")
+    public Object updateStoreStatus(@PathVariable("id") String id,@RequestBody Store store){
+        Store st = storeService.updateStatus(store);
+        ResponseMessage message = new ResponseMessage();
+        message.setContent(st);
+        message.setResultCode(st.getId()!=null ? MessageResultCode.SUCCESS : MessageResultCode.ERROR);
+        return message;
     }
 
-    @GetMapping
-    public Object getStores(){
+
+    @GetMapping("status/{status}")
+    public Object getStores(@PathVariable("status") Integer status){
+        List<Store> stores = storeService.findStores(status);
         ResponseMessage message = new ResponseMessage();
-        Page page = new Page();
-        page.setPageIndex(1);
-        page.setPageCount(2);
-        message.setContent(storeService.findStoresPage(page));
-        message.setResultCode(MessageResultCode.SUCCESS);
+        message.setContent(stores);
+        message.setResultCode(stores.size() > 0 ? MessageResultCode.SUCCESS : MessageResultCode.ERROR);
         return message;
     }
 

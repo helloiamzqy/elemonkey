@@ -10,5 +10,5 @@ public interface AdvertisementService {
 
     public Advertisement updateAdvertisement(Advertisement advertisement);
 
-    public List<Advertisement> findAdvertisements();
+    public List<Advertisement> findAdvertisements(Integer status);
 }

@@ -23,4 +23,7 @@ public interface StoreDao extends BaseDao<Store>{
     public int countStoresPage();
 
 
+    public List<Store> findStores(Integer status);
+
+
 }

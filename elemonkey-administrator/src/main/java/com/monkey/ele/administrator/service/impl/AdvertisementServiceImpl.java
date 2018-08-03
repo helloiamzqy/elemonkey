@@ -4,6 +4,7 @@ import com.monkey.ele.administrator.dao.AdvertisementDao;
 import com.monkey.ele.administrator.pojo.Advertisement;
 import com.monkey.ele.administrator.service.AdvertisementService;
 import com.monkey.ele.common.jms.JmsSender;
+import com.monkey.ele.common.pojo.JMail;
 import com.monkey.ele.common.util.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         Advertisement rs = advertisementDao.update(advertisement);
         if(rs!=null){
             try {
-                jmsSender.sendTextMessage(JsonUtil.obj2json(rs));
+                JMail jMail= new JMail(rs,JMail.JMailType.AD_ACK);
+                jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -40,7 +42,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<Advertisement> findAdvertisements() {
-        return advertisementDao.findAdvertisements();
+    public List<Advertisement> findAdvertisements(Integer status) {
+        return advertisementDao.findAdvertisements(status);
     }
 }

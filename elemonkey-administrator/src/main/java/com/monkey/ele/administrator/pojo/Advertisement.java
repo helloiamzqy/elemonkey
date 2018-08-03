@@ -1,5 +1,6 @@
 package com.monkey.ele.administrator.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -30,10 +31,12 @@ public class Advertisement {
     private Double price;
     private String image;
     private Integer status = AdvertisementStatus.PENDING;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Temporal(TemporalType.TIMESTAMP)
     private Date confirmTime;
     private String confirmUserId;

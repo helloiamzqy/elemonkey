@@ -64,7 +64,8 @@ public class StoreServiceImpl implements StoreService {
         Store rs = storeDao.update(store);
         if(rs!=null){
             try {
-                jmsSender.sendTextMessage(JsonUtil.obj2json(rs));
+                JMail jMail= new JMail(rs,JMail.JMailType.STORE_ACK);
+                jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -83,6 +84,11 @@ public class StoreServiceImpl implements StoreService {
             }
         }
         return page;
+    }
+
+    @Override
+    public List<Store> findStores(int status) {
+        return storeDao.findStores(status);
     }
 
 

@@ -29,6 +29,14 @@ public interface StoreService {
     public Page<Store> findStoresPage(Page page);
 
 
+    /**
+     * 根据不同状态获取商店的集合
+     * @param status
+     * @return
+     */
+    public List<Store> findStores(int status);
+
+
 
 
 }
