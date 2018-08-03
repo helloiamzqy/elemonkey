@@ -31,4 +31,28 @@ public class CartServiceImplTest {
         List<Cart> cartList= cartService.getCartByStore("aa","aa");
 
     }
+
+    @Test
+    public void addCart() {
+        CartService cartService= context.getBean(CartService.class);
+        Cart cart = new Cart("ccasdsad",0);
+        cartService.addCart("aaaa","bbbb",cart);
+        List<Cart> cartList= cartService.getCartByStore("aaaa","bbbb");
+        System.out.println(cartList.size());
+    }
+
+    @Test
+    public void emptyCart() {
+        CartService cartService= context.getBean(CartService.class);
+        cartService.emptyCart("aaaa","bbbb");
+    }
+
+    @Test
+    public void reduceCart() {
+        CartService cartService= context.getBean(CartService.class);
+        Cart cart = new Cart("ccasdsad",0);
+        cartService.reduceCart("aaaa","bbbb",cart);
+        List<Cart> cartList= cartService.getCartByStore("aaaa","bbbb");
+        System.out.println(cartList.size());
+    }
 }

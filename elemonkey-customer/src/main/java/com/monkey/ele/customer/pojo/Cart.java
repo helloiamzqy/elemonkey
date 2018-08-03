@@ -3,6 +3,10 @@ package com.monkey.ele.customer.pojo;
 public class Cart {
 
 
+    public static final class CartSetting{
+        public static final long Cart_EXPIRES_TIME = 15;
+    }
+
     private String productId;
     private int num;
 //

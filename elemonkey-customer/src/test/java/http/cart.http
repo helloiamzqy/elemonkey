@@ -1,0 +1,16 @@
+### Get store cart
+GET http://localhost:8080/cart/4028b88164fab2b60164fab446160000/
+Accept: application/json
+
+###
+
+
+### add a product to cart
+POST http://localhost:8080/cart/4028b88164fab2b60164fab446160000/add/
+Content-Type: application/json
+
+{
+   "productId":"kfjgjpfhn112"
+}
+
+###
