@@ -63,8 +63,9 @@ public class Order {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems = new HashSet<OrderItem>();
+
     @OneToOne
-    @JoinColumn(name = "commentId")
+    @JoinColumn(name="commentid",referencedColumnName="id")
     private Comment comment;
 
     public String getId() {
