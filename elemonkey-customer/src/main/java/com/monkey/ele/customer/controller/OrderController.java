@@ -39,7 +39,7 @@ public class OrderController {
      */
     @GetMapping(value = "user/history/{uid}")
     public ResponseMessage findHistoryOrder(@PathVariable String uid){
-        return null;
+        return new ResponseMessage(orderService.findHistoryOrder(uid), MessageResultCode.SUCCESS, null);
     }
 
 
@@ -50,6 +50,6 @@ public class OrderController {
      */
     @GetMapping(value = "user/active/{uid}")
     public ResponseMessage findActiveOrder(@PathVariable String uid){
-        return null;
+        return new ResponseMessage(orderService.findActiveOrder(uid), MessageResultCode.SUCCESS, null);
     }
 }
