@@ -3,6 +3,7 @@ package com.monkey.ele.customer.dao.impl;
 import com.monkey.ele.common.dao.impl.AbstractBaseDao;
 import com.monkey.ele.customer.dao.ComplexStoreDao;
 import com.monkey.ele.customer.pojo.ComplexStore;
+import com.monkey.ele.customer.pojo.Store;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,10 @@ public class ComplexStoreDaoImpl extends AbstractBaseDao<ComplexStore> implement
                 " From Store s where s.currentAuditStatus = ?";
         return this.findPage(firstIndex, maxResults,findPassStore,PASS_STATUS);
     }
+
+    @Override
+    public List<ComplexStore> findHotStore(int limit) {
+        return this.findPage(0, limit, "Select new com.monkey.ele.customer.pojo.ComplexStore(s.id,s.name,s.storeInformation) from Store s where s.currentAuditStatus = ? order by s.orders.size desc", Store.StoreAuditStatus.ACCEPT);
+    }
+
 }

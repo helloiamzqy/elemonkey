@@ -1,6 +1,6 @@
 package com.monkey.ele.common.security.realm;
 
-import com.monkey.ele.common.security.service.AuthorizeUserService;
+import com.monkey.ele.common.security.service.AuthorizeUserDao;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -20,7 +20,7 @@ public class UserRealm extends AuthorizingRealm {
     private static final Logger LOGGER = Logger.getLogger(UserRealm.class);
 
     @Autowired
-    private AuthorizeUserService userService;
+    private AuthorizeUserDao userDao;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -29,7 +29,7 @@ public class UserRealm extends AuthorizingRealm {
 
     @Override
     public String getName() {
-        return this.userService.getClass().getName().toUpperCase() + "_USER_REALM";
+        return this.userDao.getClass().getName().toUpperCase() + "_USER_REALM";
     }
 
     @Override
@@ -47,21 +47,17 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
-        if (!this.userService.isExists(token.getUsername())) {
+        if (!this.userDao.isExists(token.getUsername())) {
             LOGGER.info("user not exists, username: " + token.getUsername());
             return null;
         }
 
-        if (!this.userService.validate(token.getUsername(), new String(token.getPassword()))) {
+        if (!this.userDao.validate(token.getUsername(), new String(token.getPassword()))) {
             LOGGER.info("wrong user password, username: " + token.getUsername());
             return null;
         }
 
-        return new SimpleAuthenticationInfo(token.getUsername(), token.getPassword(), getName());
-    }
-
-    public void setUserService(AuthorizeUserService userService) {
-        this.userService = userService;
+        return this.userDao.createAuthenticationInfo(token.getUsername(), getName());
     }
 
 }

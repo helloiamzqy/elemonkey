@@ -9,7 +9,10 @@ import java.util.List;
 
 public interface ComplexStoreDao extends BaseDao<ComplexStore> {
 
-    public List<ComplexStore> findPassStore();
+    List<ComplexStore> findPassStore();
 
-    public List<ComplexStore> findPassStorePage(Integer firstIndex, Integer maxResults);
+    List<ComplexStore> findPassStorePage(Integer firstIndex, Integer maxResults);
+
+    List<ComplexStore> findHotStore(int limit);
+
 }
