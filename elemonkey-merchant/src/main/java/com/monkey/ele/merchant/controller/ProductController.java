@@ -21,7 +21,7 @@ public class ProductController {
      * @param product
      * @return
      */
-    @PostMapping
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage addProduct(@RequestBody Product product){
         Product saveProduct = productService.saveProduct(product);
         ResponseMessage message = null;
@@ -38,7 +38,7 @@ public class ProductController {
      * @param id
      * @return
      */
-    @DeleteMapping(value = "{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ResponseMessage deleteProduct(@PathVariable String id){
         productService.deleteProduct(id);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_DELETE_SUCCESS);
@@ -50,7 +50,7 @@ public class ProductController {
      * @param product
      * @return
      */
-    @PutMapping
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage updateProduct(@RequestBody Product product){
         Product updateProduct = productService.updateProduct(product);
         ResponseMessage message = null;

@@ -21,7 +21,7 @@ public class OrderController {
      * @param order
      * @return
      */
-    @PutMapping
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage updateOrder(@RequestBody Order order){
         Order updateOrder = orderService.updateOrder(order);
         ResponseMessage message = null;

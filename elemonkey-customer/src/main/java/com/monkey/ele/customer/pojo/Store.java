@@ -1,6 +1,5 @@
 package com.monkey.ele.customer.pojo;
 
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -156,5 +155,24 @@ public class Store {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", license='" + license + '\'' +
+                ", status=" + status +
+                ", currentAuditStatus=" + currentAuditStatus +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                ", storeInformation=" + storeInformation +
+                ", user=" + user +
+                ", products=" + products +
+                ", orders=" + orders +
+                '}';
     }
 }

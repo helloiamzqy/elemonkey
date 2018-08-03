@@ -17,6 +17,7 @@ public class Identity {
     private String name;
     private String idCardNumber;
     private String idCardPic;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -70,5 +71,18 @@ public class Identity {
 
     public void setLastModifiedTime(Date lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Identity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", idCardNumber='" + idCardNumber + '\'' +
+                ", idCardPic='" + idCardPic + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                '}';
     }
 }

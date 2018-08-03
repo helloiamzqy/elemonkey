@@ -1,5 +1,5 @@
 ### Get all store
-GET http://localhost:8080/store/
+GET http://localhost:8080/store
 Accept: application/json
 
 ###
@@ -13,6 +13,12 @@ Accept: application/json
 
 ### Get store product with page
 GET http://localhost:8080/store/4028b88164fab2b60164fab446160000/prod/?firstIndex=0&maxResults=2
+Accept: application/json
+
+###
+
+### Get ad
+GET http://localhost:8080/ad/
 Accept: application/json
 
 ###

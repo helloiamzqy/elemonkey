@@ -31,7 +31,7 @@ public class ContactController {
     public Object getUserContact(){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("aaaaaa","123121"));
+        subject.login(new UsernamePasswordToken("user12","123456"));
         String userId = userService.findUserByUsername((String)subject.getPrincipal()).getId();
         List<Contact> contacts = contectService.findContactByUser(userId);
         resmsg.setContent(contacts);
@@ -45,7 +45,7 @@ public class ContactController {
     public Object delUserContact(@PathVariable(value="contactId") String contactId){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("aaaaaa","123121"));
+        subject.login(new UsernamePasswordToken("user12","123121"));
         String userId = userService.findUserByUsername((String)subject.getPrincipal()).getId();
         boolean result = contectService.delContact(userId,contactId);
         resmsg.setResultCode(result?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
@@ -58,7 +58,7 @@ public class ContactController {
     public Object addUserContact(@RequestBody Contact contact){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("aaaaaa","123121"));
+        subject.login(new UsernamePasswordToken("user12","123456"));
         contact.setUserId(userService.findUserByUsername((String)subject.getPrincipal()).getId());
         Contact dbContact = contectService.addContact(contact);
         resmsg.setContent(dbContact);

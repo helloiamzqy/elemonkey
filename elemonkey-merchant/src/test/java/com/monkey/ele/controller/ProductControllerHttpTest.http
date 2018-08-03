@@ -1,10 +1,10 @@
 ### Send POST request with json body
-POST http://localhost:9090/product
+POST http://localhost:9090/product/add
 Content-Type: application/json
 
 {
   "name": "大汉堡",
-  "storeId" : "4028b88164f931c70164f931ce490000",
+  "storeId" : "4028b88164fab2b60164fab446160000",
   "description": "无敌大汉堡",
   "images" :"/img/aaaaa.png",
   "price" : "22.6",
@@ -15,7 +15,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:9090/product/8a5e9d4464fa28820164fa28ac1c0000
+GET http://localhost:9090/product/delete/8a5e9d4464ff975a0164ff9a04900001
 Accept: application/json
 
 ###
@@ -23,13 +23,13 @@ GET http://localhost:9090/product/8a5e9d4464fa28820164fa28ac1c0000
 Accept: application/json
 
 ###
-PUT http://localhost:9090/product
+POST http://localhost:9090/product/update
 Content-Type: application/json
 
 {
-    "id" : "8a5e9d4464fa28820164fa4443840001",
+    "id" : "8a5e9d4464ff9b130164ff9bdb760000",
    "name": "大汉堡4",
-   "storeId" : "4028b88164f931c70164f931ce490000",
+   "storeId" : "4028b88164fab2b60164fab446160000",
    "description": "无敌大汉堡4",
    "images" :"/img/aaaaa.png",
    "price" : "55.6",
@@ -43,7 +43,7 @@ GET http://localhost:9090/product
 Accept: application/json
 
 ###
-GET http://localhost:9090/product/store/4028b88164f931c70164f931ce490000
+GET http://localhost:9090/product/store/4028b88164fab2b60164fab446160000
 Accept: application/json
 
 ###

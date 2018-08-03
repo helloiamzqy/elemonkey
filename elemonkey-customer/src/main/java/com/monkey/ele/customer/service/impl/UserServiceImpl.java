@@ -5,6 +5,7 @@ import com.monkey.ele.customer.pojo.User;
 import com.monkey.ele.customer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Burgess Li
@@ -14,25 +15,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserDao userDao;
-
-    @Override
-    public boolean isExists(String username) {
-        return userDao.findUserByUsername(username) != null;
-    }
-
-    @Override
-    public boolean validate(String username, String password) {
-        User user = userDao.findUserByUsername(username);
-        if (user == null)
-            return false;
-        return user.getPassword().equals(password);
-    }
+    @Autowired private UserDao userDao;
 
     @Override
     public User findUserByUsername(String username) {
         return userDao.findUserByUsername(username);
     }
-    
+
+    @Override
+    @Transactional
+    public User save(User user) {
+        return userDao.add(user);
+    }
+
 }

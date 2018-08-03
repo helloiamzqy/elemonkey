@@ -1,5 +1,5 @@
 ### Get request with a header
-GET http://httpbin.org/ip
+GET http://localhost:8080/contact/
 Accept: application/json
 
 

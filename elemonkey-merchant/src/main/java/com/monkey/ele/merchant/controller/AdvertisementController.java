@@ -6,10 +6,7 @@ import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Advertisement;
 import com.monkey.ele.merchant.service.AdvertisementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ad")
@@ -23,9 +20,10 @@ public class AdvertisementController {
      * @param advertisement
      * @return
      */
-    @PostMapping
+    @RequestMapping(value = "/send", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage sendAdvertisement(@RequestBody Advertisement advertisement){
         advertisementService.sendAdvertisement(advertisement);
+        advertisementService.addAdvertisement(advertisement);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_ADD_SUCCESS);
     }
 }

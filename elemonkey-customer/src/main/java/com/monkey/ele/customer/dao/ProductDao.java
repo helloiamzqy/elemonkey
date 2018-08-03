@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface ProductDao extends BaseDao<Product> {
 
-    public List<Product> getAllProductByStore(String storeId);
+    List<Product> getAllProductByStore(String storeId);
 
-    public List<Product> getAllProductByStorePage(String storeId,Integer firstIndex, Integer maxResults);
+    List<Product> getAllProductByStorePage(String storeId,Integer firstIndex, Integer maxResults);
 
 }

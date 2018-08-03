@@ -84,4 +84,18 @@ public class StoreInformation implements Serializable {
     public void setLogoImage(String logoImage) {
         this.logoImage = logoImage;
     }
+
+
+    @Override
+    public String toString() {
+        return "StoreInformation{" +
+                "id='" + id + '\'' +
+                ", open='" + open + '\'' +
+                ", close='" + close + '\'' +
+                ", deliveryArea=" + deliveryArea +
+                ", description='" + description + '\'' +
+                ", deliveryCost=" + deliveryCost +
+                ", logoImage='" + logoImage + '\'' +
+                '}';
+    }
 }
