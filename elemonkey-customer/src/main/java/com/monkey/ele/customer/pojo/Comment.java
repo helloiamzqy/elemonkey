@@ -20,7 +20,6 @@ public class Comment {
     @GeneratedValue(generator = "uuid")
     private String id;
     private String userId;
-    private String orderId;
     private Integer rank;
     private String message;
 
@@ -39,14 +38,6 @@ public class Comment {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public Integer getRank() {
@@ -71,7 +62,6 @@ public class Comment {
         return "Comment{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
-                ", orderId='" + orderId + '\'' +
                 ", rank=" + rank +
                 ", message='" + message + '\'' +
                 '}';
