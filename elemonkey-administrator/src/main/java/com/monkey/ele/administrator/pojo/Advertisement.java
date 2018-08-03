@@ -38,6 +38,14 @@ public class Advertisement {
     private Date confirmTime;
     private String confirmUserId;
 
+    public Advertisement() {
+    }
+
+    public Advertisement(String storeId, Double price, String image) {
+        this.storeId = storeId;
+        this.price = price;
+        this.image = image;
+    }
 
     public String getId() {
         return id;

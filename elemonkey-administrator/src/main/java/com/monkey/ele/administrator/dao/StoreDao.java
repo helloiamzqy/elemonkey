@@ -20,7 +20,7 @@ public interface StoreDao extends BaseDao<Store>{
      * 审核通过的商家记录数
      * @return
      */
-    public Integer countStoresPage();
+    public int countStoresPage();
 
 
 }

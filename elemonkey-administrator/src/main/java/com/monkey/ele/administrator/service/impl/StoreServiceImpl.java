@@ -43,9 +43,17 @@ public class StoreServiceImpl implements StoreService {
     public Store addStore(Store store) {
         StoreInformation storeInformation = store.getStoreInformation();
         User user = store.getUser();
-        userDao.add(user);
-        identityDao.add(user.getIdentity());
-        storeInformationDao.add(storeInformation);
+        Identity identity = new Identity();
+        if(user!=null){
+            userDao.add(user);
+            identity = user.getIdentity();
+            if(identity!=null){
+                identityDao.add(user.getIdentity());
+            }
+        }
+        if(storeInformation!=null){
+            storeInformationDao.add(storeInformation);
+        }
         return storeDao.add(store);
     }
 
@@ -67,10 +75,12 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Page<Store> findStoresPage(Page page) {
         int totalCount = storeDao.countStoresPage();
-        page.setItemTotal(totalCount);
-        if(totalCount > 0){
-            List<Store> stores = storeDao.findStoresPage(page.getFirstIndex(),page.getPageCount());
-            page.setItems(stores);
+        if(totalCount > page.getFirstIndex()){
+            page.setItemTotal(totalCount);
+            if(totalCount > 0){
+                List<Store> stores = storeDao.findStoresPage(page.getFirstIndex(),page.getPageCount());
+                page.setItems(stores);
+            }
         }
         return page;
     }
