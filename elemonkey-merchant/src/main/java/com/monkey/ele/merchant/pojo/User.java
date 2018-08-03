@@ -40,6 +40,8 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+
+    private String image;
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -150,7 +152,6 @@ public class User {
         this.complains = complains;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -159,6 +160,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", type=" + type +
                 ", status=" + status +
+                ", image='" + image + '\'' +
                 ", createTime=" + createTime +
                 ", lastModifiedTime=" + lastModifiedTime +
                 ", identity=" + identity +
@@ -166,5 +168,13 @@ public class User {
                 ", orders=" + orders +
                 ", complains=" + complains +
                 '}';
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

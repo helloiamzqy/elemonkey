@@ -36,6 +36,7 @@ public class User {
     private String password;
     private Integer type;
     private Integer status = UserStatus.NORMAL;
+    private String image;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -143,5 +144,33 @@ public class User {
 
     public void setComplains(Set<Complain> complains) {
         this.complains = complains;
+    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                ", identity=" + identity +
+                ", contacts=" + contacts +
+                ", orders=" + orders +
+                ", complains=" + complains +
+                '}';
     }
 }
