@@ -1,5 +1,6 @@
 package com.monkey.ele.customer.service.impl;
 
+import com.monkey.ele.customer.dao.CommentDao;
 import com.monkey.ele.customer.dao.StoreDao;
 import com.monkey.ele.customer.pojo.Store;
 import com.monkey.ele.customer.service.StoreService;
@@ -18,11 +19,32 @@ import java.util.List;
 @Transactional
 public class StoreServiceImpl implements StoreService {
 
-    @Autowired private StoreDao storeDao;
+    @Autowired
+    private StoreDao storeDao;
+
+    @Autowired
+    CommentDao commentDao;
 
     @Override
     public List<Store> findHotStoreLimit(int limit) {
         return storeDao.findHotStoreLimit(limit);
     }
+
+    @Override
+    public List<Store> findPassStorePage(Integer firstIndex, Integer maxResults) {
+        return storeDao.findPassStorePage(firstIndex,maxResults);
+    }
+
+    @Override
+    public List<Store> findPassStore() {
+        return storeDao.findPassStore();
+    }
+
+    @Override
+    public Double watchStoreRank(String storeId) {
+        Double rank = commentDao.findStoreRank(storeId);
+        return rank;
+    }
+
 
 }

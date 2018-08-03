@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ContactDao extends BaseDao<Contact> {
 
-    public List<Contact> findContactByUserId(String userId);
+    List<Contact> findContactByUserId(String userId);
 
 
 

@@ -1,5 +1,5 @@
 ### Get all store
-GET http://localhost:8080/store/
+GET http://localhost:8080/store
 Accept: application/json
 
 ###

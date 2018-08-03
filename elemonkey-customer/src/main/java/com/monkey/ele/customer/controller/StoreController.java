@@ -19,38 +19,40 @@ import java.util.List;
 public class StoreController {
 
 
-//    @Autowired
-//    ComplexStoreService storeService;
-
     @Autowired
     ProductService productService;
 
     @Autowired private StoreService storeService;
 
 
-//    @GetMapping
-//    public Object getPassStore(Integer firstIndex, Integer maxResults) {
-//        ResponseMessage resMsg = new ResponseMessage();
-//        resMsg.setContent((firstIndex == null && maxResults == null) ?
-//                storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults));
-//        resMsg.setResultCode(MessageResultCode.SUCCESS);
-//        return resMsg;
-//    }
-//
-//    @GetMapping("/{storeId}/prod")
-//    public Object getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
-//        ResponseMessage resMsg = new ResponseMessage();
-//        resMsg.setContent((firstIndex == null && maxResults == null) ?
-//                productService.getAllProductByStore(storeId) : productService.getAllProductByStorePage(storeId, firstIndex, maxResults));
-//        resMsg.setResultCode(MessageResultCode.SUCCESS);
-//        return resMsg;
-//    }
-//
-//    @GetMapping("/{storeId}/rank")
-//    public ResponseMessage getStoreRank(@PathVariable("storeId") String storeId) {
-//        Double rank = storeService.watchStoreRank(storeId);
-//        return new ResponseMessage(rank, MessageResultCode.SUCCESS, null);
-//    }
+    @GetMapping
+    public Object getPassStore(Integer firstIndex, Integer maxResults) {
+        ResponseMessage resMsg = new ResponseMessage();
+        List<Store> stores = (firstIndex == null && maxResults == null) ? storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults);
+        for (Store store: stores) {
+            store.setOrders(null);
+            store.setProducts(null);
+            store.setUser(null);
+        }
+        resMsg.setContent(stores);
+        resMsg.setResultCode(MessageResultCode.SUCCESS);
+        return resMsg;
+    }
+
+    @GetMapping("/{storeId}/prod")
+    public Object getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
+        ResponseMessage resMsg = new ResponseMessage();
+        resMsg.setContent((firstIndex == null && maxResults == null) ?
+                productService.getAllProductByStore(storeId) : productService.getAllProductByStorePage(storeId, firstIndex, maxResults));
+        resMsg.setResultCode(MessageResultCode.SUCCESS);
+        return resMsg;
+    }
+
+    @GetMapping("/{storeId}/rank")
+    public ResponseMessage getStoreRank(@PathVariable("storeId") String storeId) {
+        Double rank = storeService.watchStoreRank(storeId);
+        return new ResponseMessage(rank, MessageResultCode.SUCCESS, null);
+    }
 
     @RequestMapping("/hot/{limit}")
     public ResponseMessage test(@PathVariable Integer limit) {

@@ -13,4 +13,11 @@ public interface StoreService {
 
     List<Store> findHotStoreLimit(int limit);
 
+    List<Store> findPassStorePage(Integer firstIndex, Integer maxResults);
+
+    List<Store> findPassStore();
+
+    Double watchStoreRank(String storeId);
+
+
 }
