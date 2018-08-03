@@ -14,8 +14,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseMessage regisiter(@RequestBody User user){
+    @RequestMapping(value = "/regist", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseMessage regist(@RequestBody User user){
         User saveUser = userService.saveUser(user);
         ResponseMessage message = null;
         if(saveUser == null){
@@ -27,7 +27,7 @@ public class UserController {
     }
 
 
-    @DeleteMapping(value = "{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, consumes = "application/json")
     public ResponseMessage deleteUser(@PathVariable String id){
         userService.deleteUser(id);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_DELETE_SUCCESS);
@@ -39,7 +39,7 @@ public class UserController {
         return new ResponseMessage(userService.loadUser(id), MessageResultCode.SUCCESS, null);
     }
 
-    @PutMapping
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage updateUser(@RequestBody  User user){
         ResponseMessage message = null;
         User updateUser = userService.updateUser(user);
