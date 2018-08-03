@@ -6,10 +6,7 @@ import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.customer.pojo.Order;
 import com.monkey.ele.customer.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/order")
@@ -18,6 +15,11 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 提交订单
+     * @param order
+     * @return
+     */
     @PostMapping
     public ResponseMessage createOrder(@RequestBody Order order){
         Order saveOrder = orderService.createOrder(order);
@@ -28,5 +30,26 @@ public class OrderController {
             message = new ResponseMessage(saveOrder, MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
         }
         return message;
+    }
+
+    /**
+     * 查看历史订单
+     * @param uid 用户id
+     * @return
+     */
+    @GetMapping(value = "user/history/{uid}")
+    public ResponseMessage findHistoryOrder(@PathVariable String uid){
+        return null;
+    }
+
+
+    /**
+     * 查看正在进行的订单
+     * @param uid 用户id
+     * @return
+     */
+    @GetMapping(value = "user/active/{uid}")
+    public ResponseMessage findActiveOrder(@PathVariable String uid){
+        return null;
     }
 }

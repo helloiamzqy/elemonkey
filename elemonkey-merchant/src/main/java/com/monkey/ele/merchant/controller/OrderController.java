@@ -15,6 +15,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 修改订单
+     * 更新订单状态
+     * @param order
+     * @return
+     */
     @PutMapping
     public ResponseMessage updateOrder(@RequestBody Order order){
         Order updateOrder = orderService.updateOrder(order);

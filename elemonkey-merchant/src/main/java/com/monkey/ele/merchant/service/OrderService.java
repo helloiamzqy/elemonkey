@@ -9,4 +9,6 @@ public interface OrderService {
     Order updateOrder(Order order);
 
     List<Order> findOrderByStoreId(String storeId);
+
+    List<Order> findOrderByStatus(Integer status);
 }

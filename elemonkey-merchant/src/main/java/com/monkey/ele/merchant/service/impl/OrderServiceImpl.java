@@ -25,4 +25,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findOrderByStoreId(String storeId) {
         return orderDao.findOrderByStoreId(storeId);
     }
+
+    @Override
+    public List<Order> findOrderByStatus(Integer status) {
+        return orderDao.findOrderByStatus(status);
+    }
 }

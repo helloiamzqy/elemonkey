@@ -18,6 +18,11 @@ public class AdvertisementController {
     @Autowired
     private AdvertisementService advertisementService;
 
+    /**
+     * JMS发送广告推荐
+     * @param advertisement
+     * @return
+     */
     @PostMapping
     public ResponseMessage sendAdvertisement(@RequestBody Advertisement advertisement){
         advertisementService.sendAdvertisement(advertisement);
