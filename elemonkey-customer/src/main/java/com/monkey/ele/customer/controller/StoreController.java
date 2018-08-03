@@ -33,6 +33,8 @@ public class StoreController {
             store.setOrders(null);
             store.setProducts(null);
             store.setUser(null);
+            Double rank = storeService.watchStoreRank(store.getId());
+            store.setRank(rank == null ? 0 : rank);
         }
         resMsg.setContent(stores);
         resMsg.setResultCode(MessageResultCode.SUCCESS);
