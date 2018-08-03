@@ -30,12 +30,14 @@ public class Advertisement {
     private Double price;
     private String image;
     private Integer status = AdvertisementStatus.PENDING;
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date confirmTime;
     private String confirmUserId;
+
 
     public String getId() {
         return id;

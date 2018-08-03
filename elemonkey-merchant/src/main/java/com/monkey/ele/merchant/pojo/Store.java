@@ -158,4 +158,23 @@ public class Store {
     public void setUser(User user) {
         this.user = user;
     }
+
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", license='" + license + '\'' +
+                ", status=" + status +
+                ", currentAuditStatus=" + currentAuditStatus +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                ", storeInformation=" + storeInformation +
+                ", user=" + user +
+                ", products=" + products +
+                ", orders=" + orders +
+                '}';
+    }
 }

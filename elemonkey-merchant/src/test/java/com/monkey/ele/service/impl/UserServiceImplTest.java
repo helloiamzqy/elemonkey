@@ -1,6 +1,5 @@
 package com.monkey.ele.service.impl;
 
-import com.monkey.ele.merchant.pojo.Message;
 import com.monkey.ele.common.util.JsonUtil;
 import com.monkey.ele.common.util.Md5Utils;
 import com.monkey.ele.merchant.pojo.Identity;

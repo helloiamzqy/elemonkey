@@ -1,4 +1,4 @@
-package com.monkey.ele.merchant.pojo;
+package com.monkey.ele.common.pojo;
 
 public interface Message {
     /*

@@ -101,4 +101,19 @@ public class Advertisement {
     public void setConfirmUserId(String confirmUserId) {
         this.confirmUserId = confirmUserId;
     }
+
+
+    @Override
+    public String toString() {
+        return "Advertisement{" +
+                "id='" + id + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", confirmTime=" + confirmTime +
+                ", confirmUserId='" + confirmUserId + '\'' +
+                '}';
+    }
 }

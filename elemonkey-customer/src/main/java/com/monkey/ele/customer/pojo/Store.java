@@ -1,11 +1,13 @@
 package com.monkey.ele.customer.pojo;
 
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,6 +30,7 @@ public class Store {
         public final static Integer DECLINE = 0x02;
         public final static Integer REJECT = 0x03;
     }
+
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
@@ -37,6 +40,7 @@ public class Store {
     private String license;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
+    @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -47,12 +51,15 @@ public class Store {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "storeInfoId")
     private StoreInformation storeInformation;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private User user;
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<Product>();
     @OneToMany
     @JoinColumn(name = "storeId")
-    private Set<Order> orders;
+    private Set<Order> orders = new HashSet<Order>();
 
 
     public String getId() {
@@ -141,5 +148,13 @@ public class Store {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

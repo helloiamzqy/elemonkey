@@ -10,7 +10,7 @@
     
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
-    <context:component-scan base-package="com.monkey.ele.administrator.service,com.monkey.ele.administrator.dao,com.monkey.ele.administrator.listener"></context:component-scan>
+    <context:component-scan base-package="com.monkey.ele.administrator.service,com.monkey.ele.administrator.dao,com.monkey.ele.administrator.listener,com.monkey.ele.common.jms"></context:component-scan>
 
     <import resource="applicationContext-jms.xml"/>
     <import resource="applicationContext-database.xml"/>

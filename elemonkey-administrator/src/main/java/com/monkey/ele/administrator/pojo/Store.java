@@ -15,7 +15,7 @@ import java.util.Set;
  * @date 8/1/2018 3:03 PM
  **/
 @Entity
-@Table(name = "MC_STORE")
+@Table(name = "A_STORE")
 public class Store {
 
     public static final class StoreStatus {
@@ -31,8 +31,6 @@ public class Store {
     }
 
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String name;
     private String address;
@@ -60,6 +58,8 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders = new HashSet<Order>();
 
+    public Store() {
+    }
 
     public String getId() {
         return id;

@@ -13,8 +13,6 @@ import java.util.Date;
 @Table(name = "A_IDENTITY")
 public class Identity {
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String name;
     private String idCardNumber;

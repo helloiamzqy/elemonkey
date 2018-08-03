@@ -38,7 +38,7 @@
           class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory" />
         <property name="destination" ref="queueDestination" />
-        <property name="messageListener" ref="storeListener" />
+        <property name="messageListener" ref="monkeyListener" />
     </bean>
 
 </beans>

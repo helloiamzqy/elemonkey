@@ -15,8 +15,6 @@ public class StoreInformation implements Serializable {
 
     private static final long serialVersionUID = -3645630957086653497L;
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String open;
     private String close;
