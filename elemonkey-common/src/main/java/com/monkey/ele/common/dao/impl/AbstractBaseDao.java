@@ -16,6 +16,8 @@ import java.util.Set;
 
 public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
+
+
     @PersistenceContext
     private EntityManager em;
 
@@ -62,13 +64,17 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     @Override
     public T load(String jpql, Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
+        try{
+            Query query = em.createQuery(jpql);
+            if(obj.length > 0){
+                for (int i = 0; i < obj.length; i++) {
+                    query.setParameter((i+1),obj[i]);
+                }
             }
+            return (T) query.getSingleResult();
+        }catch (Exception e){
+          return null;
         }
-        return (T) query.getSingleResult();
     }
 
     @Override
@@ -78,31 +84,39 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     @Override
     public List<T> find(String jpql, Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
+        try{
+            Query query = em.createQuery(jpql);
+            if(obj.length > 0){
+                for (int i = 0; i < obj.length; i++) {
+                    query.setParameter((i+1),obj[i]);
+                }
             }
+           return query.getResultList();
+        }catch (Exception e){
+            return null;
         }
-        return query.getResultList();
     }
 
     @Override
-    public Integer count() {
+    public int count() {
         Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
         return num.intValue();
     }
 
     @Override
-    public Integer count(String jpql,Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
+    public int count(String jpql,Object... obj) {
+        try{
+            Query query = em.createQuery(jpql);
+            if(obj.length > 0){
+                for (int i = 0; i < obj.length; i++) {
+                    query.setParameter((i+1),obj[i]);
+                }
             }
+            Long num = (Long)query.getSingleResult();
+            return num.intValue();
+        }catch (Exception e){
+            return 0;
         }
-        Long num = (Long)query.getSingleResult();
-        return num.intValue();
     }
 
     @Override
@@ -112,14 +126,19 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     @Override
     public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
+        try{
+            Query query = em.createQuery(jpql);
+            if(obj.length > 0){
+                for (int i = 0; i < obj.length; i++) {
+                    query.setParameter((i+1),obj[i]);
+                }
             }
+            query.setFirstResult(firstIndex).setMaxResults(maxResults);
+            return query.getResultList();
+        }catch (Exception e){
+            return null;
         }
-        query.setFirstResult(firstIndex).setMaxResults(maxResults);
-        return query.getResultList();
+
     }
 
 
