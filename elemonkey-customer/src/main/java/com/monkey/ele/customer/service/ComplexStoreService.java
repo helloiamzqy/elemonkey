@@ -11,4 +11,6 @@ public interface ComplexStoreService {
 
     public List<ComplexStore> findPassStorePage(Integer firstIndex, Integer maxResults);
 
+    public Double watchStoreRank(String storeId);
+
 }

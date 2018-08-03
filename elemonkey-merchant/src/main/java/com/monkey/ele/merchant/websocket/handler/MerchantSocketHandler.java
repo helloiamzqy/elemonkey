@@ -1,6 +1,6 @@
 package com.monkey.ele.merchant.websocket.handler;
 
-import com.monkey.ele.merchant.pojo.Message;
+import com.monkey.ele.common.pojo.Message;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * @ Author     ：LILA3
@@ -34,7 +33,7 @@ public class MerchantSocketHandler extends TextWebSocketHandler {
         System.out.println();
         LOG.info(Message.WEBSOKCET_CONNECT_SUCCESS);
         String customerId = getCustomerId(session);
-        LOG.info("customerId:" + customerId);
+        LOG.info("merchantId:" + customerId);
         if (customerId != null) {
             MERCHANTS.put(customerId, session);
             session.sendMessage(new TextMessage("server:" + "连接成功"));
@@ -52,11 +51,11 @@ public class MerchantSocketHandler extends TextWebSocketHandler {
         }
     }
 
-    public boolean sendMessageToUser(String customerId, TextMessage message) {
-        if (MERCHANTS.get(customerId) == null) {
+    public boolean sendMessageToUser(String merchantId, TextMessage message) {
+        if (MERCHANTS.get(merchantId) == null) {
             return false;
         }
-        WebSocketSession session = MERCHANTS.get(customerId);
+        WebSocketSession session = MERCHANTS.get(merchantId);
         LOG.info("sendMessage:" + session + "\ncontent:" + message.getPayload());
         if (!session.isOpen()) {
             return false;
