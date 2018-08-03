@@ -1,7 +1,6 @@
 package com.monkey.ele.common.dao.impl;
 
 import com.monkey.ele.common.dao.BaseDao;
-import com.monkey.ele.common.util.BaseDaoUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
