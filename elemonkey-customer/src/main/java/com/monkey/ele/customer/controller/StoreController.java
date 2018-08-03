@@ -58,6 +58,8 @@ public class StoreController {
     public ResponseMessage test(@PathVariable Integer limit) {
         List<Store> stores = storeService.findHotStoreLimit(limit);
         for (Store store: stores) {
+            Double rank = storeService.watchStoreRank(store.getId());
+            store.setRank(rank == null ? 0 : rank);
             store.setOrders(null);
             store.setProducts(null);
             store.setUser(null);

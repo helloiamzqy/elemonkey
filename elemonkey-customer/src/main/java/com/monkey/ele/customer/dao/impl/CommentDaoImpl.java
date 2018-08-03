@@ -37,8 +37,8 @@ public class CommentDaoImpl extends AbstractBaseDao<Comment> implements CommentD
 
     @Override
     public Double findStoreRank(String storeId) {
-        String hql = "select avg(c.rank) From Comment c, Order o, Store s where s.id = o.storeId and o.id = " +
-                "c.orderId and o.status = 3 and s.id = ?";
+        String hql = "select avg(c.rank) From Comment c, Order o, Store s where s.id = o.storeId and o.comment.id = " +
+                "c.id and o.status = 3 and s.id = ?";
         Object avg = this.findByAggregate(hql, storeId);
         return (Double) avg;
     }
