@@ -62,6 +62,14 @@ public interface BaseDao<T> {
     public List<T> find(String jpql,Object... obj);
 
     /**
+     * 聚合查询
+     * @param jpql
+     * @param obj
+     * @return
+     */
+    public Object findByAggregate(String jpql,Object... obj);
+
+    /**
      * 查找总记录数
      * @return
      */
@@ -92,6 +100,5 @@ public interface BaseDao<T> {
      * @return
      */
     public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj);
-
 
 }

@@ -88,6 +88,18 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
     }
 
     @Override
+    public Object findByAggregate(String jpql, Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter((i+1),obj[i]);
+            }
+        }
+        Object result = query.getSingleResult();
+        return result;
+    }
+
+    @Override
     public Integer count() {
         Long num = (Long) em.createQuery("select count(*) from "+clazz.getSimpleName()).getSingleResult();
         return num.intValue();
@@ -121,6 +133,5 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
         query.setFirstResult(firstIndex).setMaxResults(maxResults);
         return query.getResultList();
     }
-
 
 }
