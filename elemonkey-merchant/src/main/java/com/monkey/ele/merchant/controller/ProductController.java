@@ -38,7 +38,7 @@ public class ProductController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, consumes = "application/json")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ResponseMessage deleteProduct(@PathVariable String id){
         productService.deleteProduct(id);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_DELETE_SUCCESS);

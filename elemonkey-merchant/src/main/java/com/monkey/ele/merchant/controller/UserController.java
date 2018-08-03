@@ -21,13 +21,14 @@ public class UserController {
         if(saveUser == null){
             message = new ResponseMessage(null,MessageResultCode.FAILED,Message.MSG_USER_REGIST_ERROR);
         }else{
+            saveUser.setPassword(null);
             message = new ResponseMessage(saveUser,MessageResultCode.SUCCESS,Message.MSG_USER_REGIST_SUCCESS);
         }
         return message;
     }
 
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET, consumes = "application/json")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ResponseMessage deleteUser(@PathVariable String id){
         userService.deleteUser(id);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_DELETE_SUCCESS);
@@ -46,6 +47,7 @@ public class UserController {
         if(updateUser == null){
             message = new ResponseMessage(null, MessageResultCode.ERROR, Message.MSG_DELETE_ERROR);
         }else{
+            updateUser.setPassword(null);
             message = new ResponseMessage(updateUser, MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
         }
         return message;
