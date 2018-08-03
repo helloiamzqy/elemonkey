@@ -1,9 +1,9 @@
 ### Send POST request with json body
-POST http://localhost:9090/user
+POST http://localhost:9090/user/regist
 Content-Type: application/json
 
 {
-  "username": "user1245",
+  "username": "use1rQ124512",
   "password": "123456",
    "identity" :{
         "name" :"identityName1",
@@ -16,21 +16,28 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:9090/user/8a5e9d4464f9820e0164f9823cc20000
+GET http://localhost:9090/user/delete/8a5e9d4464ff9b130164ff9d1b430001
 Accept: application/json
 
 ###
-GET http://localhost:9090/user/8a5e9d4464fa17f70164fa1868a20000
+GET http://localhost:9090/user/8a5e9d4464ffa8ef0164ffabf7720000
 Accept: application/json
 
 ###
-PUT http://localhost:9090/user
+POST http://localhost:9090/user/update
 Content-Type: application/json
 
 {
-  "id" : "8a5e9d4464f8bad20164f8bad9810000",
-  "username": "aaaaaa",
-  "password": "123121"
+  "id" : "8a5e9d4464ffa8ef0164ffad56830002",
+  "username": "aaaawwwwwaa",
+  "password": "123121",
+  "identity" :{
+            "id": "8a5e9d4464ffa8ef0164ffad56830003",
+          "name" :"identityName1",
+          "idCardNumber" : "441302888646546",
+          "idCardPic" : "/img/xxxxx.png"
+
+     }
 }
 
 ###

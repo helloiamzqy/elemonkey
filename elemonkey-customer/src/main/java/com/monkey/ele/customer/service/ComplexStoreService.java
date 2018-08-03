@@ -7,10 +7,12 @@ import java.util.List;
 
 public interface ComplexStoreService {
 
-    public List<ComplexStore> findPassStore();
+    List<ComplexStore> findPassStore();
 
-    public List<ComplexStore> findPassStorePage(Integer firstIndex, Integer maxResults);
+    List<ComplexStore> findPassStorePage(Integer firstIndex, Integer maxResults);
 
-    public Double watchStoreRank(String storeId);
+    Double watchStoreRank(String storeId);
+
+    List<ComplexStore> findHotStore(int limit);
 
 }

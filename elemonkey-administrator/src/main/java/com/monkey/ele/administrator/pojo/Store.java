@@ -1,8 +1,10 @@
 package com.monkey.ele.administrator.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -38,9 +40,11 @@ public class Store {
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
     @Column(updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;
@@ -59,6 +63,13 @@ public class Store {
     private Set<Order> orders = new HashSet<Order>();
 
     public Store() {
+    }
+
+    public Store(String id,String name, String address, String license) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.license = license;
     }
 
     public String getId() {

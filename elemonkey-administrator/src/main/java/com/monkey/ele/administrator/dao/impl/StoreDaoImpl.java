@@ -13,12 +13,12 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
     @Override
     public List<Store> findStoresPage(Integer firstIndex, Integer maxResults) {
-        String jpql = "from Store where currentAuditStatus = ? adn status = ?";
+        String jpql = "from Store where currentAuditStatus = ? and status = ?";
         return this.findPage(firstIndex,maxResults,jpql,Store.StoreAuditStatus.ACCEPT, User.UserStatus.NORMAL);
     }
 
     @Override
-    public Integer countStoresPage() {
+    public int countStoresPage() {
         String jpql = "select count(*) from Store where currentAuditStatus = ? and status =?";
         return this.count(jpql,Store.StoreAuditStatus.ACCEPT, User.UserStatus.NORMAL);
     }

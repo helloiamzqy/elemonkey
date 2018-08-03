@@ -14,20 +14,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseMessage regisiter(@RequestBody User user){
+    @RequestMapping(value = "/regist", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseMessage regist(@RequestBody User user){
         User saveUser = userService.saveUser(user);
         ResponseMessage message = null;
         if(saveUser == null){
             message = new ResponseMessage(null,MessageResultCode.FAILED,Message.MSG_USER_REGIST_ERROR);
         }else{
+            saveUser.setPassword(null);
             message = new ResponseMessage(saveUser,MessageResultCode.SUCCESS,Message.MSG_USER_REGIST_SUCCESS);
         }
         return message;
     }
 
 
-    @DeleteMapping(value = "{id}")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public ResponseMessage deleteUser(@PathVariable String id){
         userService.deleteUser(id);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_DELETE_SUCCESS);
@@ -39,13 +40,14 @@ public class UserController {
         return new ResponseMessage(userService.loadUser(id), MessageResultCode.SUCCESS, null);
     }
 
-    @PutMapping
+    @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage updateUser(@RequestBody  User user){
         ResponseMessage message = null;
         User updateUser = userService.updateUser(user);
         if(updateUser == null){
             message = new ResponseMessage(null, MessageResultCode.ERROR, Message.MSG_DELETE_ERROR);
         }else{
+            updateUser.setPassword(null);
             message = new ResponseMessage(updateUser, MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
         }
         return message;

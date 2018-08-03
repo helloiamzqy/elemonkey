@@ -23,10 +23,6 @@ public class StoreController {
     @Autowired
     private JmsSender jmsSender;
 
-    public StoreController() {
-        System.out.println("adsdd");
-    }
-
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage addStore(@RequestBody Store store) throws Exception {
         ResponseMessage respMsg = null;

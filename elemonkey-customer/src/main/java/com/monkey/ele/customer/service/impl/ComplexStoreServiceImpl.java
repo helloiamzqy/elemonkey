@@ -36,4 +36,10 @@ public class ComplexStoreServiceImpl implements ComplexStoreService {
         Double rank = commentDao.findStoreRank(storeId);
         return rank;
     }
+
+    @Override
+    public List<ComplexStore> findHotStore(int limit) {
+        return storeDao.findHotStore(limit);
+    }
+
 }

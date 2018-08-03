@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User saveUser(User user) {
         if(userDao.findByUserName(user) == null){
+            user.setType(User.UserType.MERCHANT);
             if(user.getPassword() != null){
                 user.setPassword(Md5Utils.md5Password(user.getPassword()));
             }
@@ -27,7 +28,6 @@ public class UserServiceImpl implements UserService {
             addUser.setContacts(null);
             addUser.setOrders(null);
             addUser.setComplains(null);
-            addUser.setPassword(null);
             return addUser;
         }
         return null;
@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
         updateUser.setContacts(null);
         updateUser.setOrders(null);
         updateUser.setComplains(null);
-        updateUser.setPassword(null);
         return updateUser;
     }
 
