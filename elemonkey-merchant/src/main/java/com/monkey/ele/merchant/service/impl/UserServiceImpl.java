@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.service.impl;
 
+import com.monkey.ele.common.util.Md5Utils;
 import com.monkey.ele.merchant.dao.UserDao;
 import com.monkey.ele.merchant.pojo.User;
 import com.monkey.ele.merchant.service.UserService;
@@ -19,10 +20,14 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User saveUser(User user) {
         if(userDao.findByUserName(user) == null){
+            if(user.getPassword() != null){
+                user.setPassword(Md5Utils.md5Password(user.getPassword()));
+            }
             User addUser = userDao.add(user);
             addUser.setContacts(null);
             addUser.setOrders(null);
             addUser.setComplains(null);
+            addUser.setPassword(null);
             return addUser;
         }
         return null;
@@ -31,10 +36,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User updateUser(User user) {
+        if(user.getPassword() != null){
+            user.setPassword(Md5Utils.md5Password(user.getPassword()));
+        }
         User updateUser = userDao.update(user);
         updateUser.setContacts(null);
         updateUser.setOrders(null);
         updateUser.setComplains(null);
+        updateUser.setPassword(null);
         return updateUser;
     }
 
@@ -50,6 +59,7 @@ public class UserServiceImpl implements UserService {
         user.setContacts(null);
         user.setOrders(null);
         user.setComplains(null);
+        user.setPassword(null);
         return user;
     }
 
