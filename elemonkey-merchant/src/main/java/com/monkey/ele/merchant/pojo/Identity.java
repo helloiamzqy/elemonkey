@@ -74,4 +74,17 @@ public class Identity {
     public void setLastModifiedTime(Date lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
     }
+
+
+    @Override
+    public String toString() {
+        return "Identity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", idCardNumber='" + idCardNumber + '\'' +
+                ", idCardPic='" + idCardPic + '\'' +
+                ", createTime=" + createTime +
+                ", lastModifiedTime=" + lastModifiedTime +
+                '}';
+    }
 }

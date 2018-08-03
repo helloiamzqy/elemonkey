@@ -1,10 +1,9 @@
 package com.monkey.ele.merchant.controller;
 
+import com.monkey.ele.common.pojo.Message;
 import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Comment;
-import com.monkey.ele.merchant.pojo.Message;
-import com.monkey.ele.merchant.pojo.Store;
 import com.monkey.ele.merchant.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

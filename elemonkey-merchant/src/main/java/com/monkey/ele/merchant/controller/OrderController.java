@@ -1,7 +1,7 @@
 package com.monkey.ele.merchant.controller;
+import com.monkey.ele.common.pojo.Message;
 import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
-import com.monkey.ele.merchant.pojo.Message;
 import com.monkey.ele.merchant.pojo.Order;
 import com.monkey.ele.merchant.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 修改订单
+     * 更新订单状态
+     * @param order
+     * @return
+     */
     @PutMapping
     public ResponseMessage updateOrder(@RequestBody Order order){
         Order updateOrder = orderService.updateOrder(order);

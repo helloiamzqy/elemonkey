@@ -33,6 +33,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     @Transactional
     public Store addStore(Store store) {
+        store.setStoreInformation(new StoreInformation());
         storeDao.add(store);
         return store;
     }

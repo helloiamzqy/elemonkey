@@ -14,4 +14,10 @@ public class OrderDaoImpl extends AbstractBaseDao<Order> implements OrderDao {
         List<Order> orders = this.find("SELECT o FROM Order o WHERE o.storeId = ?", storeId);
         return orders;
     }
+
+    @Override
+    public List<Order> findOrderByStatus(Integer status) {
+        List<Order> orders = this.find("SELECT o FROM Order o WHERE o.status = ? order by o.createTime desc", status);
+        return orders;
+    }
 }

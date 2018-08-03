@@ -81,4 +81,18 @@ public class OrderItem {
     public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
+
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "id='" + id + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productPrice=" + productPrice +
+                ", productCount='" + productCount + '\'' +
+                ", productImage='" + productImage + '\'' +
+                '}';
+    }
 }

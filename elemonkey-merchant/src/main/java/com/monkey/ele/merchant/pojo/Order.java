@@ -155,4 +155,21 @@ public class Order {
     public void setComment(Comment comment) {
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", storeId='" + storeId + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", deliveryCost=" + deliveryCost +
+                ", remarks='" + remarks + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                ", orderItems=" + orderItems +
+                ", comment=" + comment +
+                '}';
+    }
 }
