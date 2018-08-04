@@ -2,6 +2,7 @@ package com.monkey.ele.customer.controller;
 
 import com.auth0.jwt.internal.org.apache.commons.lang3.time.DateUtils;
 import com.monkey.ele.common.pojo.MessageResultCode;
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.common.util.DateFormat;
 import com.monkey.ele.customer.pojo.Store;
@@ -29,8 +30,8 @@ public class StoreController {
     @GetMapping
     public Object getPassStore(Integer firstIndex, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
-        List<Store> stores = (firstIndex == null && maxResults == null) ? storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults);
-        for (Store store: stores) {
+        Page<Store> storePage = (firstIndex == null && maxResults == null) ? storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults);
+        for (Store store: storePage.getItems()) {
             store.setOpening(DateFormat.compareOpen(store.getStoreInformation().getOpen(),store.getStoreInformation().getClose()));
             store.setOrders(null);
             store.setProducts(null);
@@ -38,7 +39,7 @@ public class StoreController {
             Double rank = storeService.watchStoreRank(store.getId());
             store.setRank(rank == null ? 0 : rank);
         }
-        resMsg.setContent(stores);
+        resMsg.setContent(storePage);
         resMsg.setResultCode(MessageResultCode.SUCCESS);
         return resMsg;
     }

@@ -1,5 +1,6 @@
 package com.monkey.ele.customer.service;
 
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.customer.pojo.Store;
 
 import java.util.List;
@@ -13,9 +14,9 @@ public interface StoreService {
 
     List<Store> findHotStoreLimit(int limit);
 
-    List<Store> findPassStorePage(Integer firstIndex, Integer maxResults);
+    Page<Store> findPassStorePage(Integer firstIndex, Integer maxResults);
 
-    List<Store> findPassStore();
+    Page<Store> findPassStore();
 
     Double watchStoreRank(String storeId);
 

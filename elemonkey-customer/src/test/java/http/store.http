@@ -4,6 +4,12 @@ Accept: application/json
 
 ###
 
+### Get all store page
+GET http://localhost:8080/store?firstIndex=0&maxResults=2
+Accept: application/json
+
+###
+
 ### Get store product total
 GET http://localhost:8080/store/4028b88164fab2b60164fab446160000/prod/
 Accept: application/json
