@@ -5,7 +5,7 @@ Accept: application/json
 ###
 
 ### Get all store page
-GET http://localhost:8089/store?firstIndex=6&maxResults=6
+GET http://localhost:8089/store?pageNum=2&maxResults=6
 Accept: application/json
 
 ###
