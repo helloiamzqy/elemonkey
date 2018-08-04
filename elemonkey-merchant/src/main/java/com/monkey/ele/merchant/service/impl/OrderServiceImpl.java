@@ -50,6 +50,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Page<Order> findOrderByStoreId(String id, Integer page, Integer pageSize) {
         List<Order> orders = orderDao.findOrderByStoreId(id, page, pageSize);
+        for(Order order : orders){
+            User user = userService.loadUser(order.getUserId());
+            order.setUser(user);
+        }
         int itemTotal = this.getOrderCount(id);
         Page<Order> pageOrder = new Page<Order>(page, pageSize, orders, itemTotal);
         return pageOrder;
@@ -58,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Page<Order> findOrderByStatus(String storeId, Integer status, Integer page, Integer pageSize) {
         List<Order> orders = orderDao.findOrderByStatus(storeId, status, page, pageSize);
+        for(Order order : orders){
+            User user = userService.loadUser(order.getUserId());
+            order.setUser(user);
+        }
         int itemTotal = this.getOrderByStatusCount(storeId,status);
         Page<Order> pageOrder = new Page<Order>(page, pageSize, orders, itemTotal);
         return pageOrder;
