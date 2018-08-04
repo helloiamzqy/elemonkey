@@ -7,6 +7,8 @@ import com.monkey.ele.merchant.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/order")
@@ -36,6 +38,18 @@ public class OrderController {
     @GetMapping(value = "/store/{id}")
     public ResponseMessage findOrderByStore(@PathVariable String id){
         return new ResponseMessage(orderService.findOrderByStoreId(id),MessageResultCode.SUCCESS, null);
+    }
+
+    /**
+     * 查看商家指定订单状态的订单
+     * @param storeId 商家ID
+     * @param status 订单状态
+     * @return
+     */
+    @GetMapping(value = "/store/{storeId}/status/{status}")
+    public ResponseMessage findOrderByStatus(@PathVariable String storeId,@PathVariable Integer status){
+        List<Order> orders = orderService.findOrderByStatus(storeId, status);
+        return new ResponseMessage(orders,MessageResultCode.SUCCESS, null);
     }
 
 

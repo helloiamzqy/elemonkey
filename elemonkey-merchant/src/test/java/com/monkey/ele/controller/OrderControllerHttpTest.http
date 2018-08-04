@@ -15,8 +15,7 @@ Content-Type: application/json
 }
 
 ###
-### Send POST request with json body
-GET http://localhost:9090/order/store/4028b88164fab2b60164fab446160000
+GET http://localhost:9090/order/store/2/status/0
 Accept: application/json
 
 ###
