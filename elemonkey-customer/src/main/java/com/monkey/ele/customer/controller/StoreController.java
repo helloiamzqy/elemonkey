@@ -46,10 +46,10 @@ public class StoreController {
     }
 
     @GetMapping("/{storeId}/prod")
-    public ResponseMessage getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
+    public ResponseMessage getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer pageNum, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
-        resMsg.setContent((firstIndex == null && maxResults == null) ?
-                productService.getAllProductByStore(storeId) : productService.getAllProductByStorePage(storeId, firstIndex, maxResults));
+        resMsg.setContent((pageNum != null && maxResults != null && pageNum!=0) ?
+                productService.getAllProductByStorePage(storeId,(pageNum-1)*maxResults , maxResults):productService.getAllProductByStore(storeId));
         resMsg.setResultCode(MessageResultCode.SUCCESS);
         return resMsg;
     }

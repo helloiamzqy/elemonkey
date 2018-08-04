@@ -23,4 +23,9 @@ public class ProductDaoImpl extends AbstractBaseDao<Product> implements ProductD
         String jpql = "From Product p where p.storeId = ?";
         return this.findPage(firstIndex, maxResults,jpql,storeId);
     }
+
+    @Override
+    public Integer countProductByStore(String storeId) {
+        return this.count("select count(*) from Product p where p.storeId = ?",storeId);
+    }
 }
