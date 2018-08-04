@@ -4,6 +4,7 @@ import com.monkey.ele.administrator.dao.AdvertisementDao;
 import com.monkey.ele.administrator.pojo.Advertisement;
 import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.administrator.service.AdvertisementService;
+import com.monkey.ele.common.jms.AckJmsSender;
 import com.monkey.ele.common.jms.JmsSender;
 import com.monkey.ele.common.pojo.JMail;
 import com.monkey.ele.common.pojo.Page;
@@ -21,7 +22,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private AdvertisementDao advertisementDao;
 
     @Autowired
-    private JmsSender jmsSender;
+    private AckJmsSender ackJmsSender;
 
     @Transactional
     @Override
@@ -36,7 +37,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         if(rs!=null){
             try {
                 JMail jMail= new JMail(rs,JMail.JMailType.AD_ACK);
-                jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
+                ackJmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
             } catch (Exception e) {
                 e.printStackTrace();
             }

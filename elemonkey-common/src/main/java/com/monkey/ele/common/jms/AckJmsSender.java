@@ -11,19 +11,13 @@ import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
-
-/**
- * @author Burgess Li
- * @version 1.0
- * @date 7/30/2018 5:19 PM
- **/
 @Component
-public class JmsSender {
+public class AckJmsSender {
 
     private static final Logger LOGGER = Logger.getLogger(JmsSender.class);
 
     @Autowired
-    @Qualifier(value = "queueDestination")
+    @Qualifier(value = "ackQueueDestination")
     private Destination destination;
 
     @Autowired
@@ -46,5 +40,4 @@ public class JmsSender {
     public void setJmsTemplate(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
-
 }

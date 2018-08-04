@@ -33,6 +33,12 @@
         </constructor-arg>
     </bean>
 
+    <bean id="ackQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>ack.queue</value>
+        </constructor-arg>
+    </bean>
+
     <!-- 消息监听容器 -->
     <bean id="jmsContainer"
           class="org.springframework.jms.listener.DefaultMessageListenerContainer">

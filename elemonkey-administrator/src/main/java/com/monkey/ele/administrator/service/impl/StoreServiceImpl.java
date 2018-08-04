@@ -9,6 +9,7 @@ import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.administrator.pojo.StoreInformation;
 import com.monkey.ele.administrator.pojo.User;
 import com.monkey.ele.administrator.service.StoreService;
+import com.monkey.ele.common.jms.AckJmsSender;
 import com.monkey.ele.common.jms.JmsSender;
 import com.monkey.ele.common.pojo.JMail;
 import com.monkey.ele.common.pojo.Page;
@@ -36,7 +37,7 @@ public class StoreServiceImpl implements StoreService {
     private StoreInformationDao storeInformationDao;
 
     @Autowired
-    private JmsSender jmsSender;
+    private AckJmsSender ackJmsSender;
 
 
     @Transactional
@@ -66,7 +67,7 @@ public class StoreServiceImpl implements StoreService {
         if(rs!=null){
             try {
                 JMail jMail= new JMail(rs,JMail.JMailType.STORE_ACK);
-                jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
+                ackJmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
             } catch (Exception e) {
                 e.printStackTrace();
             }
