@@ -30,4 +30,9 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
         return this.find("select s from Store s where s.currentAuditStatus = ?", Store.StoreAuditStatus.ACCEPT);
     }
 
+    @Override
+    public Integer countPassStore() {
+        return this.count("select count(*) from Store s where s.currentAuditStatus = ?", Store.StoreAuditStatus.ACCEPT);
+    }
+
 }

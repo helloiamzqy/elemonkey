@@ -30,8 +30,8 @@ public class StoreController {
     @GetMapping
     public Object getPassStore(Integer pageNum, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
-        Page<Store> storePage = (pageNum == null && maxResults == null && pageNum!=0) ?
-                storeService.findPassStore() : storeService.findPassStorePage((pageNum-1)*maxResults, maxResults);
+        Page<Store> storePage = (pageNum != null && maxResults != null && pageNum!=0) ?
+                storeService.findPassStorePage((pageNum-1)*maxResults, maxResults):storeService.findPassStore();
         for (Store store: storePage.getItems()) {
             store.setOpening(DateFormat.compareOpen(store.getStoreInformation().getOpen(),store.getStoreInformation().getClose()));
             store.setOrders(null);

@@ -34,7 +34,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Page<Store> findPassStorePage(Integer firstIndex, Integer maxResults) {
         Page<Store> storePage = new Page<>();
-        int total = storeDao.count();
+        int total = storeDao.countPassStore();
         storePage.setItemTotal(total);
         storePage.setPageIndex(firstIndex);
         storePage.setPageCount(maxResults);
@@ -45,7 +45,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Page<Store> findPassStore() {
         Page<Store> storePage = new Page<>();
-        int total = storeDao.count();
+        int total = storeDao.countPassStore();
         storePage.setItemTotal(total);
         storePage.setPageIndex(0);
         storePage.setPageCount(total);
