@@ -12,6 +12,6 @@ public class ProductDaoImpl extends AbstractBaseDao<Product> implements ProductD
 
     @Override
     public List<Product> findByStoreId(String storeId) {
-        return this.find("SELECT p FROM Product p WHERE p.storeId = ? order by p.createTime", storeId);
+        return this.find("SELECT p FROM Product p WHERE p.storeId = ? order by p.createTime desc", storeId);
     }
 }
