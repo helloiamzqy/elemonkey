@@ -19,13 +19,14 @@ Content-Type: application/json
 }
 
 ### Send POST request with json body
-PUT http://localhost:8080/contact/
+POST http://localhost:8089/contact/update
 Content-Type: application/json
 
 {
-    "id":"4028b88164fa0c3b0164fa0c6ca50000",
-    "address":"httpAddressUpdateNowNow",
-    "phone":"15019936488"
+    "id":"4028b8816504d77c016504d84ff70001",
+    "address":"南方软件园小树林二次测试",
+    "phone":"15019936488",
+    "createTime":1533308085000
 }
 
 ###
