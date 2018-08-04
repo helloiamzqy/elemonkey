@@ -90,14 +90,14 @@ public class ProductController {
      * @return
      */
     @GetMapping(value = "/store/{id}")
-    public ResponseMessage findProductByStore(@PathVariable String id, Integer pageNum, Integer pageSize){
-        if(pageNum == null || pageNum <= 1){
-            pageNum = 1;
+    public ResponseMessage findProductByStore(@PathVariable String id, Integer page, Integer pageSize){
+        if(page == null || page <= 1){
+            page = 1;
         }
         if(pageSize == null){
             pageSize = 8;
         }
-        Page<Product> pageProducts = productService.findByStoreId(id, pageNum, pageSize);
+        Page<Product> pageProducts = productService.findByStoreId(id, page, pageSize);
         return new ResponseMessage(pageProducts,MessageResultCode.SUCCESS,null);
     }
 
