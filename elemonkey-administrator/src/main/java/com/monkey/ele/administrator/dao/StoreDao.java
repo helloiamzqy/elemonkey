@@ -8,22 +8,9 @@ import java.util.List;
 
 public interface StoreDao extends BaseDao<Store>{
 
-    /**
-     * 审核通过的商家分页
-     * @param firstIndex
-     * @param maxResults
-     * @return
-     */
-    public List<Store> findStoresPage(Integer firstIndex, Integer maxResults);
+    public int countStoresByStatus(Integer status);
 
-    /**
-     * 审核通过的商家记录数
-     * @return
-     */
-    public int countStoresPage();
-
-
-    public List<Store> findStores(Integer status);
+    public List<Store> findStoresPageByStatus(Integer status,Integer firstIndex, Integer maxResults);
 
 
 }

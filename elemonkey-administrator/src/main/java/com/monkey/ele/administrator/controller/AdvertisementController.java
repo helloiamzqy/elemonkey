@@ -5,6 +5,7 @@ import com.monkey.ele.administrator.pojo.Advertisement;
 import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.administrator.service.AdvertisementService;
 import com.monkey.ele.common.pojo.MessageResultCode;
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,11 +29,11 @@ public class AdvertisementController {
     }
 
     @GetMapping("/status/{status}")
-    public Object getAdvertisements(@PathVariable("status") Integer status){
-        List<Advertisement> ads = advertisementService.findAdvertisements(status);
+    public Object getAdvertisements(@PathVariable("status") Integer status,Integer pageIndex,Integer pageCount){
+        Page<Advertisement> page = advertisementService.findAdvertisementsPageByStatus(status,pageIndex,pageCount);
         ResponseMessage message = new ResponseMessage();
-        message.setContent(ads);
-        message.setResultCode(ads.size() > 0 ? MessageResultCode.SUCCESS : MessageResultCode.ERROR);
+        message.setContent(page);
+        message.setResultCode(MessageResultCode.SUCCESS);
         return message;
     }
 

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,22 +74,18 @@ public class StoreServiceImpl implements StoreService {
         return rs;
     }
 
-    @Override
-    public Page<Store> findStoresPage(Page page) {
-        int totalCount = storeDao.countStoresPage();
-        if(totalCount > page.getFirstIndex()){
-            page.setItemTotal(totalCount);
-            if(totalCount > 0){
-                List<Store> stores = storeDao.findStoresPage(page.getFirstIndex(),page.getPageCount());
-                page.setItems(stores);
-            }
-        }
-        return page;
-    }
+
 
     @Override
-    public List<Store> findStores(int status) {
-        return storeDao.findStores(status);
+    public Page<Store> findStoresPageByStatus(int status,Integer pageIndex,Integer pageCount) {
+        List<Store> stores = new ArrayList<>();
+        int totalCount = storeDao.countStoresByStatus(status);
+        Page<Store> page = new Page(pageIndex,pageCount,stores,totalCount);
+        if(totalCount > 0){
+            stores = storeDao.findStoresPageByStatus(status,page.getFirstIndex(),pageCount);
+        }
+        page.setItems(stores);
+        return page;
     }
 
 
