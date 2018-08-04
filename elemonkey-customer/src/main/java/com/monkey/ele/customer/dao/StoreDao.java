@@ -22,4 +22,5 @@ public interface StoreDao extends BaseDao<Store> {
     Integer countPassStore();
 
 
+
 }

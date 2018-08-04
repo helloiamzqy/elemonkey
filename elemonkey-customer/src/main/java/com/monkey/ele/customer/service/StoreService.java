@@ -18,6 +18,8 @@ public interface StoreService {
 
     Page<Store> findPassStore();
 
+    Store getSingleStore(String storeId);
+
     Double watchStoreRank(String storeId);
 
 

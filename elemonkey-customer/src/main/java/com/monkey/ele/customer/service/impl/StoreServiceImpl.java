@@ -54,6 +54,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
+    public Store getSingleStore(String storeId) {
+        return storeDao.load(storeId);
+    }
+
+    @Override
     public Double watchStoreRank(String storeId) {
         Double rank = commentDao.findStoreRank(storeId);
         return rank;

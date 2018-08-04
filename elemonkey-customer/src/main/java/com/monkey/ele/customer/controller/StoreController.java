@@ -28,7 +28,7 @@ public class StoreController {
 
 
     @GetMapping
-    public Object getPassStore(Integer pageNum, Integer maxResults) {
+    public ResponseMessage getPassStore(Integer pageNum, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
         Page<Store> storePage = (pageNum != null && maxResults != null && pageNum!=0) ?
                 storeService.findPassStorePage((pageNum-1)*maxResults, maxResults):storeService.findPassStore();
@@ -46,7 +46,7 @@ public class StoreController {
     }
 
     @GetMapping("/{storeId}/prod")
-    public Object getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
+    public ResponseMessage getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
         resMsg.setContent((firstIndex == null && maxResults == null) ?
                 productService.getAllProductByStore(storeId) : productService.getAllProductByStorePage(storeId, firstIndex, maxResults));
@@ -58,6 +58,17 @@ public class StoreController {
     public ResponseMessage getStoreRank(@PathVariable("storeId") String storeId) {
         Double rank = storeService.watchStoreRank(storeId);
         return new ResponseMessage(rank, MessageResultCode.SUCCESS, null);
+    }
+
+    @GetMapping("/{storeId}")
+    public ResponseMessage getSingleStore(@PathVariable("storeId") String storeId) {
+        Store store = storeService.getSingleStore(storeId);
+        store.setOrders(null);
+        store.setProducts(null);
+        store.setUser(null);
+        Double rank = storeService.watchStoreRank(store.getId());
+        store.setRank(rank == null ? 0 : rank);
+        return new ResponseMessage(store, MessageResultCode.SUCCESS, null);
     }
 
     @RequestMapping("/hot/{limit}")
