@@ -11,7 +11,7 @@ import java.util.List;
 public class OrderDaoImpl extends AbstractBaseDao<Order> implements OrderDao {
 
     public List<Order> findOrderByStoreId(String storeId){
-        List<Order> orders = this.find("SELECT o FROM Order o WHERE o.storeId = ?", storeId);
+        List<Order> orders = this.find("SELECT o FROM Order o WHERE o.storeId = ? order by o.createTime desc", storeId);
         return orders;
     }
 
@@ -34,5 +34,20 @@ public class OrderDaoImpl extends AbstractBaseDao<Order> implements OrderDao {
     @Override
     public int getOrderCount(String storeId) {
         return this.count("SELECT count(o) FROM Order o WHERE o.storeId = ?", storeId);
+    }
+
+    @Override
+    public List<Order> findOrderByStoreId(String storeId, Integer page, Integer pageSize) {
+        return this.findPage(page, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? order by o.createTime desc", storeId);
+    }
+
+    @Override
+    public List<Order> findOrderByStatus(String storeId, Integer status, Integer page, Integer pageSize) {
+        return this.findPage(page, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? and o.status = ? order by o.createTime desc", storeId, status);
+    }
+
+    @Override
+    public int getOrderByStatusCount(String storeId, Integer status) {
+        return this.count("SELECT count(o) FROM Order o WHERE o.storeId = ? and o.status = ?", storeId, status);
     }
 }

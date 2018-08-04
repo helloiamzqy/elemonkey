@@ -1,6 +1,7 @@
 package com.monkey.ele.merchant.controller;
 import com.monkey.ele.common.pojo.Message;
 import com.monkey.ele.common.pojo.MessageResultCode;
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Order;
 import com.monkey.ele.merchant.service.OrderService;
@@ -35,21 +36,32 @@ public class OrderController {
         return message;
     }
 
+    /**
+     * 分页查看商家的全部订单
+     * @param id 商家ID
+     * @param page 当前页数
+     * @param pageSize 每页订单数
+     * @return
+     */
     @GetMapping(value = "/store/{id}")
-    public ResponseMessage findOrderByStore(@PathVariable String id){
-        return new ResponseMessage(orderService.findOrderByStoreId(id),MessageResultCode.SUCCESS, null);
+    public ResponseMessage findOrderByStore(@PathVariable String id,Integer page,Integer pageSize){
+        Page<Order> orderPage = orderService.findOrderByStoreId(id, page, pageSize);
+        return new ResponseMessage(orderPage,MessageResultCode.SUCCESS, null);
+
     }
 
     /**
-     * 查看商家指定订单状态的订单
+     * 分页查看商家的指定订单状态的订单
      * @param storeId 商家ID
      * @param status 订单状态
+     * @param page 当前页数
+     * @param pageSize 每页的订单数
      * @return
      */
     @GetMapping(value = "/store/{storeId}/status/{status}")
-    public ResponseMessage findOrderByStatus(@PathVariable String storeId,@PathVariable Integer status){
-        List<Order> orders = orderService.findOrderByStatus(storeId, status);
-        return new ResponseMessage(orders,MessageResultCode.SUCCESS, null);
+    public ResponseMessage findOrderByStatus(@PathVariable String storeId,@PathVariable Integer status, Integer page, Integer pageSize){
+        Page<Order> orderPage = orderService.findOrderByStatus(storeId, status, page, pageSize);
+        return new ResponseMessage(orderPage,MessageResultCode.SUCCESS, null);
     }
 
 

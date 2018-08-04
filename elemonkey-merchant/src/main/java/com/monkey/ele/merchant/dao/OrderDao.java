@@ -16,4 +16,10 @@ public interface OrderDao extends BaseDao<Order> {
     int getNewOrderCount(String storeId);
 
     int getOrderCount(String storeId);
+
+    List<Order> findOrderByStoreId(String storeId,Integer page, Integer pageSize);
+
+    List<Order> findOrderByStatus(String storeId, Integer status, Integer page, Integer pageSize);
+
+    int getOrderByStatusCount(String storeId, Integer status);
 }

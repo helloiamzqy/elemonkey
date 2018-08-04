@@ -63,4 +63,16 @@ public class Page<T> {
         return (this.pageIndex-1) * this.pageCount;
     }
 
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "pageIndex=" + pageIndex +
+                ", pageCount=" + pageCount +
+                ", items=" + items +
+                ", pageTotal=" + pageTotal +
+                ", itemTotal=" + itemTotal +
+                ", firstIndex=" + firstIndex +
+                '}';
+    }
 }
