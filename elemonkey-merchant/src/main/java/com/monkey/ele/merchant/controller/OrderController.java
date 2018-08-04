@@ -45,6 +45,12 @@ public class OrderController {
      */
     @GetMapping(value = "/store/{id}")
     public ResponseMessage findOrderByStore(@PathVariable String id,Integer page,Integer pageSize){
+        if(page == null){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
         Page<Order> orderPage = orderService.findOrderByStoreId(id, page, pageSize);
         return new ResponseMessage(orderPage,MessageResultCode.SUCCESS, null);
 
@@ -60,6 +66,12 @@ public class OrderController {
      */
     @GetMapping(value = "/store/{storeId}/status/{status}")
     public ResponseMessage findOrderByStatus(@PathVariable String storeId,@PathVariable Integer status, Integer page, Integer pageSize){
+        if(page == null){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = 10;
+        }
         Page<Order> orderPage = orderService.findOrderByStatus(storeId, status, page, pageSize);
         return new ResponseMessage(orderPage,MessageResultCode.SUCCESS, null);
     }
