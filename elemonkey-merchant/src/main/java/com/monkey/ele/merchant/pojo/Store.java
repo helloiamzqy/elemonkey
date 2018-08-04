@@ -3,8 +3,6 @@ package com.monkey.ele.merchant.pojo;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -39,6 +37,8 @@ public class Store {
     private String name;
     private String address;
     private String license;
+    @Transient
+    private Double rank;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
     @Column(updatable = false)
@@ -159,6 +159,13 @@ public class Store {
         this.user = user;
     }
 
+    public Double getRank() {
+        return rank;
+    }
+
+    public void setRank(Double rank) {
+        this.rank = rank;
+    }
 
     @Override
     public String toString() {
