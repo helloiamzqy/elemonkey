@@ -38,12 +38,12 @@ public class OrderDaoImpl extends AbstractBaseDao<Order> implements OrderDao {
 
     @Override
     public List<Order> findOrderByStoreId(String storeId, Integer page, Integer pageSize) {
-        return this.findPage(page, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? order by o.createTime desc", storeId);
+        return this.findPage((page -1) * pageSize, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? order by o.createTime desc", storeId);
     }
 
     @Override
     public List<Order> findOrderByStatus(String storeId, Integer status, Integer page, Integer pageSize) {
-        return this.findPage(page, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? and o.status = ? order by o.createTime desc", storeId, status);
+        return this.findPage((page -1) * pageSize, pageSize, "SELECT o FROM Order o WHERE o.storeId = ? and o.status = ? order by o.createTime desc", storeId, status);
     }
 
     @Override
