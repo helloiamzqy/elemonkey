@@ -6,5 +6,5 @@ public interface AdvertisementService {
 
     void sendAdvertisement(Advertisement advertisement);
 
-    void addAdvertisement(Advertisement advertisement);
+    Advertisement updateAdvertisement(Advertisement advertisement);
 }

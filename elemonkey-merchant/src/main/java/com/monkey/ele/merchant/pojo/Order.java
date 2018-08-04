@@ -67,6 +67,8 @@ public class Order {
     @OneToOne
     @JoinColumn(name="commentid",referencedColumnName="id")
     private Comment comment;
+    @Transient
+    private User user;
 
     public String getId() {
         return id;
@@ -156,6 +158,15 @@ public class Order {
         this.comment = comment;
     }
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -170,6 +181,7 @@ public class Order {
                 ", createTime=" + createTime +
                 ", orderItems=" + orderItems +
                 ", comment=" + comment +
+                ", user=" + user +
                 '}';
     }
 }

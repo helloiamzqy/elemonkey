@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -43,9 +44,12 @@ public class Store {
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
     @Column(updatable = false)
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+
     @UpdateTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;
 

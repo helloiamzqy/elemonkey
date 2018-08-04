@@ -1,9 +1,9 @@
 ### Send POST request with json body
-POST http://localhost:8999/store/add
+POST http://localhost:9090/store/add
 Content-Type: application/json
 
 {
-  "address": "china",
+  "address": "日本qchina1111",
   "license":"xw4856136874plx",
   "name":"store1",
   "user":{

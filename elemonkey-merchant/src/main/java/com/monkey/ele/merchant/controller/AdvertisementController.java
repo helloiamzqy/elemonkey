@@ -23,7 +23,6 @@ public class AdvertisementController {
     @RequestMapping(value = "/send", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage sendAdvertisement(@RequestBody Advertisement advertisement){
         advertisementService.sendAdvertisement(advertisement);
-        advertisementService.addAdvertisement(advertisement);
         return new ResponseMessage(null,MessageResultCode.SUCCESS,Message.MSG_ADD_SUCCESS);
     }
 }
