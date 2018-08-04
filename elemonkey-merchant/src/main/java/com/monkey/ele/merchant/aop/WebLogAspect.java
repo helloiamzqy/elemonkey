@@ -32,7 +32,7 @@ public class WebLogAspect {
         LOGGER.info("Request_Method : " + joinPoint.getSignature().getName());
         Object[] args = joinPoint.getArgs();
         for(Object obj : args){
-            LOGGER.info("Request_Param : " + obj);
+            LOGGER.info("Request_Param : " + obj.getClass().getSimpleName() + " —— " + obj);
         }
     }
 
