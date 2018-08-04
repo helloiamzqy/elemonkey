@@ -1,5 +1,7 @@
 package com.monkey.ele.common.dao;
 
+import com.monkey.ele.common.pojo.Page;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -100,5 +102,8 @@ public interface BaseDao<T> {
      * @return
      */
     public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj);
+
+
+    public Page findPage(Page page,String jpql,Object... obj);
 
 }

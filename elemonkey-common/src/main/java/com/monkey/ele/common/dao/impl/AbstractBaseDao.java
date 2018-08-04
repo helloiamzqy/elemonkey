@@ -1,6 +1,7 @@
 package com.monkey.ele.common.dao.impl;
 
 import com.monkey.ele.common.dao.BaseDao;
+import com.monkey.ele.common.pojo.Page;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,7 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
         ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
         this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
     }
+
 
     @Override
     public T add(T t) {
@@ -151,5 +153,20 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     }
 
+    @Override
+    public Page<T> findPage(Page page, String jpql, Object... obj) {
+        Query query = em.createQuery(jpql);
+        if(obj.length > 0){
+            for (int i = 0; i < obj.length; i++) {
+                query.setParameter((i+1),obj[i]);
+            }
+        }
+        int total = ((Long)query.getSingleResult()).intValue();
+        page.setItemTotal(total);
+        query.setFirstResult(page.getFirstIndex()).setMaxResults(page.getPageCount());
+        List<T> list = query.getResultList();
+        page.setItems(list);
+        return page;
+    }
 
 }
