@@ -1,9 +1,10 @@
 package com.monkey.ele.customer.controller;
 
+import com.auth0.jwt.internal.org.apache.commons.lang3.time.DateUtils;
 import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
+import com.monkey.ele.common.util.DateFormat;
 import com.monkey.ele.customer.pojo.Store;
-import com.monkey.ele.customer.service.ComplexStoreService;
 import com.monkey.ele.customer.service.ProductService;
 import com.monkey.ele.customer.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class StoreController {
         ResponseMessage resMsg = new ResponseMessage();
         List<Store> stores = (firstIndex == null && maxResults == null) ? storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults);
         for (Store store: stores) {
+            store.setOpening(DateFormat.compareOpen(store.getStoreInformation().getOpen(),store.getStoreInformation().getClose()));
             store.setOrders(null);
             store.setProducts(null);
             store.setUser(null);
