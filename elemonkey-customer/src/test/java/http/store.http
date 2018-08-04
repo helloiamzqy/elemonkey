@@ -1,11 +1,11 @@
 ### Get all store
-GET http://localhost:8080/store
+GET http://localhost:8089/store
 Accept: application/json
 
 ###
 
 ### Get all store page
-GET http://localhost:8080/store?firstIndex=0&maxResults=2
+GET http://localhost:8089/store?firstIndex=6&maxResults=6
 Accept: application/json
 
 ###
