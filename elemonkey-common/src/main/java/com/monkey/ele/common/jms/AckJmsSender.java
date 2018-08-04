@@ -14,7 +14,7 @@ import javax.jms.Session;
 @Component
 public class AckJmsSender {
 
-    private static final Logger LOGGER = Logger.getLogger(JmsSender.class);
+    private static final Logger LOGGER = Logger.getLogger(AckJmsSender.class);
 
     @Autowired
     @Qualifier(value = "ackQueueDestination")
