@@ -1,7 +1,9 @@
 package com.monkey.ele.customer.service.impl;
 
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.customer.dao.ProductDao;
 import com.monkey.ele.customer.pojo.Product;
+import com.monkey.ele.customer.pojo.Store;
 import com.monkey.ele.customer.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +20,25 @@ public class ProductServiceImpl implements ProductService {
 
     @Transactional
     @Override
-    public List<Product> getAllProductByStore(String storeId) {
-        return productDao.getAllProductByStore(storeId);
+    public Page<Product> getAllProductByStore(String storeId) {
+        Page<Product> productPage = new Page<>();
+        int total = productDao.countProductByStore(storeId);
+        productPage.setItemTotal(total);
+        productPage.setPageIndex(0);
+        productPage.setPageCount(total);
+        productPage.setItems(productDao.getAllProductByStore(storeId));
+        return productPage;
     }
 
     @Transactional
     @Override
-    public List<Product> getAllProductByStorePage(String storeId, Integer firstIndex, Integer maxResults) {
-        return productDao.getAllProductByStorePage(storeId,firstIndex,maxResults);
+    public Page<Product> getAllProductByStorePage(String storeId, Integer firstIndex, Integer maxResults) {
+        Page<Product> productPage = new Page<>();
+        int total = productDao.countProductByStore(storeId);
+        productPage.setItemTotal(total);
+        productPage.setPageIndex(0);
+        productPage.setPageCount(total);
+        productPage.setItems(productDao.getAllProductByStorePage(storeId, firstIndex, maxResults));
+        return productPage;
     }
 }

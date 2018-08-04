@@ -38,6 +38,8 @@ public class Store {
     private String address;
     private String license;
     @Transient
+    private boolean opening;
+    @Transient
     private double rank;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
@@ -62,6 +64,13 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders = new HashSet<Order>();
 
+    public boolean isOpening() {
+        return opening;
+    }
+
+    public void setOpening(boolean opening) {
+        this.opening = opening;
+    }
 
     public String getId() {
         return id;

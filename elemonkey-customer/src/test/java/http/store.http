@@ -1,18 +1,30 @@
 ### Get all store
-GET http://localhost:8080/store
+GET http://localhost:8089/store
+Accept: application/json
+
+###
+
+### Get all store page
+GET http://localhost:8089/store?pageNum=2&maxResults=6
+Accept: application/json
+
+###
+
+### Get  store
+GET http://localhost:8089/store/1
 Accept: application/json
 
 ###
 
 ### Get store product total
-GET http://localhost:8080/store/4028b88164fab2b60164fab446160000/prod/
+GET http://localhost:8089/store/13/prod
 Accept: application/json
 
 ###
 
 
 ### Get store product with page
-GET http://localhost:8080/store/4028b88164fab2b60164fab446160000/prod/?firstIndex=0&maxResults=2
+GET http://localhost:8089/store/13/prod?pageNum=2&maxResults=3
 Accept: application/json
 
 ###

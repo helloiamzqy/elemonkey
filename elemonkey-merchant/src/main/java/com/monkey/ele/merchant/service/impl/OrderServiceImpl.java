@@ -27,7 +27,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findOrderByStatus(Integer status) {
-        return orderDao.findOrderByStatus(status);
+    public List<Order> findOrderByStatus(String storeId,Integer status) {
+        return orderDao.findOrderByStatus(storeId, status);
+    }
+
+    @Override
+    public int getActiveOrderCount(String storeId) {
+        return orderDao.getActiveOrderCount(storeId);
+    }
+
+    @Override
+    public int getNewOrderCount(String storeId) {
+        return orderDao.getNewOrderCount(storeId);
+    }
+
+    @Override
+    public int getOrderCount(String storeId) {
+        return orderDao.getOrderCount(storeId);
     }
 }

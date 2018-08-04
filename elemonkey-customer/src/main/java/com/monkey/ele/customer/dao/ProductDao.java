@@ -11,4 +11,6 @@ public interface ProductDao extends BaseDao<Product> {
 
     List<Product> getAllProductByStorePage(String storeId,Integer firstIndex, Integer maxResults);
 
+    Integer countProductByStore(String storeId);
+
 }

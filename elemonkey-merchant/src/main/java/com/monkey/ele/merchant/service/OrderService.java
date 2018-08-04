@@ -10,5 +10,11 @@ public interface OrderService {
 
     List<Order> findOrderByStoreId(String storeId);
 
-    List<Order> findOrderByStatus(Integer status);
+    int getActiveOrderCount(String storeId);
+
+    int getNewOrderCount(String storeId);
+
+    int getOrderCount(String storeId);
+
+    List<Order> findOrderByStatus(String storeId, Integer status);
 }

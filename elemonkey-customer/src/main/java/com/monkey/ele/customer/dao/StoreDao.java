@@ -19,5 +19,8 @@ public interface StoreDao extends BaseDao<Store> {
 
     List<Store> findPassStore();
 
+    Integer countPassStore();
+
+
 
 }
