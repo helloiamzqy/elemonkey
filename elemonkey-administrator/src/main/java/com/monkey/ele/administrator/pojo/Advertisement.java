@@ -3,6 +3,7 @@ package com.monkey.ele.administrator.pojo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -24,8 +25,6 @@ public class Advertisement {
     }
 
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String storeId;
     private Double price;
@@ -37,6 +36,7 @@ public class Advertisement {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date confirmTime;
     private String confirmUserId;
