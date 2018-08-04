@@ -63,7 +63,7 @@ public final class DateFormat {
         Date date_now = new Date();
         Calendar c_start = Calendar.getInstance();
         Calendar c_end = Calendar.getInstance();
-        c_start.set(Calendar.HOUR,Integer.parseInt(start.split(":")[0]));
+        c_start.set(Calendar.HOUR_OF_DAY,Integer.parseInt(start.split(":")[0]));
         c_start.set(Calendar.MINUTE,Integer.parseInt(start.split(":")[1]));
         c_end.set(Calendar.HOUR,Integer.parseInt(close.split(":")[0]));
         c_end.set(Calendar.MINUTE,Integer.parseInt(close.split(":")[1]));

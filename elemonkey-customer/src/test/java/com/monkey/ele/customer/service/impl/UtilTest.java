@@ -8,6 +8,6 @@ public class UtilTest {
 
     @Test
     public void testCompareTime(){
-        Assert.assertTrue(DateFormat.compareOpen("10:00","3:00"));
+        Assert.assertTrue(DateFormat.compareOpen("11:00","3:00"));
     }
 }
