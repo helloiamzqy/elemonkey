@@ -22,12 +22,17 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
     @Override
     public List<Store> findPassStorePage(Integer firstIndex, Integer maxResults) {
-        return this.findPage(firstIndex,maxResults,"select s from Store s where s.currentAuditStatus = ? order by s.orders.size desc", Store.StoreAuditStatus.ACCEPT);
+        return this.findPage(firstIndex,maxResults,"select s from Store s where s.currentAuditStatus = ? order by s.createTime desc", Store.StoreAuditStatus.ACCEPT);
     }
 
     @Override
     public List<Store> findPassStore() {
         return this.find("select s from Store s where s.currentAuditStatus = ?", Store.StoreAuditStatus.ACCEPT);
+    }
+
+    @Override
+    public Integer countPassStore() {
+        return this.count("select count(*) from Store s where s.currentAuditStatus = ?", Store.StoreAuditStatus.ACCEPT);
     }
 
 }

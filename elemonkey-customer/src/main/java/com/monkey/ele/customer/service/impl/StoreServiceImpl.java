@@ -1,5 +1,6 @@
 package com.monkey.ele.customer.service.impl;
 
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.customer.dao.CommentDao;
 import com.monkey.ele.customer.dao.StoreDao;
 import com.monkey.ele.customer.pojo.Store;
@@ -31,13 +32,30 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Store> findPassStorePage(Integer firstIndex, Integer maxResults) {
-        return storeDao.findPassStorePage(firstIndex,maxResults);
+    public Page<Store> findPassStorePage(Integer firstIndex, Integer maxResults) {
+        Page<Store> storePage = new Page<>();
+        int total = storeDao.countPassStore();
+        storePage.setItemTotal(total);
+        storePage.setPageIndex(firstIndex);
+        storePage.setPageCount(maxResults);
+        storePage.setItems(storeDao.findPassStorePage(firstIndex,maxResults));
+        return storePage;
     }
 
     @Override
-    public List<Store> findPassStore() {
-        return storeDao.findPassStore();
+    public Page<Store> findPassStore() {
+        Page<Store> storePage = new Page<>();
+        int total = storeDao.countPassStore();
+        storePage.setItemTotal(total);
+        storePage.setPageIndex(0);
+        storePage.setPageCount(total);
+        storePage.setItems(storeDao.findPassStore());
+        return storePage;
+    }
+
+    @Override
+    public Store getSingleStore(String storeId) {
+        return storeDao.load(storeId);
     }
 
     @Override

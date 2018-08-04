@@ -1,9 +1,11 @@
 package com.monkey.ele.customer.controller;
 
+import com.auth0.jwt.internal.org.apache.commons.lang3.time.DateUtils;
 import com.monkey.ele.common.pojo.MessageResultCode;
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
+import com.monkey.ele.common.util.DateFormat;
 import com.monkey.ele.customer.pojo.Store;
-import com.monkey.ele.customer.service.ComplexStoreService;
 import com.monkey.ele.customer.service.ProductService;
 import com.monkey.ele.customer.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,21 +28,25 @@ public class StoreController {
 
 
     @GetMapping
-    public Object getPassStore(Integer firstIndex, Integer maxResults) {
+    public ResponseMessage getPassStore(Integer pageNum, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
-        List<Store> stores = (firstIndex == null && maxResults == null) ? storeService.findPassStore() : storeService.findPassStorePage(firstIndex, maxResults);
-        for (Store store: stores) {
+        Page<Store> storePage = (pageNum != null && maxResults != null && pageNum!=0) ?
+                storeService.findPassStorePage((pageNum-1)*maxResults, maxResults):storeService.findPassStore();
+        for (Store store: storePage.getItems()) {
+            store.setOpening(DateFormat.compareOpen(store.getStoreInformation().getOpen(),store.getStoreInformation().getClose()));
             store.setOrders(null);
             store.setProducts(null);
             store.setUser(null);
+            Double rank = storeService.watchStoreRank(store.getId());
+            store.setRank(rank == null ? 0 : rank);
         }
-        resMsg.setContent(stores);
+        resMsg.setContent(storePage);
         resMsg.setResultCode(MessageResultCode.SUCCESS);
         return resMsg;
     }
 
     @GetMapping("/{storeId}/prod")
-    public Object getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
+    public ResponseMessage getStoreProduct(@PathVariable(value = "storeId") String storeId, Integer firstIndex, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
         resMsg.setContent((firstIndex == null && maxResults == null) ?
                 productService.getAllProductByStore(storeId) : productService.getAllProductByStorePage(storeId, firstIndex, maxResults));
@@ -52,6 +58,17 @@ public class StoreController {
     public ResponseMessage getStoreRank(@PathVariable("storeId") String storeId) {
         Double rank = storeService.watchStoreRank(storeId);
         return new ResponseMessage(rank, MessageResultCode.SUCCESS, null);
+    }
+
+    @GetMapping("/{storeId}")
+    public ResponseMessage getSingleStore(@PathVariable("storeId") String storeId) {
+        Store store = storeService.getSingleStore(storeId);
+        store.setOrders(null);
+        store.setProducts(null);
+        store.setUser(null);
+        Double rank = storeService.watchStoreRank(store.getId());
+        store.setRank(rank == null ? 0 : rank);
+        return new ResponseMessage(store, MessageResultCode.SUCCESS, null);
     }
 
     @RequestMapping("/hot/{limit}")

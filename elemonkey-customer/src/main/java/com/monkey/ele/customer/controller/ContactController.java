@@ -26,14 +26,13 @@ public class ContactController {
     private UserService userService;
 
 
-    @GetMapping("/")
+    @GetMapping()
 //    @RequiresAuthentication
     public Object getUserContact(){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("user12","123456"));
-        String userId = userService.findUserByUsername((String)subject.getPrincipal()).getId();
-        List<Contact> contacts = contectService.findContactByUser(userId);
+        subject.login(new UsernamePasswordToken("skrskr","123456"));
+        List<Contact> contacts = contectService.findContactByUser((String)subject.getPrincipal());
         resmsg.setContent(contacts);
         resmsg.setResultCode(MessageResultCode.SUCCESS);
         return resmsg;

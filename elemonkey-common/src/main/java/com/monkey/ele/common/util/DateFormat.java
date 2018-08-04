@@ -2,6 +2,7 @@ package com.monkey.ele.common.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -55,6 +56,25 @@ public final class DateFormat {
             e.printStackTrace();
         }
         return date;
+    }
+
+
+    public static boolean compareOpen(String start, String close){
+        Date date_now = new Date();
+        Calendar c_start = Calendar.getInstance();
+        Calendar c_end = Calendar.getInstance();
+        c_start.set(Calendar.HOUR_OF_DAY,Integer.parseInt(start.split(":")[0]));
+        c_start.set(Calendar.MINUTE,Integer.parseInt(start.split(":")[1]));
+        c_end.set(Calendar.HOUR,Integer.parseInt(close.split(":")[0]));
+        c_end.set(Calendar.MINUTE,Integer.parseInt(close.split(":")[1]));
+        if(Integer.parseInt(start.split(":")[0])>Integer.parseInt(close.split(":")[0]))
+        {
+            c_end.add(Calendar.DATE,1);
+        }
+        if(c_start.getTime().before(date_now)&&c_end.getTime().after(date_now)){
+            return true;
+        }
+        return false;
     }
 
 }
