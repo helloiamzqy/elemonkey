@@ -37,4 +37,27 @@ public class OrderController {
     public ResponseMessage findOrderByStore(@PathVariable String id){
         return new ResponseMessage(orderService.findOrderByStoreId(id),MessageResultCode.SUCCESS, null);
     }
+
+
+    /**
+     * 查看正在进行的订单的数量(已接单，配送中)
+     * @param storeId
+     * @return
+     */
+    @GetMapping(value = "active/store/{storeId}")
+    public ResponseMessage getActiveOrderCount(@PathVariable String storeId){
+        int orderCount = orderService.getActiveOrderCount(storeId);
+        return new ResponseMessage(orderCount, MessageResultCode.SUCCESS, null);
+    }
+
+    /**
+     * 查看新订单的数量(未接订单)
+     * @param storeId
+     * @return
+     */
+    @GetMapping(value = "new/store/{storeId}")
+    public ResponseMessage getNewOrderCount(@PathVariable String storeId){
+        int orderCount = orderService.getNewOrderCount(storeId);
+        return new ResponseMessage(orderCount, MessageResultCode.SUCCESS, null);
+    }
 }

@@ -20,3 +20,12 @@ GET http://localhost:9090/order/store/4028b88164fab2b60164fab446160000
 Accept: application/json
 
 ###
+GET http://localhost:9090/order/new/store/2
+Accept: application/json
+
+###
+GET http://localhost:9090/order/active/store/2
+Accept: application/json
+
+###
+

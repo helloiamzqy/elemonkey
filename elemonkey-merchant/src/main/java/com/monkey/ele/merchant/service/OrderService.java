@@ -11,4 +11,8 @@ public interface OrderService {
     List<Order> findOrderByStoreId(String storeId);
 
     List<Order> findOrderByStatus(Integer status);
+
+    int getActiveOrderCount(String storeId);
+
+    int getNewOrderCount(String storeId);
 }
