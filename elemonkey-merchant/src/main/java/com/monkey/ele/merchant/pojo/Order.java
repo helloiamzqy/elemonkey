@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -57,6 +58,7 @@ public class Order {
     private Integer status;
     @Column(updatable = false)
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
