@@ -1,5 +1,6 @@
 package com.monkey.ele.customer.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -14,6 +15,11 @@ import java.util.Date;
 @Entity
 @Table(name = "MC_COMPLAIN")
 public class Complain {
+    public static final class ComplainStatus {
+        public final static Integer PENDING = 0x00;
+        public final static Integer ACCEPT = 0x01;
+        public final static Integer DECLINE = 0x02;
+    }
     @Id
     @GenericGenerator(strategy = "uuid", name = "uuid")
     @GeneratedValue(generator = "uuid")
@@ -21,6 +27,8 @@ public class Complain {
     private String storeId;
     private String userId;
     private String message;
+    private Integer status = ComplainStatus.PENDING;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +64,14 @@ public class Complain {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Date getCreateTime() {
