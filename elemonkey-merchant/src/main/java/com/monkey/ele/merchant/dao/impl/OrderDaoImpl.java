@@ -30,4 +30,9 @@ public class OrderDaoImpl extends AbstractBaseDao<Order> implements OrderDao {
     public int getNewOrderCount(String storeId) {
         return this.count("SELECT count(o) FROM Order o WHERE o.storeId = ? and o.status = 0", storeId);
     }
+
+    @Override
+    public int getOrderCount(String storeId) {
+        return this.count("SELECT count(o) FROM Order o WHERE o.storeId = ?", storeId);
+    }
 }

@@ -15,4 +15,6 @@ public interface OrderService {
     int getActiveOrderCount(String storeId);
 
     int getNewOrderCount(String storeId);
+
+    int getOrderCount(String storeId);
 }

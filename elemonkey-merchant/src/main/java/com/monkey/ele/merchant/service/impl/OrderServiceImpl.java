@@ -40,4 +40,9 @@ public class OrderServiceImpl implements OrderService {
     public int getNewOrderCount(String storeId) {
         return orderDao.getNewOrderCount(storeId);
     }
+
+    @Override
+    public int getOrderCount(String storeId) {
+        return orderDao.getOrderCount(storeId);
+    }
 }

@@ -44,7 +44,7 @@ public class OrderController {
      * @param storeId
      * @return
      */
-    @GetMapping(value = "active/store/{storeId}")
+    @GetMapping(value = "/count/active/store/{storeId}")
     public ResponseMessage getActiveOrderCount(@PathVariable String storeId){
         int orderCount = orderService.getActiveOrderCount(storeId);
         return new ResponseMessage(orderCount, MessageResultCode.SUCCESS, null);
@@ -55,9 +55,21 @@ public class OrderController {
      * @param storeId
      * @return
      */
-    @GetMapping(value = "new/store/{storeId}")
+    @GetMapping(value = "/count/new/store/{storeId}")
     public ResponseMessage getNewOrderCount(@PathVariable String storeId){
         int orderCount = orderService.getNewOrderCount(storeId);
         return new ResponseMessage(orderCount, MessageResultCode.SUCCESS, null);
     }
+
+    /**
+     * 查看总订单数
+     * @param storeId
+     * @return
+     */
+    @GetMapping(value = "/count/all/store/{storeId}")
+    public ResponseMessage getOrderCount(@PathVariable String storeId){
+        int orderCount = orderService.getOrderCount(storeId);
+        return new ResponseMessage(orderCount, MessageResultCode.SUCCESS, null);
+    }
+
 }
