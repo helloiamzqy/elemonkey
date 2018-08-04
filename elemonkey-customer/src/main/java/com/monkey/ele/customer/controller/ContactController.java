@@ -39,14 +39,13 @@ public class ContactController {
     }
 
 
-    @DeleteMapping("/{contactId}")
+    @GetMapping("/del/{contactId}")
 //    @RequiresAuthentication
     public Object delUserContact(@PathVariable(value="contactId") String contactId){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("user12","123121"));
-        String userId = userService.findUserByUsername((String)subject.getPrincipal()).getId();
-        boolean result = contectService.delContact(userId,contactId);
+        subject.login(new UsernamePasswordToken("skrskr","123456"));
+        boolean result = contectService.delContact((String)subject.getPrincipal(),contactId);
         resmsg.setResultCode(result?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
         return resmsg;
     }
@@ -66,13 +65,13 @@ public class ContactController {
     }
 
 
-    @PutMapping(value = "/" )
+    @PostMapping(value = "/update" )
 //    @RequiresAuthentication
     public Object updateUserContact(@RequestBody Contact contact){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-//        subject.login(new UsernamePasswordToken("aaaaaa","123121"));
-        contact.setUserId(userService.findUserByUsername((String)subject.getPrincipal()).getId());
+        subject.login(new UsernamePasswordToken("skrskr","123456"));
+        contact.setUserId((String)subject.getPrincipal());
         Contact dbContact = contectService.updateContact(contact);
         resmsg.setContent(dbContact);
         resmsg.setResultCode(dbContact!=null?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
