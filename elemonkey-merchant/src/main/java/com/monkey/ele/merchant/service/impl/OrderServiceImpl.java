@@ -84,6 +84,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order findOrderById(String orderId) {
+        return orderDao.load(orderId);
+    }
+
+    @Override
     public int getActiveOrderCount(String storeId) {
         return orderDao.getActiveOrderCount(storeId);
     }
