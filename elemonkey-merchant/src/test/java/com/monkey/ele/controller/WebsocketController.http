@@ -1,0 +1,9 @@
+### Send POST request with json body
+POST http://localhost:8999/websocket/push
+Content-Type: application/json;charset=utf-8
+
+{
+    "data":"你有新的饿了猴订单"
+}
+
+###

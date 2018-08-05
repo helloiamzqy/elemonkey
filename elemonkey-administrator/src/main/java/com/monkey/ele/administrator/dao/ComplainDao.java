@@ -13,4 +13,6 @@ public interface ComplainDao extends BaseDao<Complain> {
     public int countComplainsByStatus(Integer status);
 
     public List<Complain> findComplainsPageByStatus(Integer status, Integer firstIndex, Integer maxResults);
+
+    public int countByStatus(Integer status);
 }

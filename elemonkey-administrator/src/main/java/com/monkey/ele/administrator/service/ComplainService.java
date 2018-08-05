@@ -5,6 +5,7 @@ import com.monkey.ele.administrator.pojo.Complain;
 import com.monkey.ele.common.pojo.Page;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ComplainService {
 
@@ -15,4 +16,6 @@ public interface ComplainService {
     public List<Complain> findComplainsByStoreId(String storeId);
 
     public Page<Complain> findComplainsPageByStatus(int status, Integer pageIndex, Integer pageCount);
+
+    public Map<String,Integer> countComplainStatus();
 }

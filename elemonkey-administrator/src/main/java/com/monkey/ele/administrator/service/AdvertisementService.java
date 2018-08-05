@@ -5,6 +5,7 @@ import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.common.pojo.Page;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdvertisementService {
 
@@ -13,4 +14,6 @@ public interface AdvertisementService {
     public Advertisement updateAdvertisement(Advertisement advertisement);
 
     public Page<Advertisement> findAdvertisementsPageByStatus(int status, Integer pageIndex, Integer pageCount);
+
+    public Map<String,Integer> countAdStatus();
 }

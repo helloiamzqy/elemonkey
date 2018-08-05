@@ -18,23 +18,6 @@ public class OrderController {
     private OrderService orderService;
 
     /**
-     * 提交订单
-     * @param order
-     * @return
-     */
-    @PostMapping
-    public ResponseMessage createOrder(@RequestBody Order order){
-        Order saveOrder = orderService.createOrder(order);
-        ResponseMessage message = null;
-        if(saveOrder == null){
-            message = new ResponseMessage(null, MessageResultCode.ERROR, Message.MSG_ADD_ERROR);
-        }else{
-            message = new ResponseMessage(saveOrder, MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
-        }
-        return message;
-    }
-
-    /**
      * 查看历史订单
      * @return
      */

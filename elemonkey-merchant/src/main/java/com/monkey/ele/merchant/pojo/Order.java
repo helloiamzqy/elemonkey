@@ -57,7 +57,7 @@ public class Order {
     private Double deliveryCost;
     private Double totalPrice;
     private String remarks;
-    private Integer status;
+    private Integer status = OrderStatus.PENDING;
     @Column(updatable = false)
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone="GMT+8")

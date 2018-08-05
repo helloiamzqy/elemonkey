@@ -44,7 +44,8 @@ public class Advertisement {
     public Advertisement() {
     }
 
-    public Advertisement(String storeId, Double price, String image) {
+    public Advertisement(String id,String storeId, Double price, String image) {
+        this.id = id;
         this.storeId = storeId;
         this.price = price;
         this.image = image;

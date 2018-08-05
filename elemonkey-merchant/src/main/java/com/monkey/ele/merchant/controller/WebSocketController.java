@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.TextMessage;
 
+import java.util.Map;
+
 /**
  * @ Author     ：LILA3
  * @ Date       ：Created in 9:34 AM 8/3/2018
@@ -20,9 +22,9 @@ public class WebSocketController {
     @Autowired
     MerchantSocketHandler customerSocketHandler;
 
-    @RequestMapping(value = "/push", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseMessage pushMsg(@RequestBody String data) {
-        boolean flag = customerSocketHandler.sendMessageToUser("123", new TextMessage(data));
+    @RequestMapping(value = "/push", method = RequestMethod.POST, consumes = "application/json;charset=utf-8" )
+    public ResponseMessage pushMsg(@RequestBody Map<String, String> map) {
+        boolean flag = customerSocketHandler.sendMessageToUser("111", new TextMessage(map.get("data")));
         if (flag) {
             return new ResponseMessage(null, MessageResultCode.SUCCESS, null);
         } else {

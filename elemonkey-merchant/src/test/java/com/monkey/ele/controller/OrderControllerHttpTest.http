@@ -46,9 +46,17 @@ Content-Type: application/json
       "phone": "1388888888",
       "deliveryCost": 8.0,
       "remarks": "不然咧",
-      "status": 2,
-      "createTime": 1533139200000
-
+      "createTime": 1533139200000,
+      "orderItems":[
+        {
+            "productId" : "1",
+            "productName": "西天取经"
+        },
+        {
+            "productId" : "3",
+            "productName": "西天取经!!!"
+          }
+      ]
 }
 
 ###

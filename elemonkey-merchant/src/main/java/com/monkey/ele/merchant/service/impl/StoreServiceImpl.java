@@ -52,7 +52,6 @@ public class StoreServiceImpl implements StoreService {
         Store store = storeDao.load(storeId);
         store.setOrders(null);
         store.setProducts(null);
-        store.setStoreInformation(null);
         store.setUser(null);
         return store;
     }

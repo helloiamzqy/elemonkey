@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.aspectj.weaver.ast.Or;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -45,9 +46,11 @@ public class User {
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date createTime;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     private Date lastModifiedTime;
 
     @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
