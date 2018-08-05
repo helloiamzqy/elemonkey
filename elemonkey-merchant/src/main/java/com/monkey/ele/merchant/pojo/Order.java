@@ -53,7 +53,9 @@ public class Order {
     private String storeId;
     private String address;
     private String phone;
+    private String contactname;
     private Double deliveryCost;
+    private Double totalPrice;
     private String remarks;
     private Integer status;
     @Column(updatable = false)
@@ -62,7 +64,7 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     @JoinColumn(name = "orderId")
     private Set<OrderItem> orderItems = new HashSet<OrderItem>();
 
@@ -169,6 +171,22 @@ public class Order {
         this.user = user;
     }
 
+    public String getContactname() {
+        return contactname;
+    }
+
+    public void setContactname(String contactname) {
+        this.contactname = contactname;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -177,7 +195,9 @@ public class Order {
                 ", storeId='" + storeId + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", contactname='" + contactname + '\'' +
                 ", deliveryCost=" + deliveryCost +
+                ", totalPrice=" + totalPrice +
                 ", remarks='" + remarks + '\'' +
                 ", status=" + status +
                 ", createTime=" + createTime +

@@ -43,7 +43,7 @@ GET http://localhost:9090/product
 Accept: application/json
 
 ###
-GET http://localhost:9090/product/store/13?page=2&pageSize=1
+GET http://localhost:9090/product/store/13?page=2&pageSize=3
 Accept: application/json
 
 ###

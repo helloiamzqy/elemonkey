@@ -2,7 +2,6 @@ package com.monkey.ele.merchant.service.impl;
 
 import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.merchant.dao.OrderDao;
-import com.monkey.ele.merchant.dao.UserDao;
 import com.monkey.ele.merchant.pojo.Order;
 import com.monkey.ele.merchant.pojo.User;
 import com.monkey.ele.merchant.service.OrderService;
@@ -74,6 +73,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public int getOrderByStatusCount(String storeId, Integer status) {
         return orderDao.getOrderByStatusCount(storeId, status);
+    }
+
+    @Transactional
+    @Override
+    public Order addOrder(Order order) {
+        Order addOrder = orderDao.add(order);
+        return addOrder;
+
     }
 
     @Override

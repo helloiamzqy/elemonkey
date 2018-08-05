@@ -104,6 +104,5 @@ public interface BaseDao<T> {
     public List<T> findPage(Integer firstIndex, Integer maxResults,String jpql,Object... obj);
 
 
-    public Page findPage(Page page,String jpql,Object... obj);
 
 }

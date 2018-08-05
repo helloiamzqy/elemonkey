@@ -153,20 +153,6 @@ public abstract class AbstractBaseDao<T> implements BaseDao<T> {
 
     }
 
-    @Override
-    public Page<T> findPage(Page page, String jpql, Object... obj) {
-        Query query = em.createQuery(jpql);
-        if(obj.length > 0){
-            for (int i = 0; i < obj.length; i++) {
-                query.setParameter((i+1),obj[i]);
-            }
-        }
-        int total = ((Long)query.getSingleResult()).intValue();
-        page.setItemTotal(total);
-        query.setFirstResult(page.getFirstIndex()).setMaxResults(page.getPageCount());
-        List<T> list = query.getResultList();
-        page.setItems(list);
-        return page;
-    }
+
 
 }
