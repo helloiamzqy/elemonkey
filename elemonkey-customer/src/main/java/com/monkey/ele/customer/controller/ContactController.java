@@ -27,11 +27,10 @@ public class ContactController {
 
 
     @GetMapping()
-//    @RequiresAuthentication
+    @RequiresAuthentication
     public Object getUserContact(){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("skrskr","123456"));
         List<Contact> contacts = contectService.findContactByUser((String)subject.getPrincipal());
         resmsg.setContent(contacts);
         resmsg.setResultCode(MessageResultCode.SUCCESS);
@@ -40,11 +39,10 @@ public class ContactController {
 
 
     @GetMapping("/del/{contactId}")
-//    @RequiresAuthentication
+    @RequiresAuthentication
     public Object delUserContact(@PathVariable(value="contactId") String contactId){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("skrskr","123456"));
         boolean result = contectService.delContact((String)subject.getPrincipal(),contactId);
         resmsg.setResultCode(result?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
         return resmsg;
@@ -52,11 +50,10 @@ public class ContactController {
 
 
     @PostMapping()
-//    @RequiresAuthentication
+    @RequiresAuthentication
     public Object addUserContact(@RequestBody Contact contact){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("skrskr","123456"));
         contact.setUserId((String)subject.getPrincipal());
         Contact dbContact = contectService.addContact(contact);
         resmsg.setContent(dbContact);
@@ -66,18 +63,15 @@ public class ContactController {
 
 
     @PostMapping(value = "/update" )
-//    @RequiresAuthentication
+    @RequiresAuthentication
     public Object updateUserContact(@RequestBody Contact contact){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("skrskr","123456"));
         contact.setUserId((String)subject.getPrincipal());
         Contact dbContact = contectService.updateContact(contact);
         resmsg.setContent(dbContact);
         resmsg.setResultCode(dbContact!=null?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
         return resmsg;
     }
-
-
 
 }
