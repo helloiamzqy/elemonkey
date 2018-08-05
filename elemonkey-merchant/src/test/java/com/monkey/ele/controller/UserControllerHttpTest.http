@@ -1,16 +1,10 @@
 ### Send POST request with json body
-POST http://localhost:9090/user/regist
+POST http://localhost:8999/user/regist
 Content-Type: application/json
 
 {
-  "username": "use1rQ124512",
-  "password": "123456",
-   "identity" :{
-        "name" :"identityName1",
-        "idCardNumber" : "441302888646546",
-        "idCardPic" : "/img/xxxxx.png"
-
-   }
+  "username": "lance",
+  "password": "123456"
 }
 
 ###

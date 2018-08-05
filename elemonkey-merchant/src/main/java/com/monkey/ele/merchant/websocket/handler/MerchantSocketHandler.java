@@ -19,7 +19,7 @@ import java.util.Set;
 public class MerchantSocketHandler extends TextWebSocketHandler {
     static final Logger LOG = Logger.getLogger(MerchantSocketHandler.class);
     /**
-     * 维护C端socket会话
+     * 维护M端socket会话
      */
     private static final Map<String, WebSocketSession> MERCHANTS;
     private static final String MERCHANT_ID = "merchant_id";

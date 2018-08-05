@@ -19,8 +19,9 @@ public class WebSocketInterceptor implements HandshakeInterceptor {
         if (serverHttpRequest instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest httpRequest = (ServletServerHttpRequest) serverHttpRequest;
             HttpSession session = httpRequest.getServletRequest().getSession();
+            session.setAttribute("merchant_id", "111");
             if (session != null) {
-                map.put("customerId", session.getAttribute("customerId"));
+                map.put("merchant_id", session.getAttribute("merchant_id"));
             }
         }
         return true;
