@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @RequiresAuthentication
-    @PostMapping("/changPwd")
+    @PostMapping("/changePwd")
     public ResponseMessage changPwd(@RequestBody Map<String,String> pwdMap) {
         Integer resultCode = MessageResultCode.SUCCESS;
         String msg = null;

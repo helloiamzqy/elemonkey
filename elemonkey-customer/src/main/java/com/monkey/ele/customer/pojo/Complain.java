@@ -14,7 +14,7 @@ import java.util.Date;
  **/
 @Entity
 @Table(name = "MC_COMPLAIN")
-public class Complain {
+public class  Complain {
     public static final class ComplainStatus {
         public final static Integer PENDING = 0x00;
         public final static Integer ACCEPT = 0x01;
@@ -27,6 +27,10 @@ public class Complain {
     private String storeId;
     private String userId;
     private String message;
+
+    @Transient
+    private User user;
+
     private Integer status = ComplainStatus.PENDING;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @Column(updatable = false)
@@ -80,6 +84,14 @@ public class Complain {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

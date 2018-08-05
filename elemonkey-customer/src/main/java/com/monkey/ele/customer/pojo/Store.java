@@ -1,5 +1,6 @@
 package com.monkey.ele.customer.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -46,9 +47,11 @@ public class Store {
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date lastModifiedTime;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
