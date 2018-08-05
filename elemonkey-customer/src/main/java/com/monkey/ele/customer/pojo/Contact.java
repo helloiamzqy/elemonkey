@@ -19,6 +19,7 @@ public class Contact {
     @GeneratedValue(generator = "uuid")
     private String id;
     private String userId;
+    private String contactname;
     private String address;
     private String phone;
     @Column(updatable = false)
@@ -66,12 +67,20 @@ public class Contact {
         this.createTime = createTime;
     }
 
+    public String getContactname() {
+        return contactname;
+    }
+
+    public void setContactname(String contactname) {
+        this.contactname = contactname;
+    }
 
     @Override
     public String toString() {
         return "Contact{" +
                 "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
+                ", contactname='" + contactname + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", createTime=" + createTime +
