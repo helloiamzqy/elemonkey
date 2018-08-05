@@ -8,7 +8,6 @@ import com.monkey.ele.merchant.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 @RestController
@@ -17,6 +16,23 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    /**
+     * 添加新订单，级联添加订单项
+     * @param order
+     * @return
+     */
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
+    public ResponseMessage addOrder(@RequestBody Order order){
+        Order addOrder = orderService.addOrder(order);
+        ResponseMessage message = null;
+        if(addOrder == null){
+            message = new ResponseMessage(null,MessageResultCode.ERROR, Message.MSG_ADD_ERROR);
+        }else{
+            message = new ResponseMessage(addOrder,MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
+        }
+        return message;
+    }
 
     /**
      * 修改订单
@@ -29,7 +45,7 @@ public class OrderController {
         Order updateOrder = orderService.updateOrder(order);
         ResponseMessage message = null;
         if(updateOrder == null){
-            message = new ResponseMessage(null,MessageResultCode.ERROR, Message.MSG_ADD_ERROR);
+            message = new ResponseMessage(null,MessageResultCode.ERROR, Message.MSG_UPDATE_ERROR);
         }else{
             message = new ResponseMessage(updateOrder,MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
         }

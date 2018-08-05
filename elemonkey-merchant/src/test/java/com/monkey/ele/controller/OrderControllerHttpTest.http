@@ -34,4 +34,21 @@ Accept: application/json
 GET http://localhost:9090/order/store/2
 Accept: application/json
 
+
+###
+POST http://localhost:9090/order/add
+Content-Type: application/json
+
+{
+      "userId": "8a5e9d1d650567a80165058d91830000",
+      "storeId": "13",
+      "address": "珠海市南方软件园",
+      "phone": "1388888888",
+      "deliveryCost": 8.0,
+      "remarks": "不然咧",
+      "status": 2,
+      "createTime": 1533139200000
+
+}
+
 ###
