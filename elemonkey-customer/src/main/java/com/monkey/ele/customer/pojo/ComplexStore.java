@@ -6,7 +6,7 @@ public class ComplexStore {
 
     private String storeid;
     private String storeName;
-   private StoreInformation storeInformation;
+    private StoreInformation storeInformation;
 
 
     public ComplexStore(String storeid, String storeName,StoreInformation storeInformation) {

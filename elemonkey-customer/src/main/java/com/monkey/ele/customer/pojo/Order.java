@@ -57,6 +57,10 @@ public class Order {
     private Double totalPrice;
     private String remarks;
     private Integer status;
+
+    @Transient
+    private Store storeInfo;
+
     @Column(updatable = false)
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -156,6 +160,30 @@ public class Order {
 
     public void setComment(Comment comment) {
         this.comment = comment;
+    }
+
+    public String getContactname() {
+        return contactname;
+    }
+
+    public void setContactname(String contactname) {
+        this.contactname = contactname;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Store getStoreInfo() {
+        return storeInfo;
+    }
+
+    public void setStoreInfo(Store storeInfo) {
+        this.storeInfo = storeInfo;
     }
 
     @Override

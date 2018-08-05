@@ -66,6 +66,9 @@ public class Store {
     @JoinColumn(name = "storeId")
     private Set<Order> orders = new HashSet<Order>();
 
+    @Transient
+    private Store storeInfo;
+
 
     public String getId() {
         return id;

@@ -10,6 +10,8 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -24,7 +26,13 @@ public class OrderController {
     @GetMapping(value = "user/history")
     @RequiresAuthentication
     public ResponseMessage findHistoryOrder(){
-        return new ResponseMessage(orderService.findHistoryOrder((String) SecurityUtils.getSubject().getPrincipal()), MessageResultCode.SUCCESS, null);
+        List<Order> orders = orderService.findHistoryOrder((String) SecurityUtils.getSubject().getPrincipal());
+        for(Order order:orders){
+            order.getStoreInfo().setOrders(null);
+            order.getStoreInfo().setProducts(null);
+            order.getStoreInfo().setUser(null);
+        }
+        return new ResponseMessage(orders, MessageResultCode.SUCCESS, null);
     }
 
 
@@ -35,6 +43,12 @@ public class OrderController {
     @GetMapping(value = "user/active")
     @RequiresAuthentication
     public ResponseMessage findActiveOrder(){
-        return new ResponseMessage(orderService.findActiveOrder((String) SecurityUtils.getSubject().getPrincipal()), MessageResultCode.SUCCESS, null);
+        List<Order> orders = orderService.findActiveOrder((String) SecurityUtils.getSubject().getPrincipal());
+        for(Order order:orders){
+            order.getStoreInfo().setOrders(null);
+            order.getStoreInfo().setProducts(null);
+            order.getStoreInfo().setUser(null);
+        }
+        return new ResponseMessage(orders, MessageResultCode.SUCCESS, null);
     }
 }
