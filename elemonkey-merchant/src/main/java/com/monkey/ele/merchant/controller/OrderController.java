@@ -5,9 +5,10 @@ import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Order;
 import com.monkey.ele.merchant.service.OrderService;
+import com.monkey.ele.merchant.websocket.handler.MerchantSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.socket.TextMessage;
 
 
 @RestController
@@ -16,6 +17,8 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    MerchantSocketHandler merchantSocketHandler;
 
     /**
      * 添加新订单，级联添加订单项
@@ -31,6 +34,7 @@ public class OrderController {
         }else{
             message = new ResponseMessage(addOrder,MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
         }
+        merchantSocketHandler.sendMessageToUser("111", new TextMessage("你有新的外卖订单"));
         return message;
     }
 
