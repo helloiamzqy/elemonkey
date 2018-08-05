@@ -12,5 +12,7 @@ public interface AdvertisementDao extends BaseDao<Advertisement> {
 
     public List<Advertisement> findAdvertisementsPageByStatus(Integer status, Integer firstIndex, Integer maxResults);
 
+    public int countByStatus(Integer status);
+
 
 }

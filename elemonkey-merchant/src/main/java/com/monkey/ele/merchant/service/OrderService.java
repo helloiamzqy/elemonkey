@@ -26,4 +26,6 @@ public interface OrderService {
     int getOrderByStatusCount(String storeId, Integer status);
 
     Order addOrder(Order order);
+
+    Order findOrderById(String orderId);
 }

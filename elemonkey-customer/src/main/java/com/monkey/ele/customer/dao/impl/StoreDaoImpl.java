@@ -17,7 +17,7 @@ public class StoreDaoImpl extends AbstractBaseDao<Store> implements StoreDao {
 
     @Override
     public List<Store> findHotStoreLimit(int limit) {
-        return this.findPage(0, limit, "select s from Store s where s.currentAuditStatus = ? and s.storeInformation.open is not null and s.storeInformation.close is not null order by s.orders.size, s.id desc", Store.StoreAuditStatus.ACCEPT);
+        return this.findPage(0, limit, "select s from Store s where s.currentAuditStatus = ? and s.storeInformation.open is not null and s.storeInformation.close is not null order by s.orders.size desc, s.id desc", Store.StoreAuditStatus.ACCEPT);
     }
 
     @Override
