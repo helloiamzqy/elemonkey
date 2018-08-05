@@ -15,6 +15,7 @@ public class UtilTest {
 
     @Test
     public void makeMD5PWD(){
-        System.out.println(Md5Utils.md5Password("123456"));
+        System.out.println(Md5Utils.md5Password("12345" +
+                "6"));
     }
 }

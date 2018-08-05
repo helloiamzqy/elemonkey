@@ -77,4 +77,14 @@ public class UserController {
         return new ResponseMessage(null, resultCode, msg);
     }
 
+
+    @RequiresAuthentication
+    @PostMapping("/changeLogo")
+    public ResponseMessage changLogo(@RequestBody User jsonuser) {
+        User user = userService.findUserById((String)SecurityUtils.getSubject().getPrincipal());
+        user.setImage(jsonuser.getImage());
+        userService.updateUser(user);
+        return new ResponseMessage(user.getImage(), MessageResultCode.SUCCESS, null);
+    }
+
 }
