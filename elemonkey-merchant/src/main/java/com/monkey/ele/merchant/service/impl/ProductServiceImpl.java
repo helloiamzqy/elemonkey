@@ -1,5 +1,6 @@
 package com.monkey.ele.merchant.service.impl;
 
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.merchant.dao.ProductDao;
 import com.monkey.ele.merchant.pojo.Product;
 import com.monkey.ele.merchant.service.ProductService;
@@ -47,5 +48,18 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findByStoreId(String storeId) {
         return productDao.findByStoreId(storeId);
+    }
+
+    @Override
+    public Page<Product> findByStoreId(String id, Integer pageNum, Integer pageSize) {
+        List<Product> products = productDao.findByStoreId(id, pageNum, pageSize);
+        int itemToal = this.getProductCountByStoreId(id);
+        Page<Product> productPage = new Page<>(pageNum, pageSize, products, itemToal);
+        return productPage;
+    }
+
+    @Override
+    public int getProductCountByStoreId(String storeId) {
+        return productDao.getProductCountByStoreId(storeId);
     }
 }

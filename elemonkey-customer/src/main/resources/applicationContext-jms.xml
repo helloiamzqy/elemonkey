@@ -32,4 +32,11 @@
             <value>customer.queue</value>
         </constructor-arg>
     </bean>
+
+    <bean id="ackQueueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>ack.queue</value>
+        </constructor-arg>
+    </bean>
+
 </beans>

@@ -2,6 +2,7 @@ package com.monkey.ele.merchant.controller;
 
 import com.monkey.ele.common.pojo.Message;
 import com.monkey.ele.common.pojo.MessageResultCode;
+import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Product;
 import com.monkey.ele.merchant.service.ProductService;
@@ -89,8 +90,15 @@ public class ProductController {
      * @return
      */
     @GetMapping(value = "/store/{id}")
-    public ResponseMessage findProductByStore(@PathVariable String id){
-        return new ResponseMessage(productService.findByStoreId(id),MessageResultCode.SUCCESS,null);
+    public ResponseMessage findProductByStore(@PathVariable String id, Integer page, Integer pageSize){
+        if(page == null || page <= 1){
+            page = 1;
+        }
+        if(pageSize == null){
+            pageSize = 8;
+        }
+        Page<Product> pageProducts = productService.findByStoreId(id, page, pageSize);
+        return new ResponseMessage(pageProducts,MessageResultCode.SUCCESS,null);
     }
 
 
