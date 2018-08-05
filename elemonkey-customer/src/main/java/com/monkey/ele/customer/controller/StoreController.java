@@ -27,7 +27,7 @@ public class StoreController {
     @Autowired private StoreService storeService;
 
 
-    @GetMapping
+    @RequestMapping
     public ResponseMessage getPassStore(Integer pageNum, Integer maxResults) {
         ResponseMessage resMsg = new ResponseMessage();
         Page<Store> storePage = (pageNum != null && maxResults != null && pageNum!=0) ?
