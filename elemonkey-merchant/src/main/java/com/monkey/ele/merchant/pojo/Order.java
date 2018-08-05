@@ -58,6 +58,18 @@ public class Order {
     private Double totalPrice;
     private String remarks;
     private Integer status = OrderStatus.PENDING;
+
+    @Transient
+    private Store storeInfo;
+
+    public Store getStoreInfo() {
+        return storeInfo;
+    }
+
+    public void setStoreInfo(Store storeInfo) {
+        this.storeInfo = storeInfo;
+    }
+
     @Column(updatable = false)
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone="GMT+8")

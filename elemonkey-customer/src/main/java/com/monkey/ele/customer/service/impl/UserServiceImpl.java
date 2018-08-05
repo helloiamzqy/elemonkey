@@ -28,4 +28,16 @@ public class UserServiceImpl implements UserService {
         return userDao.add(user);
     }
 
+    @Transactional
+    @Override
+    public User findUserById(String userId) {
+        return userDao.load(userId);
+    }
+
+    @Transactional
+    @Override
+    public User updateUser(User user) {
+        return userDao.update(user);
+    }
+
 }
