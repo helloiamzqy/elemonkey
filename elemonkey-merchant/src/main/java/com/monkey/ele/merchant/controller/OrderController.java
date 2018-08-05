@@ -41,14 +41,13 @@ public class OrderController {
 
     /**
      * 修改订单状态
-     * @param orderId 订单id
-     * @param status 订单状态
+     * @param o 订单
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
-    public ResponseMessage updateOrder(@RequestBody String orderId, @RequestBody Integer status){
-        Order order = orderService.findOrderById(orderId);
-        order.setStatus(status);
+    public ResponseMessage updateOrder(@RequestBody Order o){
+        Order order = orderService.findOrderById(o.getId());
+        order.setStatus(o.getStatus());
         Order updateOrder = orderService.updateOrder(order);
         ResponseMessage message = null;
         if(updateOrder == null){
