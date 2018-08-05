@@ -52,7 +52,9 @@ public class Order {
     private String storeId;
     private String address;
     private String phone;
+    private String contactname;
     private Double deliveryCost;
+    private Double totalPrice;
     private String remarks;
     private Integer status;
     @Column(updatable = false)

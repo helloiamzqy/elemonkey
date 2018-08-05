@@ -51,13 +51,13 @@ public class ContactController {
     }
 
 
-    @PostMapping(value = "/" )
+    @PostMapping()
 //    @RequiresAuthentication
     public Object addUserContact(@RequestBody Contact contact){
         ResponseMessage resmsg = new ResponseMessage();
         Subject subject = SecurityUtils.getSubject();
-        subject.login(new UsernamePasswordToken("user12","123456"));
-        contact.setUserId(userService.findUserByUsername((String)subject.getPrincipal()).getId());
+        subject.login(new UsernamePasswordToken("skrskr","123456"));
+        contact.setUserId((String)subject.getPrincipal());
         Contact dbContact = contectService.addContact(contact);
         resmsg.setContent(dbContact);
         resmsg.setResultCode(dbContact!=null?MessageResultCode.SUCCESS:MessageResultCode.ERROR);
