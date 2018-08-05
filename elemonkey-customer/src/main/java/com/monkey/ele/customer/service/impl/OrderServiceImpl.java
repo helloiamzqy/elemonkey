@@ -31,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findHistoryOrder(String uid) {
         List<Order> orders =  orderDao.findHistoryOrder(uid);
         for (Order order : orders){
-            Store store = storeDao.load(order.getStoreId());
+            order.setStoreInfo(storeDao.load(order.getStoreId()));
         }
         return orders;
     }
@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findActiveOrder(String uid) {
         List<Order> orders =  orderDao.findActiveOrder(uid);
         for (Order order : orders){
-            Store store = storeDao.load(order.getStoreId());
+            order.setStoreInfo(storeDao.load(order.getStoreId()));
         }
         return orders;
     }
