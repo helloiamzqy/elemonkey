@@ -11,7 +11,7 @@ import java.util.List;
 public class ComplainDaoImpl extends AbstractBaseDao<Complain> implements ComplainDao {
     @Override
     public List<Complain> findComplainsByStoreId(String storeId) {
-        String jpql = "from Complain where storeId = ? order by createTime desc";
+        String jpql = "from Complain where storeId = ? order by createTime desc ,id desc";
         return this.find(jpql,storeId);
     }
 
@@ -23,8 +23,14 @@ public class ComplainDaoImpl extends AbstractBaseDao<Complain> implements Compla
 
     @Override
     public List<Complain> findComplainsPageByStatus(Integer status, Integer firstIndex, Integer maxResults) {
-        String jpql = "from Complain where status = ? order by createTime desc";
+        String jpql = "from Complain where status = ? order by createTime desc, id desc";
         return this.findPage(firstIndex,maxResults,jpql,status);
+    }
+
+    @Override
+    public int countByStatus(Integer status) {
+        String jpql = "select count(*) from Complain where status = ?";
+        return this.count(jpql,status);
     }
 
 }

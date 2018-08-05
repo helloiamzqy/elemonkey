@@ -19,7 +19,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -87,6 +89,16 @@ public class StoreServiceImpl implements StoreService {
         }
         page.setItems(stores);
         return page;
+    }
+
+    @Override
+    public Map<String, Integer> countStoreStatus() {
+        Map<String,Integer> map = new HashMap<>();
+        map.put("0",storeDao.countByStatus(0));
+        map.put("1",storeDao.countByStatus(1));
+        map.put("2",storeDao.countByStatus(2));
+        map.put("3",storeDao.countByStatus(3));
+        return map;
     }
 
 

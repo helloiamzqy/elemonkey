@@ -12,5 +12,7 @@ public interface StoreDao extends BaseDao<Store>{
 
     public List<Store> findStoresPageByStatus(Integer status,Integer firstIndex, Integer maxResults);
 
+    public int countByStatus(Integer status);
+
 
 }

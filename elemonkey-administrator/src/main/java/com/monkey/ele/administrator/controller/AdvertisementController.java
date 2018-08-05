@@ -19,23 +19,36 @@ public class AdvertisementController {
     @Autowired
     private AdvertisementService advertisementService;
 
+    /**
+     * 更新广告审核状态
+     * @param id
+     * @param advertisement
+     * @return
+     */
     @PostMapping("{id}")
     public Object updateAdStatus(@PathVariable("id") String id, @RequestBody Advertisement advertisement){
-        Advertisement ad = advertisementService.updateAdvertisement(advertisement);
-        ResponseMessage message = new ResponseMessage();
-        message.setContent(ad);
-        message.setResultCode(ad.getId()!=null ? MessageResultCode.SUCCESS : MessageResultCode.ERROR);
-        return message;
+        return new ResponseMessage(advertisementService.updateAdvertisement(advertisement),MessageResultCode.SUCCESS,null);
     }
 
+    /**
+     * 根据审核状态、获取广告分页
+     * @param status
+     * @param pageIndex
+     * @param pageCount
+     * @return
+     */
     @GetMapping("/status/{status}")
     public Object getAdvertisements(@PathVariable("status") Integer status,Integer pageIndex,Integer pageCount){
-        Page<Advertisement> page = advertisementService.findAdvertisementsPageByStatus(status,pageIndex,pageCount);
-        ResponseMessage message = new ResponseMessage();
-        message.setContent(page);
-        message.setResultCode(MessageResultCode.SUCCESS);
-        return message;
+        return new ResponseMessage(advertisementService.findAdvertisementsPageByStatus(status,pageIndex,pageCount),MessageResultCode.SUCCESS,null);
     }
 
+    /**
+     * 获取各种审核状态的广告数量
+     * @return
+     */
+    @GetMapping("/countStatus")
+    public Object getCountAllKindsStatus(){
+        return new ResponseMessage(advertisementService.countAdStatus(),MessageResultCode.SUCCESS,null);
+    }
 
 }

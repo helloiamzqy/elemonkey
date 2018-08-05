@@ -21,7 +21,13 @@ public class AdvertisementDaoImpl extends AbstractBaseDao<Advertisement> impleme
 
     @Override
     public List<Advertisement> findAdvertisementsPageByStatus(Integer status, Integer firstIndex, Integer maxResults) {
-        String jpql = "from Advertisement where status = ? order by createTime desc";
+        String jpql = "from Advertisement where status = ? order by createTime desc, id desc";
         return this.findPage(firstIndex,maxResults,jpql,status);
+    }
+
+    @Override
+    public int countByStatus(Integer status) {
+        String jpql = "select count(*) from Advertisement where status = ?";
+        return this.count(jpql,status);
     }
 }

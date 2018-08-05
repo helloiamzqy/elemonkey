@@ -2,10 +2,8 @@ package com.monkey.ele.administrator.service.impl;
 
 import com.monkey.ele.administrator.dao.AdvertisementDao;
 import com.monkey.ele.administrator.pojo.Advertisement;
-import com.monkey.ele.administrator.pojo.Store;
 import com.monkey.ele.administrator.service.AdvertisementService;
 import com.monkey.ele.common.jms.AckJmsSender;
-import com.monkey.ele.common.jms.JmsSender;
 import com.monkey.ele.common.pojo.JMail;
 import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.util.JsonUtil;
@@ -14,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdvertisementServiceImpl implements AdvertisementService {
@@ -55,6 +55,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         }
         page.setItems(advertisements);
         return page;
+    }
+
+    @Override
+    public Map<String, Integer> countAdStatus() {
+        Map<String,Integer> map = new HashMap<>();
+        map.put("0",advertisementDao.countByStatus(0));
+        map.put("1",advertisementDao.countByStatus(1));
+        map.put("2",advertisementDao.countByStatus(2));
+        return map;
     }
 
 

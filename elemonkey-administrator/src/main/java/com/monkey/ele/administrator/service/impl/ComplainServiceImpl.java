@@ -1,7 +1,6 @@
 package com.monkey.ele.administrator.service.impl;
 
 import com.monkey.ele.administrator.dao.ComplainDao;
-import com.monkey.ele.administrator.pojo.Advertisement;
 import com.monkey.ele.administrator.pojo.Complain;
 import com.monkey.ele.administrator.service.ComplainService;
 import com.monkey.ele.common.pojo.Page;
@@ -10,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ComplainServiceImpl implements ComplainService {
@@ -45,6 +46,15 @@ public class ComplainServiceImpl implements ComplainService {
         }
         page.setItems(complains);
         return page;
+    }
+
+    @Override
+    public Map<String, Integer> countComplainStatus() {
+        Map<String,Integer> map = new HashMap<>();
+        map.put("0",complainDao.countByStatus(0));
+        map.put("1",complainDao.countByStatus(1));
+        map.put("2",complainDao.countByStatus(2));
+        return map;
     }
 
 }
