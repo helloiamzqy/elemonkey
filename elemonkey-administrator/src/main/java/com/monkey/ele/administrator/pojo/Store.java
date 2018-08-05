@@ -38,6 +38,8 @@ public class Store {
     private String address;
     private String license;
     @Transient
+    private boolean opening;
+    @Transient
     private Double rank;
     private Integer status = User.UserStatus.NORMAL;
     private Integer currentAuditStatus = StoreAuditStatus.PENDING; // 当前审核状态，更新通过JMS（from A）
@@ -176,5 +178,13 @@ public class Store {
 
     public void setRank(Double rank) {
         this.rank = rank;
+    }
+
+    public boolean isOpening() {
+        return opening;
+    }
+
+    public void setOpening(boolean opening) {
+        this.opening = opening;
     }
 }
