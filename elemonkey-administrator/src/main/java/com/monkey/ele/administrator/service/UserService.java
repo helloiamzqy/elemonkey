@@ -5,4 +5,6 @@ import com.monkey.ele.administrator.pojo.User;
 public interface UserService {
 
     public User addUser(User user);
+
+    User findUserByUsername(String username);
 }

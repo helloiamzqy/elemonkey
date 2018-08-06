@@ -1,5 +1,6 @@
 package com.monkey.ele.administrator.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -38,9 +39,11 @@ public class User {
     private Integer type;
     private Integer status = UserStatus.NORMAL;
     private String image;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTime;

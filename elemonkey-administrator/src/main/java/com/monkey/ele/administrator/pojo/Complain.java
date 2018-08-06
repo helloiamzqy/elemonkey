@@ -21,12 +21,11 @@ public class  Complain {
         public final static Integer DECLINE = 0x02;
     }
     @Id
-    @GenericGenerator(strategy = "uuid", name = "uuid")
-    @GeneratedValue(generator = "uuid")
     private String id;
     private String storeId;
     private String userId;
     private String message;
+
 
     @Transient
     private User user;
