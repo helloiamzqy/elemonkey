@@ -7,6 +7,7 @@ import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.common.util.JsonUtil;
 import com.monkey.ele.customer.pojo.Complain;
+import com.monkey.ele.customer.pojo.User;
 import com.monkey.ele.customer.service.ComplainService;
 import com.monkey.ele.customer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,11 @@ public class ComplainController {
     @PostMapping
     public ResponseMessage complain(@RequestBody Complain complain){
         Complain addComplain = complainService.addComplain(complain);
-        addComplain.setUser(userService.findUserById(addComplain.getUserId()));
+        User user = userService.findUserById(addComplain.getUserId());
+        user.setOrders(null);
+        user.setContacts(null);
+        user.setComplains(null);
+        addComplain.setUser(user);
         JMail jMail = new JMail(addComplain, JMail.JMailType.COMPLAIN_REQUEST);
         try {
             jmsSender.sendTextMessage(JsonUtil.obj2json(jMail));
