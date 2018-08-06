@@ -11,8 +11,8 @@ import java.util.List;
 public class ComplainDaoImpl extends AbstractBaseDao<Complain> implements ComplainDao {
     @Override
     public List<Complain> findComplainsByStoreId(String storeId) {
-        String jpql = "from Complain where storeId = ? order by createTime desc ,id desc";
-        return this.find(jpql,storeId);
+        String jpql = "from Complain where storeId = ? and status = ? order by createTime desc ,id desc";
+        return this.find(jpql,storeId,Complain.ComplainStatus.ACCEPT);
     }
 
     @Override

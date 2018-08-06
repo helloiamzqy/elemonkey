@@ -2,6 +2,7 @@ package com.monkey.ele.administrator.controller;
 
 import com.monkey.ele.administrator.pojo.Complain;
 import com.monkey.ele.administrator.service.ComplainService;
+import com.monkey.ele.administrator.websocket.handler.AdministratorHandler;
 import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,15 @@ public class ComplainController {
 
     @Autowired
     private ComplainService complainService;
+
+    @Autowired
+    AdministratorHandler administratorHandler;
+
+    @GetMapping("/test")
+    public Object test(){
+        administratorHandler.sendMessageToUser("8a5e9d1d65097546016509c67a420006", new org.springframework.web.socket.TextMessage("收到新的客户投诉信息了"));
+        return null;
+    }
 
     /**
      * 更新投诉审核状态
