@@ -60,7 +60,6 @@ public class User {
     @JoinColumn(name = "userId")
     private Set<Complain> complains = new HashSet<Complain>();
 
-
     public String getId() {
         return id;
     }

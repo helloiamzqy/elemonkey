@@ -1,6 +1,7 @@
 package com.monkey.ele.administrator.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,6 +25,7 @@ public class Product implements Serializable {
     private String images;
     private Double price;
     private Integer quantity;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

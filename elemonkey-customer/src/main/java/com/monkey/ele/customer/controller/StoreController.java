@@ -76,6 +76,7 @@ public class StoreController {
         List<Store> stores = storeService.findHotStoreLimit(limit);
         for (Store store: stores) {
             Double rank = storeService.watchStoreRank(store.getId());
+            store.setOpening(DateFormat.compareOpen(store.getStoreInformation().getOpen(),store.getStoreInformation().getClose()));
             store.setRank(rank == null ? 0 : rank);
             store.setOrders(null);
             store.setProducts(null);

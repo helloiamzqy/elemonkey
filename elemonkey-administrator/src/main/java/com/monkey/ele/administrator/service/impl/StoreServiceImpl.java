@@ -47,12 +47,13 @@ public class StoreServiceImpl implements StoreService {
     public Store addStore(Store store) {
         StoreInformation storeInformation = store.getStoreInformation();
         User user = store.getUser();
-        Identity identity = new Identity();
+        Identity identity = user.getIdentity();
         if(user!=null){
-            userDao.add(user);
-            identity = user.getIdentity();
-            if(identity!=null){
-                identityDao.add(user.getIdentity());
+            if(userDao.load(user.getId())==null){
+                userDao.add(user);
+                if(identity!=null){
+                    identityDao.add(user.getIdentity());
+                }
             }
         }
         if(storeInformation!=null){

@@ -60,7 +60,7 @@ public class UserController {
     }
 
     @RequiresAuthentication
-    @PostMapping("/changPwd")
+    @PostMapping("/changePwd")
     public ResponseMessage changPwd(@RequestBody Map<String,String> pwdMap) {
         Integer resultCode = MessageResultCode.SUCCESS;
         String msg = null;
@@ -75,6 +75,16 @@ public class UserController {
             msg = "密码错误";
         }
         return new ResponseMessage(null, resultCode, msg);
+    }
+
+
+    @RequiresAuthentication
+    @PostMapping("/changeLogo")
+    public ResponseMessage changLogo(@RequestBody User jsonuser) {
+        User user = userService.findUserById((String)SecurityUtils.getSubject().getPrincipal());
+        user.setImage(jsonuser.getImage());
+        userService.updateUser(user);
+        return new ResponseMessage(user.getImage(), MessageResultCode.SUCCESS, null);
     }
 
 }

@@ -21,7 +21,7 @@ public class AdvertisementController {
 
     @GetMapping
     public ResponseMessage index() throws Exception {
-        return new ResponseMessage(advertisementService.findAdvertisementsLimit(6), MessageResultCode.SUCCESS, "查询成功");
+        return new ResponseMessage(advertisementService.findAdvertisementsLimit(5), MessageResultCode.SUCCESS, "查询成功");
     }
 
 
