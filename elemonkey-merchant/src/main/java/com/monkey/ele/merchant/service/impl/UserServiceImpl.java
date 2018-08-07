@@ -21,9 +21,6 @@ public class UserServiceImpl implements UserService {
     public User saveUser(User user) {
         if(userDao.findByUserName(user) == null){
             user.setType(User.UserType.MERCHANT);
-            if(user.getPassword() != null){
-                user.setPassword(Md5Utils.md5Password(user.getPassword()));
-            }
             User addUser = userDao.add(user);
             addUser.setContacts(null);
             addUser.setOrders(null);
@@ -36,9 +33,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User updateUser(User user) {
-        if(user.getPassword() != null){
-            user.setPassword(Md5Utils.md5Password(user.getPassword()));
-        }
         User updateUser = userDao.update(user);
         updateUser.setContacts(null);
         updateUser.setOrders(null);
@@ -53,12 +47,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByUsername(String username) {
+        return this.userDao.findUserByUsername(username);
+    }
+
+    @Override
     public User loadUser(String id) {
         User user = userDao.load(id);
         user.setContacts(null);
         user.setOrders(null);
         user.setComplains(null);
-        user.setPassword(null);
         return user;
     }
 

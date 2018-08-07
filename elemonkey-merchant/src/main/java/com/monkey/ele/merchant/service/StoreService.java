@@ -15,6 +15,8 @@ public interface StoreService {
 
     public Store watchStore(String StoreId);
 
+    public Store watchStoreByUserId(String userId);
+
     public StoreInformation watchStoreInfo(String storeId);
 
     public Store modifyStore(Store store);

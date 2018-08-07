@@ -28,16 +28,16 @@ public class WebLogAspect {
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable {
 
-        LOGGER.info("Request_Controller : " + joinPoint.getSignature().getDeclaringTypeName());
-        LOGGER.info("Request_Method : " + joinPoint.getSignature().getName());
-        Object[] args = joinPoint.getArgs();
-        for(Object obj : args){
-            if(obj != null){
-                LOGGER.info("Request_Param : " + obj.getClass().getSimpleName() + " —— " + obj);
-            }else{
-                LOGGER.info("Request_Param : " + obj);
-            }
-        }
+//        LOGGER.info("Request_Controller : " + joinPoint.getSignature().getDeclaringTypeName());
+//        LOGGER.info("Request_Method : " + joinPoint.getSignature().getName());
+//        Object[] args = joinPoint.getArgs();
+//        for(Object obj : args){
+//            if(obj != null){
+//                LOGGER.info("Request_Param : " + obj.getClass().getSimpleName() + " —— " + obj);
+//            }else{
+//                LOGGER.info("Request_Param : " + obj);
+//            }
+//        }
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")

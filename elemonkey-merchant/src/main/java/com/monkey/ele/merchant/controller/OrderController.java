@@ -4,8 +4,12 @@ import com.monkey.ele.common.pojo.MessageResultCode;
 import com.monkey.ele.common.pojo.Page;
 import com.monkey.ele.common.pojo.ResponseMessage;
 import com.monkey.ele.merchant.pojo.Order;
+import com.monkey.ele.merchant.pojo.Store;
+import com.monkey.ele.merchant.pojo.User;
 import com.monkey.ele.merchant.service.OrderService;
+import com.monkey.ele.merchant.service.StoreService;
 import com.monkey.ele.merchant.websocket.handler.MerchantSocketHandler;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.TextMessage;
@@ -19,6 +23,8 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     MerchantSocketHandler merchantSocketHandler;
+    @Autowired
+    StoreService storeService;
 
     /**
      * 添加新订单，级联添加订单项
@@ -28,13 +34,16 @@ public class OrderController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage addOrder(@RequestBody Order order){
         Order addOrder = orderService.addOrder(order);
+        String storeId = order.getStoreId();
+        Store store =storeService.watchStore(storeId);
+        String userId = store.getUser().getId();
         ResponseMessage message = null;
         if(addOrder == null){
             message = new ResponseMessage(null,MessageResultCode.ERROR, Message.MSG_ADD_ERROR);
         }else{
             message = new ResponseMessage(addOrder,MessageResultCode.SUCCESS, Message.MSG_ADD_SUCCESS);
         }
-        merchantSocketHandler.sendMessageToUser("111", new TextMessage("你有新的外卖订单"));
+        merchantSocketHandler.sendMessageToUser(userId, new TextMessage("你有新的外卖订单"));
         return message;
     }
 

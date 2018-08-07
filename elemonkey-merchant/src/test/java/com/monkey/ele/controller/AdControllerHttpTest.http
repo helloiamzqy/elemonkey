@@ -1,5 +1,5 @@
 ### Send POST request with json body
-POST http://localhost:9090/ad/send
+POST http://localhost:8999/ad/send
 Content-Type: application/json
 
 {

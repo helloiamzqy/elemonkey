@@ -9,6 +9,15 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8999/user/login
+Content-Type: application/json
+
+{
+  "username": "burgess",
+  "password": "123456"
+}
+###
+
 
 GET http://localhost:9090/user/delete/8a5e9d4464ff9b130164ff9d1b430001
 Accept: application/json

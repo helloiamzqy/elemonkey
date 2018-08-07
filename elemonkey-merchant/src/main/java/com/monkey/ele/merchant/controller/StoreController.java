@@ -40,11 +40,16 @@ public class StoreController {
     @RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
     public ResponseMessage update(@RequestBody Store store) {
         ResponseMessage respMsg = null;
-        Store modifyStore = storeService.modifyStore(store);
+        Store loadStore = storeService.watchStore(store.getId());
+        loadStore.setStoreInformation(store.getStoreInformation());
+        Store modifyStore = storeService.modifyStore(loadStore);
+        modifyStore.setOrders(null);
+        modifyStore.setProducts(null);
+        modifyStore.setUser(null);
         if (modifyStore == null) {
             respMsg = new ResponseMessage(null, MessageResultCode.FAILED, Message.MSG_UPDATE_ERROR);
         } else {
-            respMsg = new ResponseMessage(store, MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
+            respMsg = new ResponseMessage(modifyStore, MessageResultCode.SUCCESS, Message.MSG_UPDATE_SUCCESS);
         }
         return respMsg;
     }
@@ -65,6 +70,17 @@ public class StoreController {
     public ResponseMessage getStore(@PathVariable("storeId") String storeId) {
         ResponseMessage respMsg = null;
         Store store = storeService.watchStore(storeId);
+        store.setOrders(null);
+        store.setProducts(null);
+        store.setUser(null);
+        respMsg = new ResponseMessage(store, MessageResultCode.SUCCESS, null);
+        return respMsg;
+    }
+
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    public ResponseMessage getStoreByUserId(@PathVariable("userId") String userId) {
+        ResponseMessage respMsg = null;
+        Store store = storeService.watchStoreByUserId(userId);
         respMsg = new ResponseMessage(store, MessageResultCode.SUCCESS, null);
         return respMsg;
     }

@@ -9,6 +9,7 @@ public interface UserService {
 
     void deleteUser(String id);
 
-
+    User findUserByUsername(String username);
+    
     User loadUser(String id);
 }

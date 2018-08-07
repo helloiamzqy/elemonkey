@@ -36,7 +36,7 @@ public class MerchantSocketHandler extends TextWebSocketHandler {
         LOG.info("merchantId:" + customerId);
         if (customerId != null) {
             MERCHANTS.put(customerId, session);
-            session.sendMessage(new TextMessage("server:" + "连接成功"));
+            session.sendMessage(new TextMessage("Hello,Monkey!"));
         }
     }
 

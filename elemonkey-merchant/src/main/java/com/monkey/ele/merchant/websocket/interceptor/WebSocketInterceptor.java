@@ -1,12 +1,16 @@
 package com.monkey.ele.merchant.websocket.interceptor;
 
+import com.monkey.ele.merchant.pojo.User;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpSession;
+import java.security.Security;
 import java.util.Map;
 
 /**
@@ -16,13 +20,9 @@ import java.util.Map;
 public class WebSocketInterceptor implements HandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse, WebSocketHandler webSocketHandler, Map<String, Object> map) throws Exception {
-        if (serverHttpRequest instanceof ServletServerHttpRequest) {
-            ServletServerHttpRequest httpRequest = (ServletServerHttpRequest) serverHttpRequest;
-            HttpSession session = httpRequest.getServletRequest().getSession();
-            session.setAttribute("merchant_id", "111");
-            if (session != null) {
-                map.put("merchant_id", session.getAttribute("merchant_id"));
-            }
+        String userId = (String) SecurityUtils.getSubject().getPrincipal();
+        if(userId != null){
+            map.put("merchant_id", userId);
         }
         return true;
     }

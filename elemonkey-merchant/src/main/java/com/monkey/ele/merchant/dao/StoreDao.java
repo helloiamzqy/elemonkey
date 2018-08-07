@@ -8,4 +8,5 @@ import com.monkey.ele.merchant.pojo.Store;
  * @ Date       ：Created in 9:21 AM 8/2/2018
  */
 public interface StoreDao extends BaseDao<Store> {
+    public Store findByUserId(String userId);
 }

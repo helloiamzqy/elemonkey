@@ -50,6 +50,15 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store watchStore(String storeId) {
         Store store = storeDao.load(storeId);
+        return store;
+    }
+
+    @Override
+    public Store watchStoreByUserId(String userId) {
+        Store store = storeDao.findByUserId(userId);
+        if(store == null){
+            return store;
+        }
         store.setOrders(null);
         store.setProducts(null);
         store.setUser(null);
